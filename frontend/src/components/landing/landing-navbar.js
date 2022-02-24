@@ -3,11 +3,9 @@ import styled from '@emotion/styled';
 import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Stack, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
-const LandigNavbarRoot = styled(AppBar)(({ theme }) => ({
-    // backgroundColor: theme.palette.background.paper,
-    backgroundColor: 'rgba(0,0,0,0.0)',
-    // boxShadow: theme.shadows[3]
-}));
+const LandigNavbarRoot = styled(AppBar)({
+    backgroundColor: 'rgba(0,0,0,0.0)'
+});
 
 const pages = ['About', 'Team']
 const pagesMobile = ['About', 'Team', 'Sign In', 'Register']
@@ -68,12 +66,12 @@ export function LandingNavbar() {
                                 aria-controls="menu-appbar"
                                 aria-haspopup="true"
                                 onClick={handleOpenNavMenu}
-                                color="primary"
                                 sx={{
                                     display: {
                                         xs: 'inline-flex',
                                         md: 'none'
-                                    }
+                                    },
+                                    color: 'white'
                                 }}
                             >
                                 <MenuIcon />
