@@ -4,7 +4,8 @@ import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Stack, Tool
 import MenuIcon from '@mui/icons-material/Menu';
 
 const LandigNavbarRoot = styled(AppBar)({
-    backgroundColor: 'rgba(0,0,0,0.0)'
+    backgroundColor: 'rgba(0,0,0,0.0)',
+    boxShadow: 'none'
 });
 
 const pages = ['About', 'Team']

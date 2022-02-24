@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { Box, CssBaseline } from '@mui/material';
+import { Box, Container, CssBaseline } from '@mui/material';
 import { LandingNavbar } from '../components/landing/landing-navbar';
-import { Footer } from '../components/footer'
+import { LandingSearch } from '../components/landing/landing-main-search';
+import { Footer } from '../components/footer';
 
 export default function HomePage() {
   return (
@@ -15,13 +15,16 @@ export default function HomePage() {
           height: '100vh',
           filter: 'brightness(30%)',
           backgroundImage: `url(${'/images/landing-bgimg.jpg'})`,
-          display: 'flex',
+          backgroundPosition: 'center',
           width: '100%',
           backgroundSize: 'cover',
+          alignContent: 'center',
+          postion: 'reletive'
         }}
       />
-        <LandingNavbar /> 
-        <Footer />
+      <LandingSearch />
+      <LandingNavbar /> 
+      <Footer />
     </>
   )
 }
