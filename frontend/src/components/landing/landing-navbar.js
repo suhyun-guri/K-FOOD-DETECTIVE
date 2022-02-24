@@ -4,8 +4,9 @@ import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Stack, Tool
 import MenuIcon from '@mui/icons-material/Menu';
 
 const LandigNavbarRoot = styled(AppBar)(({ theme }) => ({
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[3]
+    // backgroundColor: theme.palette.background.paper,
+    backgroundColor: 'rgba(0,0,0,0.0)',
+    // boxShadow: theme.shadows[3]
 }));
 
 const pages = ['About', 'Team']
@@ -31,7 +32,9 @@ export function LandingNavbar() {
                             sx={{ flexGrow: 20, ml: 1, mr: 2, display: { xs: 'flex', md: 'flex' } }}
                         >
                             <Button
-                                color='primary'
+                                sx={{
+                                    color: 'white'
+                                }}
                                 variant='text'
                             >
                                 LOGO
@@ -44,7 +47,7 @@ export function LandingNavbar() {
                                 <Button
                                     key={page}
                                     onClick={handleCloseNavMenu}
-                                    sx={{ my: 2, color: 'black', display: 'block' }}
+                                    sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
                                     {page}
                                 </Button>
@@ -53,7 +56,7 @@ export function LandingNavbar() {
                         </Box>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             <Stack spacing={1} direction='row'>
-                                <Button variant='outlined'>Register</Button>
+                                <Button variant='outlined' sx={{color: 'white'}}>Register</Button>
                                 <Button variant='contained'>Sign In</Button>
                             </Stack>
                         </Box>

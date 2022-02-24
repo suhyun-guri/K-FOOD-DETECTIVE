@@ -1,17 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+// https://github.com/diegohaz/arc/wiki/Example-app
+// import 'react-hot-loader/patch'
+import React from 'react'
+import { render } from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
 
-ReactDOM.render(
-  <React.StrictMode>
+import { basename } from './config'
+import App from './components/App'
+
+// import { UserInfoProvider } from './store/user-info-context'
+// import { UserHealthInfoProvider } from './store/user-health-info-context'
+
+const renderApp = () => (
+  <BrowserRouter basename={basename}>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+  </BrowserRouter>
+)
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
+const root = document.getElementById('app')
+render(renderApp(), root)
+
+if (module.hot) {
+  module.hot.accept('./components/App', () => {
+    require('./components/App')
+    render(renderApp(), root)
+  })
+}

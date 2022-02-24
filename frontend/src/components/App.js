@@ -1,32 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
-import axios from 'axios';
-import {useState, useEffect} from 'react';
+import React from 'react'
+import { Routes, Route, Router } from 'react-router-dom'
+import { createGlobalStyle } from 'styled-components'
+import { ThemeProvider } from '@mui/material/styles';
+import { theme } from '../theme'
+import HomePage from '../pages/home'
+import LoginPage from '../pages/login'
+import RegisterPage from '../pages/register'
+import FindPwdPage from '../pages/find-pwd'
+import MyPage from '../pages/my-page'
+import FoodDetailDBPage from '../pages/food-detail-db'
 
-function App() {
-  const [msg, setMsg] = useState("아직 안왔다.");
-  useEffect(()=>{
-    axios('/chilsu').then(res=>{setMsg(res.data)});
-    
-  }, [])
+createGlobalStyle`
+  body {
+    margin: 0;
+  }
+`
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          {msg}
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
+    <ThemeProvider theme={theme}>
+      <Routes>
+        <Route path="/" element={<HomePage />} exact />
+        {/* 로그인 여부로 페이지 제한을 위해 Auth 적용 필요 */}
+        <Route path="/login" element={<LoginPage />} exact />
+        <Route path="/register" element={<RegisterPage />} exact />
+        <Route path="/find-password" element={<FindPwdPage />} exact />
+        {/* 음식은 어떻게 받지? 고민.. 이건 일단 DB에서 조회 */}
+        <Route path="/food-detail" element={<FoodDetailDBPage />} exact />
+        {/* path 수정 필요 */}
+        <Route path="/my-page/:id/:category" element={<MyPage />} exact />
+      </Routes>
+    </ThemeProvider>
+  )
+};

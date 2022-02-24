@@ -1,17 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+// https://github.com/diegohaz/arc/wiki/Atomic-Design#do-not-worry
+// dynamic export로 컴포넌트 쉽게 불러오기
+const req = require.context('.', true, /\.\/[^/]+\/[^/]+\/index\.js$/)
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+req.keys().forEach((key) => {
+  const componentName = key.replace(/^.+\/([^/]+)\/index\.js/, '$1')
+  module.exports[componentName] = req(key).default
+})
