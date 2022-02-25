@@ -1,6 +1,6 @@
-import { Box, Paper, Typography, InputAdornment, InputBase, TextField } from '@mui/material';
+import { Box, Paper, Typography, InputAdornment, TextField, IconButton } from '@mui/material';
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
-import { width } from '@mui/system';
+import { UploadImageBtn } from '../img-upload-btn'
 
 export function LandingSearch() {
     return (
@@ -10,8 +10,8 @@ export function LandingSearch() {
                 square= 'true'
                 sx={{
                     position: 'absolute',
-                    width: '55%',
-                    height: '35%',
+                    width: '51%',
+                    height: '38%',
                     top: '31.5%',
                     left: '22.5%',  
                     backgroundColor: 'rgba(255,255,255,0.5)',
@@ -35,14 +35,22 @@ export function LandingSearch() {
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
-                          <ImageSearchIcon sx={{color:'white'}} />
+                            {/* <IconButton
+                                arial-label='image search'
+                                sx={{
+
+                                }}
+                            >
+                                <ImageSearchIcon sx={{color:'white'}} />
+                            </IconButton> */}
+                            <UploadImageBtn />
                         </InputAdornment>
                       ),
                     }}
                     variant="outlined"
                     sx={{
                         mt: 3,
-                        width:'90%' 
+                        width:'70%' 
                     }}
                     />
                 </Box>
