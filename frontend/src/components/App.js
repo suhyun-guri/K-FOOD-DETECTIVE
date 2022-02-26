@@ -26,7 +26,7 @@ export default function App() {
         <Route path="/about" element={<AboutPage />} exact />
         <Route path="/team" element={<TeamPage />} exact />
         {/* 로그인 여부로 페이지 제한을 위해 Auth 적용 필요 */}
-        <Route path="/login" element={<LoginPage />} exact />
+        <Route path="/signin" element={<LoginPage />} exact />
         <Route path="/register" element={<RegisterPage />} exact />
         <Route path="/find-password" element={<FindPwdPage />} exact />
         {/* 음식은 어떻게 받지? 고민.. 이건 일단 DB에서 조회 */}

@@ -32,30 +32,31 @@ export function LandingNavbar() {
                             sx={{ flexGrow: 20, ml: 1, mr: 2, display: { xs: 'flex', md: 'flex' } }}
                         >
                             <Link to='/'>
-                            <Button
-                                sx={{
-                                    color: 'white'
-                                }}
-                                variant='text'
-                            >
-                                LOGO
-                            </Button>
+                                <Button
+                                    sx={{
+                                        color: 'white'
+                                    }}
+                                    variant='text'
+                                >
+                                    LOGO
+                                </Button>
                             </Link>
 
                         </Box>
 
+                        {/* 1200px 이상 일 때 */}
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             {pages.map((page) => (
                                 <Link to={{
                                     pathname: `/${page.toLowerCase()}`
                                 }}>
-                                <Button
-                                    key={page}
-                                    onClick={handleCloseNavMenu}
-                                    sx={{ my: 2, color: 'white', display: 'block' }}
-                                >
-                                    {page}
-                                </Button>
+                                    <Button
+                                        key={page}
+                                        onClick={handleCloseNavMenu}
+                                        sx={{ my: 2, color: 'white', display: 'block' }}
+                                    >
+                                        {page}
+                                    </Button>
                                 </Link>
                             ))}
 
@@ -63,14 +64,15 @@ export function LandingNavbar() {
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             <Stack spacing={1} direction='row'>
                                 <Link to='/register'>
-                                <Button variant='outlined' sx={{color: 'white'}}>Register</Button>
+                                    <Button variant='outlined' sx={{ color: 'white' }}>Register</Button>
                                 </Link>
-                                <Link to='/login'>
-                                <Button variant='contained'>Sign In</Button>
+                                <Link to='/signin'>
+                                    <Button variant='contained'>Sign In</Button>
                                 </Link>
                             </Stack>
                         </Box>
 
+                        {/* 1200px 이하 일 때 */}
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} justifyContent='space-between'>
                             <IconButton
                                 size="large"
@@ -107,9 +109,14 @@ export function LandingNavbar() {
                                 }}
                             >
                                 {pagesMobile.map((page) => (
+                                    <Link 
+                                        to={{pathname: `/${page.replace(/ /g,"").toLowerCase()}`}}
+                                        style={{ textDecoration: 'none', color: 'black' }}    
+                                    >
                                     <MenuItem key={page} onClick={handleCloseNavMenu}>
                                         <Typography textAlign="center">{page}</Typography>
                                     </MenuItem>
+                                    </Link>
                                 ))}
                             </Menu>
                         </Box>

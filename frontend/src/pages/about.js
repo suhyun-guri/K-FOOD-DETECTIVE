@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import { Box, CssBaseline } from '@mui/material';
+import { Box, CssBaseline, Paper } from '@mui/material';
 import { LandingNavbar } from '../components/landing/landing-navbar';
-import { LandingContentsLayout } from '../components/landing/landing-contents-layout';
+import { LandingContentsTitle } from "../components/landing/landing-contents-title";
+import { LandingContentsMobile } from '../components/landing/landing-contents-mobile';
+import { LandingContentsDesktop } from '../components/landing/landing-contents-desktop';
 import { Footer } from '../components/footer';
 import JsonData from '../data/data.json';
 
@@ -13,7 +15,7 @@ export default function AboutPage() {
 
   return (
     <>
-    <CssBaseline />
+      <CssBaseline />
       <Box
         sx={{
           display: 'flex',
@@ -29,13 +31,38 @@ export default function AboutPage() {
           postion: 'reletive'
         }}
       />
-      <LandingNavbar /> 
-      {/* <LandingContentsLayout
-        title= 'About Our Service'
-        subtitle= 'Overview about our service vision, target etc.'
-      /> */}
-      <LandingContentsLayout data={landingPageData.About} />
+      <LandingNavbar />
       
+      <Paper
+        elevation={24}
+        square='true'
+        sx={{
+          position: 'absolute',
+          width: '51%',
+          height: '70%',
+          top: '13.5%',
+          left: '22.5%',
+          backgroundColor: 'rgba(255,255,255,0.5)',
+          alignItems: 'center',
+          overflow: 'auto'
+        }}
+      >
+        <Box
+          sx={{
+            my: '3%',
+            mx: '5%',
+            textAlign: 'left',
+            alignItems: 'center'
+          }}
+        >
+          <LandingContentsTitle data={landingPageData.About} />
+          {/* 1200px 이하일 때 */}
+          <LandingContentsMobile data={landingPageData.About} />
+          {/* 1200px 이상일 때 */}
+          <LandingContentsDesktop data={landingPageData.About} />
+        </Box>
+      </Paper>
+
       <Footer />
     </>
   )
