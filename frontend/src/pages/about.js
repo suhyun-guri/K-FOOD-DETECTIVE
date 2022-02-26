@@ -32,7 +32,7 @@ export default function AboutPage() {
         }}
       />
       <LandingNavbar />
-      
+
       <Paper
         elevation={24}
         square='true'

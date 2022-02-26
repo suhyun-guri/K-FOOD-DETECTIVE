@@ -1,11 +1,11 @@
-import { Box, CssBaseline } from '@mui/material';
+import { Box, CssBaseline, Paper } from '@mui/material';
 import { AccountBackBtn } from '../components/account/account-back-btn';
-
+import { AccountNavTab } from '../components/account/account-nav-tab';
 
 export default function LoginPage() {
   return (
     <>
-    <CssBaseline />
+      <CssBaseline />
       <Box
         sx={{
           display: 'flex',
@@ -22,7 +22,37 @@ export default function LoginPage() {
         }}
       />
       <AccountBackBtn />
-      
+
+      <Paper
+        elevation={24}
+        square='true'
+        sx={{
+          position: 'absolute',
+          width: '51%',
+          height: '70%',
+          top: '13.5%',
+          left: '22.5%',
+          backgroundColor: 'rgba(255,255,255,0.5)',
+          alignItems: 'center',
+          overflow: 'auto'
+        }}
+      >
+
+        <Box
+          sx={{
+            my: '3%',
+            mx: '5%',
+            textAlign: 'left',
+            alignItems: 'center'
+          }}
+        >
+          <AccountNavTab />
+          
+
+        </Box>
+
+      </Paper>
+
     </>
   )
 }
