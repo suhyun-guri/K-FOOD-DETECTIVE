@@ -13,7 +13,7 @@ export default function LoginPage() {
           flexDirection: 'column',
           height: '100vh',
           filter: 'brightness(30%)',
-          backgroundImage: `url(${'/images/account-bgimg.jpg'})`,
+          backgroundImage: `url(${'/images/bgimg/account-bgimg.jpg'})`,
           backgroundPosition: 'center',
           width: '100%',
           backgroundSize: 'cover',
@@ -23,6 +23,7 @@ export default function LoginPage() {
       />
       <AccountBackBtn />
 
+      
       <Paper
         elevation={24}
         square='true'
@@ -34,7 +35,7 @@ export default function LoginPage() {
           left: '22.5%',
           backgroundColor: 'rgba(255,255,255,0.5)',
           alignItems: 'center',
-          overflow: 'auto'
+          overflow: 'auto',
         }}
       >
 
@@ -43,7 +44,8 @@ export default function LoginPage() {
             my: '3%',
             mx: '5%',
             textAlign: 'left',
-            alignItems: 'center'
+            alignItems: 'center',
+            scrollbarWidth: 'none'
           }}
         >
           <AccountNavTab />

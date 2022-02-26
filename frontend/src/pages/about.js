@@ -7,11 +7,30 @@ import { LandingContentsDesktop } from '../components/landing/landing-contents-d
 import { Footer } from '../components/footer';
 import JsonData from '../data/data.json';
 
+
+
 export default function AboutPage() {
   const [landingPageData, setLandingPageData] = useState({});
   useEffect(() => {
     setLandingPageData(JsonData);
   }, []);
+
+  const contentsNum = 1;
+
+  function createContents() {
+    let contents = [];
+    for (let i = 0; i < contentsNum; i++) {
+      contents.push(
+        <>
+          {/* 1200px 이하일 때 */}
+          <LandingContentsMobile data={landingPageData.About} />
+          {/* 1200px 이상일 때 */}
+          <LandingContentsDesktop data={landingPageData.About} />
+        </>
+      );
+    }
+    return contents;
+  }
 
   return (
     <>
@@ -23,7 +42,7 @@ export default function AboutPage() {
           flexDirection: 'column',
           height: '100vh',
           filter: 'brightness(30%)',
-          backgroundImage: `url(${'/images/landing-bgimg.jpg'})`,
+          backgroundImage: `url(${'/images/bgimg/landing-bgimg.jpg'})`,
           backgroundPosition: 'center',
           width: '100%',
           backgroundSize: 'cover',
@@ -56,10 +75,10 @@ export default function AboutPage() {
           }}
         >
           <LandingContentsTitle data={landingPageData.About} />
-          {/* 1200px 이하일 때 */}
-          <LandingContentsMobile data={landingPageData.About} />
-          {/* 1200px 이상일 때 */}
-          <LandingContentsDesktop data={landingPageData.About} />
+
+          {/* data.json에 있는 내용들 생성 */}
+          {createContents()}
+
         </Box>
       </Paper>
 

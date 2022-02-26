@@ -12,7 +12,7 @@ export default function RegisterPage() {
           flexDirection: 'column',
           height: '100vh',
           filter: 'brightness(30%)',
-          backgroundImage: `url(${'/images/account-bgimg.jpg'})`,
+          backgroundImage: `url(${'/images/bgimg/account-bgimg.jpg'})`,
           backgroundPosition: 'center',
           width: '100%',
           backgroundSize: 'cover',

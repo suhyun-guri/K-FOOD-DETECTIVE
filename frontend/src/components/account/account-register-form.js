@@ -51,11 +51,11 @@ export function AccountRegisterForm() {
             <Box
                 component="form"
                 sx={{
-                    width: '100%'
+                    width: '100%',
+                    overflow: 'auto'
                 }}
                 noValidate
                 autoComplete="off"
-
             >
                 <TextField
                     error={Boolean(formik.touched.username && formik.errors.username)}
@@ -136,6 +136,7 @@ export function AccountRegisterForm() {
                 </Button>
 
             </Box>
+
         </>
     )
 }

@@ -14,7 +14,7 @@ export default function HomePage() {
           flexDirection: 'column',
           height: '100vh',
           filter: 'brightness(30%)',
-          backgroundImage: `url(${'/images/landing-bgimg.jpg'})`,
+          backgroundImage: `url(${'/images/bgimg/landing-bgimg.jpg'})`,
           backgroundPosition: 'center',
           width: '100%',
           backgroundSize: 'cover',

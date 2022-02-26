@@ -5,19 +5,6 @@ import { Box, Button, TextField } from '@mui/material';
 import { useHistory } from "react-router-dom";
 
 export function AccountLoginForm() {
-    //글로벌 전역 상태값 setUser를 받기
-    //로그인이 성공적으로 이루어지면 user에 상태값을 넣어줘야지 나중에 다른 컴포넌트에서도 user값을 이용하여 다른 것들을 할 수 있음
-//     const { setUser } = useUserContext();
-
-//     //url 이동을 위한 useHistory
-//     const history = useHistory();
-
-//     //input에서 입력한 아이디와 비밀번호 정보를 담기위한 state
-//   const [account, setAccount] = useState({
-//     username: "",
-//     password: "",
-//   });
-
     const formik = useFormik({
         initialValues: {
             username: '',
@@ -35,9 +22,7 @@ export function AccountLoginForm() {
                 .required(
                     'Password is required')
         }),
-        // onSubmit: () => {
-        //   router.push('/');
-        // }
+        onSubmit: () => { }
     });
 
     return (
@@ -46,11 +31,10 @@ export function AccountLoginForm() {
                 component="form"
                 sx={{
                     width: '100%',
-                    my: '10%'
+                    my: '7%'
                 }}
                 noValidate
                 autoComplete="off"
-
             >
                 <TextField
                     error={Boolean(formik.touched.username && formik.errors.username)}
