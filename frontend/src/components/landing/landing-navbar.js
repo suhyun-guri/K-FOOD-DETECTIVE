@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Stack, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -30,6 +31,7 @@ export function LandingNavbar() {
                         <Box
                             sx={{ flexGrow: 20, ml: 1, mr: 2, display: { xs: 'flex', md: 'flex' } }}
                         >
+                            <Link to='/'>
                             <Button
                                 sx={{
                                     color: 'white'
@@ -38,11 +40,15 @@ export function LandingNavbar() {
                             >
                                 LOGO
                             </Button>
+                            </Link>
 
                         </Box>
 
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             {pages.map((page) => (
+                                <Link to={{
+                                    pathname: `/${page.toLowerCase()}`
+                                }}>
                                 <Button
                                     key={page}
                                     onClick={handleCloseNavMenu}
@@ -50,13 +56,18 @@ export function LandingNavbar() {
                                 >
                                     {page}
                                 </Button>
+                                </Link>
                             ))}
 
                         </Box>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             <Stack spacing={1} direction='row'>
+                                <Link to='/register'>
                                 <Button variant='outlined' sx={{color: 'white'}}>Register</Button>
+                                </Link>
+                                <Link to='/login'>
                                 <Button variant='contained'>Sign In</Button>
+                                </Link>
                             </Stack>
                         </Box>
 

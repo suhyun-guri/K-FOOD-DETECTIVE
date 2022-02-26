@@ -1,24 +1,26 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
-
+import { Box, CssBaseline } from '@mui/material';
+import { AccountBackBtn } from '../components/account/account-back-btn';
 
 export default function RegisterPage() {
-    const [open, setOpen] = useState(false);
-    const [windowSize, setWindowSize] = useState(window.innerWidth);
-
-    // 화면 사이즈에 따른 ui 변경을 위해 정의
-    const handleWindowResize = useCallback((event) => {
-        setWindowSize(window.innerWidth);
-    }, []);
-
-    useEffect(() => {
-        window.addEventListener("resize", handleWindowResize);
-        windowSize >= 600 && setOpen(false);
-        return () => {
-          window.removeEventListener("resize", handleWindowResize);
-        };
-      }, [windowSize]);
-
-    return (
-        <p>여긴 회원가입 페이지</p>
-    )
+  return (
+    <>
+    <CssBaseline />
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          flexDirection: 'column',
+          height: '100vh',
+          filter: 'brightness(30%)',
+          backgroundImage: `url(${'/images/account-bgimg.jpg'})`,
+          backgroundPosition: 'center',
+          width: '100%',
+          backgroundSize: 'cover',
+          alignContent: 'center',
+          postion: 'reletive'
+        }}
+      />
+      <AccountBackBtn />
+    </>
+  )
 }

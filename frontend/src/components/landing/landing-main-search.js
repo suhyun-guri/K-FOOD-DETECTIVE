@@ -1,5 +1,4 @@
 import { Box, Paper, Typography, InputAdornment, TextField, IconButton } from '@mui/material';
-import ImageSearchIcon from '@mui/icons-material/ImageSearch';
 import { UploadImageBtn } from '../img-upload-btn'
 
 export function LandingSearch() {
@@ -35,14 +34,6 @@ export function LandingSearch() {
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
-                            {/* <IconButton
-                                arial-label='image search'
-                                sx={{
-
-                                }}
-                            >
-                                <ImageSearchIcon sx={{color:'white'}} />
-                            </IconButton> */}
                             <UploadImageBtn />
                         </InputAdornment>
                       ),

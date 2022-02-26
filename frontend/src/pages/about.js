@@ -1,9 +1,16 @@
+import { useState, useEffect } from "react";
 import { Box, CssBaseline } from '@mui/material';
 import { LandingNavbar } from '../components/landing/landing-navbar';
-import { LandingSearch } from '../components/landing/landing-main-search';
+import { LandingContentsLayout } from '../components/landing/landing-contents-layout';
 import { Footer } from '../components/footer';
+import JsonData from '../data/data.json';
 
-export default function HomePage() {
+export default function AboutPage() {
+  const [landingPageData, setLandingPageData] = useState({});
+  useEffect(() => {
+    setLandingPageData(JsonData);
+  }, []);
+
   return (
     <>
     <CssBaseline />
@@ -22,8 +29,13 @@ export default function HomePage() {
           postion: 'reletive'
         }}
       />
-      <LandingSearch />
       <LandingNavbar /> 
+      {/* <LandingContentsLayout
+        title= 'About Our Service'
+        subtitle= 'Overview about our service vision, target etc.'
+      /> */}
+      <LandingContentsLayout data={landingPageData.About} />
+      
       <Footer />
     </>
   )

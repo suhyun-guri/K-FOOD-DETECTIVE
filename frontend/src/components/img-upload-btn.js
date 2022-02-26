@@ -55,7 +55,7 @@ export function UploadImageBtn() {
               onClick={onImageUpload}
               {...dragProps}
             >
-              <ImageSearchIcon />
+              <ImageSearchIcon sx={{color: 'white'}} />
             </IconButton>
             &nbsp;
            {/* <button onClick={onImageRemoveAll}>Remove all images</button> */}
