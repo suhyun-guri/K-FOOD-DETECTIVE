@@ -1,12 +1,13 @@
-from rest_framework import viewsets
+from rest_framework import generics
 from .models import CustomUser
-from .serializers import CustomUserSerializer, RegisterSerializer
+from .serializers import RegisterSerializer, LoginSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
 
-class CustomUserViewSet(viewsets.ModelViewSet):
+
+class RegisterView(generics.CreateAPIView):
     queryset = CustomUser.objects.all()
-    
-    def get_serializer_class(self):
-        if self.action == 'create':
-            return RegisterSerializer
-        else:
-            return CustomUserSerializer
+    serializer_class = RegisterSerializer
+
+class LoginView(TokenObtainPairView):
+    serializer_class = LoginSerializer
+
