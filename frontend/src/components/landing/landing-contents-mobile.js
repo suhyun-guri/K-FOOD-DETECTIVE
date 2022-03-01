@@ -2,7 +2,7 @@ import { Box, Typography, Stack } from '@mui/material';
 
 
 export function LandingContentsMobile(props) {
-    console.log(props.data.title)
+    console.log(props.data)
     return (
         <>
             {/* 1200px 이하일 때  */}
@@ -15,39 +15,43 @@ export function LandingContentsMobile(props) {
                     alignContent: 'center'
                 }}
             >
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        flexDirection: 'column',
-                        height: '20vh',
-                        backgroundImage: `url(${props.data ? props.data.images : 'Loading'})`,
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat',
-                        width: '100%',
-                        backgroundSize: 'contain',
-                        alignContent: 'center',
-                        borderRadius: 1
-                    }}
-                />
 
-                <Stack
-                    spacing={1}
-                    sx={{
-                        mt: 3
-                    }}
-                >
-                    {/* <Typography variant='h6'>{props.data ? props.data.title : 'Loading'}</Typography> */}
-                    <Typography variant='h6'>
-                        {props.data
-                            ? props.data.map( d => (
-                                {d.title}
-                            ))
-                        : 'loading'}
-                    </Typography>
-                    <Typography variant='subtitle2'>{props.data ? props.data.content : 'Loading'}</Typography>
-                </Stack>
-            </Stack>
+                {props.data
+                    ? props.data.map((d, i) => (
+                        <>
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexWrap: 'wrap',
+                                    flexDirection: 'column',
+                                    height: '20vh',
+                                    backgroundImage: `url(${d.image})`,
+                                    backgroundPosition: 'center',
+                                    backgroundRepeat: 'no-repeat',
+                                    width: '100%',
+                                    backgroundSize: 'contain',
+                                    alignContent: 'center',
+                                    borderRadius: 1
+                                }}
+                            />
+                            <Stack
+                                spacing={1}
+                                sx={{
+                                    mt: 3
+                                }}
+                            >
+                                <Typography key={`${d.name}-${i}`} variant='h6'>
+                                    {d.title}
+                                </Typography>
+
+                                <Typography variant='subtitle2'>
+                                    {d.content}
+                                </Typography>
+                            </Stack>
+                        </>
+                    ))
+                    : 'loading'}
+            </Stack >
         </>
     )
 }

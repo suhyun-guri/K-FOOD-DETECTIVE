@@ -12,22 +12,22 @@
   "About": [
     {
       "image": "/images/bgimg/landing-bgimg.jpg",
-      "title": "Globalization of Korean culture", 
+      "title": "1Globalization of Korean culture", 
+      "content": "Korean content has begun to be popular around the world. As many foreigners began to be interested in dramas, movies, and kpop, they began to be interested in Korean culture."
+    },
+    {
+      "image": "/images/bgimg/account-bgimg.jpg",
+      "title": "2Globalization of Korean culture", 
       "content": "Korean content has begun to be popular around the world. As many foreigners began to be interested in dramas, movies, and kpop, they began to be interested in Korean culture."
     },
     {
       "image": "/images/bgimg/landing-bgimg.jpg",
-      "title": "Globalization of Korean culture", 
+      "title": "3Globalization of Korean culture", 
       "content": "Korean content has begun to be popular around the world. As many foreigners began to be interested in dramas, movies, and kpop, they began to be interested in Korean culture."
     },
     {
-      "image": "/images/bgimg/landing-bgimg.jpg",
-      "title": "Globalization of Korean culture", 
-      "content": "Korean content has begun to be popular around the world. As many foreigners began to be interested in dramas, movies, and kpop, they began to be interested in Korean culture."
-    },
-    {
-      "image": "/images/bgimg/landing-bgimg.jpg",
-      "title": "Globalization of Korean culture", 
+      "image": "/images/bgimg/account-bgimg.jpg",
+      "title": "4Globalization of Korean culture", 
       "content": "Korean content has begun to be popular around the world. As many foreigners began to be interested in dramas, movies, and kpop, they began to be interested in Korean culture."
     }
   ],

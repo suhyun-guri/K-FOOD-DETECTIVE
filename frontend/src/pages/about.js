@@ -33,13 +33,16 @@ export default function AboutPage() {
     return contents;
   }
 
+
+  console.log(landingPageData.Landing);
+
   return (
     <>
       <LandingBackground />
       <LandingNavbar />
 
       <LandingContentsWrapper>
-          <LandingContentsTitle data={landingPageData.Landing[0]} />
+          <LandingContentsTitle data={landingPageData.Landing} />
 
           {/* data.json에 있는 내용들 생성 */}
           {createContents()}

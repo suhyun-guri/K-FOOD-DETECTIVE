@@ -4,10 +4,8 @@ import { Box, Typography, Stack } from '@mui/material';
 export function LandingContentsDesktop(props) {
     return (
         <>
-            {/* 1200px 이상일 때  */}
-
             <Stack
-                direction='row'
+                direction='column'
                 spacing={1}
                 sx={{
                     display: { xs: 'none', md: 'flex' },
@@ -15,32 +13,53 @@ export function LandingContentsDesktop(props) {
                     alignContent: 'center'
                 }}
             >
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        flexDirection: 'column',
-                        height: '15vh',
-                        backgroundImage: `url(${props.data ? props.data.images[0] : 'Loading'})`,
-                        backgroundPosition: 'center',
-                        width: '50%',
-                        backgroundSize: 'cover',
-                        alignContent: 'center',
-                        borderRadius: 1
-                    }}
-                />
-
-                <Stack
-                    spacing={1}
-                    sx={{
-                        mt: 3
-                    }}
-                >
-                    <Typography variant='h6'>{props.data ? props.data.paragraphs[0] : 'Loading'}</Typography>
-                    <Typography variant='subtitle2'>{props.data ? props.data.paragraphs[1] : 'Loading'}</Typography>
+                {/* 1200px 이상일 때  */}
+                {props.data
+                    ? props.data.map((d, i) => (
+                        <>
 
 
-                </Stack>
+
+                            <Stack
+                            direction='row'
+                                spacing={3}
+                                sx={{
+                                    mt: 3
+                                }}
+                            >
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        flexWrap: 'wrap',
+                                        flexDirection: 'row',
+                                        height: '15vh',
+                                        backgroundImage: `url(${d.image})`,
+                                        backgroundPosition: 'center',
+                                        width: '40vw',
+                                        backgroundSize: 'cover',
+                                        alignContent: 'center',
+                                        borderRadius: 1
+                                    }}
+                                />
+                                <Stack
+                                direction='column'
+                                spacing={1}
+                                >
+                                <Typography key={`${d.name}-${i}`} variant='h6'>
+                                    {d.title}
+                                </Typography>
+
+                                <Typography variant='subtitle2'>
+                                    {d.content}
+                                </Typography>
+                                </Stack>
+                            </Stack>
+
+                        </>
+                    ))
+                    : 'loading'}
+
+
             </Stack>
         </>
     )
