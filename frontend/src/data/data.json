@@ -1,14 +1,4 @@
 {
-  "Landing": [
-    {
-      "title": "About Our Service",
-      "subtitle": "Overview about our service. Vision, Target etc..."
-    }, 
-    {
-      "title": "About Our Team",
-      "subtitle": "Introduce the team members who created the service together"
-    }
-  ],
   "About": [
     {
       "image": "/images/bgimg/landing-bgimg.jpg",
@@ -33,24 +23,29 @@
   ],
   "Team": [
     {
-      "img": "img/team/01.jpg",
-      "name": "John Doe",
-      "job": "Director"
+      "image": "/images/team/fe1.jpg",
+      "title": "Seorin Park (FE Developer)",
+      "content": "Hi, I'm junior frontend developer! I designed UI/UX and developed overall frontend of this service."
     },
     {
-      "img": "img/team/02.jpg",
-      "name": "Mike Doe",
-      "job": "Senior Designer"
+      "image": "/images/team/be1.jpg",
+      "title": "Muwon Lee (BE Developer)",
+      "content": "Hi, I'm junior frontend developer! I designed UI/UX and developed overall frontend of this service."
     },
     {
-      "img": "img/team/03.jpg",
-      "name": "Jane Doe",
-      "job": "Senior Designer"
+      "image": "/images/team/be2.jfif",
+      "title": "Sungmin Choi (BE Developer, Team Leader)",
+      "content": "Hi, I'm junior frontend developer! I designed UI/UX and developed overall frontend of this service."
     },
     {
-      "img": "img/team/04.jpg",
-      "name": "Karen Doe",
-      "job": "Project Manager"
+      "image": "/images/team/ai1.jpg",
+      "title": "Suhyun Kim (AI Engineer)",
+      "content": "Hi, I'm junior frontend developer! I designed UI/UX and developed overall frontend of this service."
+    },
+    {
+      "image": "/images/team/ai2.jpg",
+      "title": "Seoyoon Lee (AI Engineer)",
+      "content": "Hi, I'm junior frontend developer! I designed UI/UX and developed overall frontend of this service."
     }
   ]
 }

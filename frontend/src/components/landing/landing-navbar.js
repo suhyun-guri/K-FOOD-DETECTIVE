@@ -10,7 +10,7 @@ const LandigNavbarRoot = styled(AppBar)({
 });
 
 const pages = ['About', 'Team']
-const pagesMobile = ['About', 'Team', 'Sign In', 'Register']
+const pagesMobile = ['About', 'Team', 'Sign In']
 
 export function LandingNavbar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -63,11 +63,8 @@ export function LandingNavbar() {
                         </Box>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             <Stack spacing={1} direction='row'>
-                                <Link to='/account'>
-                                    <Button variant='outlined' sx={{ color: 'white' }}>Register</Button>
-                                </Link>
-                                <Link to='/account'>
-                                    <Button variant='contained'>Sign In</Button>
+                                <Link to='/signin'>
+                                    <Button variant='contained' sx={{width: '10vw'}} >Sign In</Button>
                                 </Link>
                             </Stack>
                         </Box>

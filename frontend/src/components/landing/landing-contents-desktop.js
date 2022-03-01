@@ -9,7 +9,7 @@ export function LandingContentsDesktop(props) {
                 spacing={1}
                 sx={{
                     display: { xs: 'none', md: 'flex' },
-                    mt: 3,
+                    mt: 1,
                     alignContent: 'center'
                 }}
             >
@@ -17,12 +17,9 @@ export function LandingContentsDesktop(props) {
                 {props.data
                     ? props.data.map((d, i) => (
                         <>
-
-
-
                             <Stack
                             direction='row'
-                                spacing={3}
+                                spacing={4}
                                 sx={{
                                     mt: 3
                                 }}
@@ -32,13 +29,14 @@ export function LandingContentsDesktop(props) {
                                         display: 'flex',
                                         flexWrap: 'wrap',
                                         flexDirection: 'row',
-                                        height: '15vh',
+                                        height: '12vh',
                                         backgroundImage: `url(${d.image})`,
                                         backgroundPosition: 'center',
-                                        width: '40vw',
+                                        width: '16vw',
                                         backgroundSize: 'cover',
                                         alignContent: 'center',
-                                        borderRadius: 1
+                                        borderRadius: 1,
+                                        mb: 2
                                     }}
                                 />
                                 <Stack
@@ -49,7 +47,7 @@ export function LandingContentsDesktop(props) {
                                     {d.title}
                                 </Typography>
 
-                                <Typography variant='subtitle2'>
+                                <Typography key={`${d.content}-${i}`} variant='subtitle2'>
                                     {d.content}
                                 </Typography>
                                 </Stack>

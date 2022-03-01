@@ -6,7 +6,7 @@ import { theme } from '../theme';
 import HomePage from '../pages/home';
 import AboutPage from '../pages/about';
 import TeamPage from '../pages/team';
-import AccountPage from '../pages/account';
+import SignInPage from '../pages/sign-in';
 import MyPage from '../pages/my-page';
 import FoodDetailDBPage from '../pages/food-detail-db';
 
@@ -29,8 +29,7 @@ export default function App() {
         <Route path="/" element={<HomePage />} exact />
         <Route path="/about" element={<AboutPage />} exact />
         <Route path="/team" element={<TeamPage />} exact />
-        <Route path="/signin" element={<AccountPage />} exact />
-        <Route path="/register" element={<AccountPage />} exact />
+        <Route path="/signin" element={<SignInPage />} exact />
         {/* 음식은 어떻게 받지? 고민.. 이건 일단 DB에서 조회 */}
         <Route path="/food-detail" element={<FoodDetailDBPage />} exact />
         {/* path 수정 필요 */}

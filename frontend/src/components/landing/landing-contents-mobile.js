@@ -1,8 +1,6 @@
 import { Box, Typography, Stack } from '@mui/material';
 
-
 export function LandingContentsMobile(props) {
-    console.log(props.data)
     return (
         <>
             {/* 1200px 이하일 때  */}
@@ -40,11 +38,11 @@ export function LandingContentsMobile(props) {
                                     mt: 3
                                 }}
                             >
-                                <Typography key={`${d.name}-${i}`} variant='h6'>
+                                <Typography key={`${d.title}-${i}`} variant='h6'>
                                     {d.title}
                                 </Typography>
 
-                                <Typography variant='subtitle2'>
+                                <Typography key={`${d.content}-${i}`} variant='subtitle2'>
                                     {d.content}
                                 </Typography>
                             </Stack>

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
+import { Typography } from '@mui/material';
 import { LandingBackground } from '../components/landing/landing-background';
 import { LandingContentsWrapper } from '../components/landing/landing-contents-wrapper';
 import { LandingNavbar } from '../components/landing/landing-navbar';
-import { LandingContentsTitle } from "../components/landing/landing-contents-title";
 import { LandingContentsMobile } from '../components/landing/landing-contents-mobile';
 import { LandingContentsDesktop } from '../components/landing/landing-contents-desktop';
 import { Footer } from '../components/footer';
@@ -23,6 +23,8 @@ export default function TeamPage() {
     for (let i = 0; i < contentsNum; i++) {
       contents.push(
         <>
+        <Typography variant='h5'>About Our Team</Typography>
+          <Typography variant='subtitle2'>Introduce the team members who created the service together</Typography>
           {/* 1200px 이하일 때 */}
           <LandingContentsMobile data={landingPageData.Team} />
           {/* 1200px 이상일 때 */}
@@ -39,7 +41,6 @@ export default function TeamPage() {
       <LandingNavbar />
 
       <LandingContentsWrapper>
-          <LandingContentsTitle data={landingPageData.Team} />
 
           {/* data.json에 있는 내용들 생성 */}
           {createContents()}
