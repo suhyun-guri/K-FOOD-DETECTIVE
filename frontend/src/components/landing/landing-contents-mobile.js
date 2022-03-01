@@ -1,6 +1,5 @@
 import { Box, Typography, Stack } from '@mui/material';
 
-
 export function LandingContentsMobile(props) {
     return (
         <>
@@ -14,32 +13,43 @@ export function LandingContentsMobile(props) {
                     alignContent: 'center'
                 }}
             >
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        flexDirection: 'column',
-                        height: '20vh',
-                        backgroundImage: `url(${'/images/landing-bgimg.jpg'})`,
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat',
-                        width: '100%',
-                        backgroundSize: 'contain',
-                        alignContent: 'center',
-                        borderRadius: 1
-                    }}
-                />
 
-                <Stack
-                    spacing={1}
-                    sx={{
-                        mt: 3
-                    }}
-                >
-                    <Typography variant='h6'>{props.data ? props.data.paragraph01[0] : 'Loading'}</Typography>
-                    <Typography variant='subtitle2'>{props.data ? props.data.paragraph01[1] : 'Loading'}</Typography>
-                </Stack>
-            </Stack>
+                {props.data
+                    ? props.data.map((d, i) => (
+                        <>
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexWrap: 'wrap',
+                                    flexDirection: 'column',
+                                    height: '20vh',
+                                    backgroundImage: `url(${d.image})`,
+                                    backgroundPosition: 'center',
+                                    backgroundRepeat: 'no-repeat',
+                                    width: '100%',
+                                    backgroundSize: 'contain',
+                                    alignContent: 'center',
+                                    borderRadius: 1
+                                }}
+                            />
+                            <Stack
+                                spacing={1}
+                                sx={{
+                                    mt: 3
+                                }}
+                            >
+                                <Typography key={`${d.title}-${i}`} variant='h6'>
+                                    {d.title}
+                                </Typography>
+
+                                <Typography key={`${d.content}-${i}`} variant='subtitle2'>
+                                    {d.content}
+                                </Typography>
+                            </Stack>
+                        </>
+                    ))
+                    : 'loading'}
+            </Stack >
         </>
     )
 }

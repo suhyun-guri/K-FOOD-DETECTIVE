@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { AppBar, Box, Tab, Tabs } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { useSearchParams, useNavigate, useLocation } from 'react-router-dom';
 import { AccountLoginForm } from './account-login-form';
 import { AccountRegisterForm } from './account-register-form';
 
@@ -14,7 +14,6 @@ function LinkTab(props) {
   return (
     <Tab
       component="a"
-      component={Link} to={props.url}
       onClick={event => {
         event.preventDefault();
       }}
@@ -23,12 +22,43 @@ function LinkTab(props) {
   );
 }
 
+function getTabIndex(str) {
+  if (!str || str === 'signin') return 0
+  return 1
+} 
+
+function getTabString(idx) {
+  if (idx === 0) return 'signin'
+  return 'register'
+} 
+
 export function AccountNavTab() {
-  const [value, setValue] = React.useState(0);
+  const location = useLocation();
+  const [value, setValue] = React.useState(getTabIndex(new URLSearchParams(location.search).get('tab')));
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  React.useEffect(() => {
+    const tab = searchParams.get('tab');
+    const tabIndex = getTabIndex(tab);
+
+    console.log(tab);
+
+    if (tab === null) {
+      navigate(`${location.pathname}?tab=signin`, { replace: true })
+    } 
+    else {
+      setValue(tabIndex);
+    }
+  }, [searchParams])
+ 
 
   const handleChange = (event, newValue) => {
+    event.preventDefault();
     setValue(newValue);
+    navigate(`${location.pathname}?tab=${getTabString(newValue)}`, { replace: true })
   };
+
 
   return (
     <>
