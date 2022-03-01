@@ -21,7 +21,7 @@ export function LandingContentsDesktop(props) {
                         flexWrap: 'wrap',
                         flexDirection: 'column',
                         height: '15vh',
-                        backgroundImage: `url(${'/images/landing-bgimg.jpg'})`,
+                        backgroundImage: `url(${props.data ? props.data.images[0] : 'Loading'})`,
                         backgroundPosition: 'center',
                         width: '50%',
                         backgroundSize: 'cover',
@@ -36,8 +36,8 @@ export function LandingContentsDesktop(props) {
                         mt: 3
                     }}
                 >
-                    <Typography variant='h6'>{props.data ? props.data.paragraph01[0] : 'Loading'}</Typography>
-                    <Typography variant='subtitle2'>{props.data ? props.data.paragraph01[1] : 'Loading'}</Typography>
+                    <Typography variant='h6'>{props.data ? props.data.paragraphs[0] : 'Loading'}</Typography>
+                    <Typography variant='subtitle2'>{props.data ? props.data.paragraphs[1] : 'Loading'}</Typography>
 
 
                 </Stack>

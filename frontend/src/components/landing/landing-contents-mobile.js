@@ -2,6 +2,7 @@ import { Box, Typography, Stack } from '@mui/material';
 
 
 export function LandingContentsMobile(props) {
+    console.log(props.data.title)
     return (
         <>
             {/* 1200px 이하일 때  */}
@@ -20,7 +21,7 @@ export function LandingContentsMobile(props) {
                         flexWrap: 'wrap',
                         flexDirection: 'column',
                         height: '20vh',
-                        backgroundImage: `url(${'/images/landing-bgimg.jpg'})`,
+                        backgroundImage: `url(${props.data ? props.data.images : 'Loading'})`,
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',
                         width: '100%',
@@ -36,8 +37,15 @@ export function LandingContentsMobile(props) {
                         mt: 3
                     }}
                 >
-                    <Typography variant='h6'>{props.data ? props.data.paragraph01[0] : 'Loading'}</Typography>
-                    <Typography variant='subtitle2'>{props.data ? props.data.paragraph01[1] : 'Loading'}</Typography>
+                    {/* <Typography variant='h6'>{props.data ? props.data.title : 'Loading'}</Typography> */}
+                    <Typography variant='h6'>
+                        {props.data
+                            ? props.data.map( d => (
+                                {d.title}
+                            ))
+                        : 'loading'}
+                    </Typography>
+                    <Typography variant='subtitle2'>{props.data ? props.data.content : 'Loading'}</Typography>
                 </Stack>
             </Stack>
         </>

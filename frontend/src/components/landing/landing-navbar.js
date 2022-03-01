@@ -63,10 +63,10 @@ export function LandingNavbar() {
                         </Box>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             <Stack spacing={1} direction='row'>
-                                <Link to='/register'>
+                                <Link to='/account'>
                                     <Button variant='outlined' sx={{ color: 'white' }}>Register</Button>
                                 </Link>
-                                <Link to='/signin'>
+                                <Link to='/account'>
                                     <Button variant='contained'>Sign In</Button>
                                 </Link>
                             </Stack>
