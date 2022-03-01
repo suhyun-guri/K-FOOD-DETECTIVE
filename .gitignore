@@ -4,6 +4,7 @@ __pycache__
 db_mysql/data/*
 front/build
 db/data/*
+backend/account/migrations/*
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/linux,django,react,python,venv
@@ -290,3 +291,6 @@ pyvenv.cfg
 pip-selfcheck.json
 
 # End of https://www.toptal.com/developers/gitignore/api/linux,django,react,python,venv
+backend/account/migrations/0002_alter_customuser_managers_alter_customuser_age_and_more.py
+backend/account/migrations/0003_alter_customuser_table.py
+backend/account/migrations/0004_customuser_is_staff.py
