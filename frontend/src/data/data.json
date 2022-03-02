@@ -47,5 +47,19 @@
       "title": "Seoyoon Lee (AI Engineer)",
       "content": "Hi, I'm junior frontend developer! I designed UI/UX and developed overall frontend of this service."
     }
+  ],
+  "Foods": [
+    {
+      "image": "/images/bgimg/landing-bgimg.jpg",
+      "name": "Gimbab",
+      "otherName": "Seaweed rice rolls, 김밥",
+      "categories": "gimbap, lunchbox, main dish, non spicy, rice, snack"
+    },
+    {
+      "image": "/images/bgimg/landing-bgimg.jpg",
+      "name": "Maneuljjong-bokkeum",
+      "otherName": "Stir-fried garlic scapes,  마늘쫑볶음",
+      "categories": "preserved side dish, side dish, vegetarian"
+    }
   ]
 }
