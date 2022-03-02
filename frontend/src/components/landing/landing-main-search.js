@@ -36,7 +36,7 @@ export function LandingSearch() {
                         <InputAdornment position="end">
                             <UploadImageBtn />
                         </InputAdornment>
-                      ),
+                      )
                     }}
                     variant="outlined"
                     sx={{
