@@ -1,0 +1,51 @@
+{
+  "About": [
+    {
+      "image": "/images/bgimg/landing-bgimg.jpg",
+      "title": "1Globalization of Korean culture", 
+      "content": "Korean content has begun to be popular around the world. As many foreigners began to be interested in dramas, movies, and kpop, they began to be interested in Korean culture."
+    },
+    {
+      "image": "/images/bgimg/account-bgimg.jpg",
+      "title": "2Globalization of Korean culture", 
+      "content": "Korean content has begun to be popular around the world. As many foreigners began to be interested in dramas, movies, and kpop, they began to be interested in Korean culture."
+    },
+    {
+      "image": "/images/bgimg/landing-bgimg.jpg",
+      "title": "3Globalization of Korean culture", 
+      "content": "Korean content has begun to be popular around the world. As many foreigners began to be interested in dramas, movies, and kpop, they began to be interested in Korean culture."
+    },
+    {
+      "image": "/images/bgimg/account-bgimg.jpg",
+      "title": "4Globalization of Korean culture", 
+      "content": "Korean content has begun to be popular around the world. As many foreigners began to be interested in dramas, movies, and kpop, they began to be interested in Korean culture."
+    }
+  ],
+  "Team": [
+    {
+      "image": "/images/team/fe1.jpg",
+      "title": "Seorin Park (FE Developer)",
+      "content": "Hi, I'm junior frontend developer! I designed UI/UX and developed overall frontend of this service."
+    },
+    {
+      "image": "/images/team/be1.jpg",
+      "title": "Muwon Lee (BE Developer)",
+      "content": "Hi, I'm junior frontend developer! I designed UI/UX and developed overall frontend of this service."
+    },
+    {
+      "image": "/images/team/be2.jfif",
+      "title": "Sungmin Choi (BE Developer, Team Leader)",
+      "content": "Hi, I'm junior frontend developer! I designed UI/UX and developed overall frontend of this service."
+    },
+    {
+      "image": "/images/team/ai1.jpg",
+      "title": "Suhyun Kim (AI Engineer)",
+      "content": "Hi, I'm junior frontend developer! I designed UI/UX and developed overall frontend of this service."
+    },
+    {
+      "image": "/images/team/ai2.jpg",
+      "title": "Seoyoon Lee (AI Engineer)",
+      "content": "Hi, I'm junior frontend developer! I designed UI/UX and developed overall frontend of this service."
+    }
+  ]
+}
