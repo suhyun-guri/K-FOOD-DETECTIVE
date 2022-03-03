@@ -20,22 +20,22 @@ export const theme = createTheme({
           textTransform: 'none'
         },
         sizeSmall: {
-          padding: '6px 16px'
+          padding: '0.375rem 1rem'
         },
         sizeMedium: {
-          padding: '8px 20px'
+          padding: '0.5rem 1.25rem'
         },
         sizeLarge: {
-          padding: '11px 24px'
+          padding: '0.68rem 1.5rem'
         },
         textSizeSmall: {
-          padding: '7px 12px'
+          padding: '0.43rem 0.75rem'
         },
         textSizeMedium: {
-          padding: '9px 16px'
+          padding: '0.56rem 1rem'
         },
         textSizeLarge: {
-          padding: '12px 16px'
+          padding: '0.75rem 1rem'
         }
       }
     },
@@ -47,9 +47,9 @@ export const theme = createTheme({
     MuiCardContent: {
       styleOverrides: {
         root: {
-          padding: '32px 24px',
+          padding: '0.5rem 0.3rem',
           '&:last-child': {
-            paddingBottom: '32px'
+            paddingBottom: '0.3rem'
           }
         }
       }
@@ -65,7 +65,7 @@ export const theme = createTheme({
       },
       styleOverrides: {
         root: {
-          padding: '32px 24px'
+          padding: '2rem 1.5rem'
         }
       }
     },
@@ -110,7 +110,7 @@ export const theme = createTheme({
           borderBottom: 'none',
           '& .MuiTableCell-root': {
             borderBottom: 'none',
-            fontSize: '12px',
+            fontSize: '0.75rem',
             fontWeight: 600,
             lineHeight: 1,
             letterSpacing: 0.5,
