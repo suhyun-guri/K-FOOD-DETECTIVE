@@ -1,0 +1,21 @@
+###
+POST  http://localhost:8000/account/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "aaa",
+  "password": "aaa"
+}
+
+###
+POST  http://localhost:8000/account/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "aaa",
+  "email": "aaa@aa.com",
+  "password": "aaa"
+}
+
+###
+POST  http://localhost:8000/account/logout HTTP/1.1

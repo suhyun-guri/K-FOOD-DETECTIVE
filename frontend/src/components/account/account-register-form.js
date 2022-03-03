@@ -3,8 +3,16 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { Box, Button, TextField } from '@mui/material';
 import { useHistory } from "react-router-dom";
+import { register } from '../../utils/isLogin'; 
 
 export function AccountRegisterForm() {
+    //임시코드 시작
+    const handleClick = ()=>{
+        const values = {username: formik.values.username, email: formik.values.email, password: formik.values.password};
+        register(values);
+    }
+    //임시코드 끝
+
     const formik = useFormik({
         initialValues: {
             username: '',
@@ -43,7 +51,7 @@ export function AccountRegisterForm() {
                     }
                 )
         }),
-        onSubmit: () => { }
+        onSubmit: (values) => { register(values) }
     });
 
     return (
@@ -131,6 +139,7 @@ export function AccountRegisterForm() {
                         height: '6.8vh',
                         mt: 1
                     }}
+                    onClick={handleClick}
                 >
                     Register
                 </Button>
