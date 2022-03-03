@@ -50,16 +50,30 @@
   ],
   "Foods": [
     {
-      "image": "/images/bgimg/landing-bgimg.jpg",
-      "name": "Gimbab",
-      "otherName": "Seaweed rice rolls, 김밥",
-      "categories": "gimbap, lunchbox, main dish, non spicy, rice, snack"
+      "id": "1",
+      "image_url": "/images/bgimg/landing-bgimg.jpg",
+      "romanized_name": "gimbab",
+      "english_name": "Seaweed rice rolls",
+      "korean_name": "김밥",
+      "keywords": "gimbap, lunchbox, main dish, non spicy, rice, snack",
+      "hit": "20",
+      "likes": "10",
+      "ingredients": "cooking oil, garlic scapes, honey, rice syrup, shredded red pepper, soy sauce, sugar, toasted sesame oil, toasted sesame seeds",
+      "info" : "Whenever the season changes, I always love to see the fresh, new ingredients available at the farmers’ market and the Korean grocery store. I love to cook with these ingredients, and I love to eat them, but I’m sometimes not sure if I should use them in my recipe videos, because they might be unfamiliar to a lot of people.",
+      "recipes": "https://www.maangchi.com/recipe/gimbap"
     },
     {
-      "image": "/images/bgimg/landing-bgimg.jpg",
-      "name": "Maneuljjong-bokkeum",
-      "otherName": "Stir-fried garlic scapes,  마늘쫑볶음",
-      "categories": "preserved side dish, side dish, vegetarian"
+      "id" : "12",
+      "image_url": "/images/bgimg/account-bgimg.jpg",
+      "romanized_name": "maneuljjong-bokkeum",
+      "english_name": "Stir-fried garlic scapes",
+      "korean_name": "마늘쫑볶음",
+      "keywords": "preserved side dish, side dish, vegetarian",
+      "hit": "15",
+      "likes": "12",
+      "ingredients": "cooking oil, garlic scapes, honey, rice syrup, shredded red pepper, soy sauce, sugar, toasted sesame oil, toasted sesame seeds",
+      "info" : "Whenever the season changes, I always love to see the fresh, new ingredients available at the farmers’ market and the Korean grocery store. I love to cook with these ingredients, and I love to eat them, but I’m sometimes not sure if I should use them in my recipe videos, because they might be unfamiliar to a lot of people.",
+      "recipes": "https://www.maangchi.com/recipe/gimbap"
     }
   ]
 }

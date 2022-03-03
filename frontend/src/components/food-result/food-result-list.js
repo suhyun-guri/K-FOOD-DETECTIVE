@@ -1,4 +1,6 @@
 import { Card, CardContent, CardMedia, Stack, Box, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
+
 
 export function FoodResultList(props) {
     return (
@@ -15,54 +17,59 @@ export function FoodResultList(props) {
                 {props.data
                     ? props.data.map((d, i) => (
                         <>
+                            <Link to={'/'} style={{ textDecoration: 'none' }} >
                             <Card elevation={10} sx={{ display: 'flex', width: '100%', height: '15vh' }} >
                                 <CardMedia
                                     component='image'
                                     sx={{ width: '10rem' }}
-                                    image={d.image}
+                                    image={d.image_url}
                                     alt="Food Picture"
                                 />
                                 <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                                    <CardContent sx={{ py: 2, flex: '1 0 auto' }}>
+                                    <CardContent sx={{ flex: '1 0 auto' }}>
                                         <Typography
                                             component="div"
                                             sx={{
                                                 fontSize: {
-                                                    lg: '1.1rem',
-                                                    md: '0.9rem'
+                                                    xl: 'subtitle1',
+                                                    lg: '0.5rem',
+                                                    md: '0.7rem'
                                                 }
                                             }}
                                         >
-                                            {d.name}
+                                            {d.romanized_name.charAt(0).toUpperCase() + d.romanized_name.slice(1)}
                                         </Typography>
                                         <Typography
                                             color="text.secondary"
                                             component="div"
                                             sx={{
                                                 fontSize: {
-                                                    lg: '0.8rem',
-                                                    md: '0.6rem'
+                                                    xl: 'body2',
+                                                    lg: '0.3rem',
+                                                    md: '0.3rem'
                                                 }
                                             }}
                                         >
-                                            {d.otherName}
+                                            {d.english_name}, {d.korean_name}
                                         </Typography>
                                         <Typography
                                             color="text.secondary"
                                             component="div"
                                             sx={{
-                                                mt: 1,
+                                                mt: 0.5,
                                                 fontSize: {
-                                                    lg: '0.6rem',
-                                                    md: '0.4rem'
+                                                    xl: 'body2',
+                                                    lg: '0.2rem',
+                                                    md: '0.1rem'
                                                 }
                                             }}
                                         >
-                                            {d.categories}
+                                            {d.keywords}
                                         </Typography>
                                     </CardContent>
                                 </Box>
                             </Card>
+                            </Link>
                         </>
                     ))
                     : 'loading'}

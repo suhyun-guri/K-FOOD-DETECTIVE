@@ -1,13 +1,12 @@
 import React from 'react';
 import { Box } from '@mui/material';
 
-export function PageSideBar({ children }) {
+export function PageMain({ children }) {
     const BoxStyle = {
-        width: '25%',
-        mx: '2%',
+        width: '100%',
         mb: '5%',
         alignItems: 'center',
-        scrollbarWidth: 'none'
+        scrollbarWidth: 'auto',
     }
 
     return (
