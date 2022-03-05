@@ -1,66 +1,189 @@
-import { Card, CardContent, CardMedia, Stack, Box, Typography, Paper } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
+import SoupKitchenRoundedIcon from '@mui/icons-material/SoupKitchenRounded';
+import { FoodImage } from './food-image';
+import { FoodTitleLayout } from './food-title-layout';
+import { FoodContentLayout } from './food-content-layout';
+import { FoodDescriptionLayout } from './food-description-layout';
+import { FoodButtonStackLayout } from './food-button-stack-layout';
+
 
 export function FoodDetail(props) {
+    const params = useParams();
+    const data = props.data;
+    const [food, setFood] = useState(undefined);
+    const [id, setId] = useState(0);
+    console.log(params)
+    console.log('food-detail에서 id : ', id)
+
+    useEffect(() => {
+        props.data.map((d, i) => {
+            if (d.romanized_name === params.romanized_name) {
+                setFood(params.romanized_name);
+                setId(i)
+                console.log('food : ', food);
+                console.log('id : ', id)
+            }
+            return food;
+        })
+    }, [params])
+
     return (
         <>
-            <Paper
-                direction='column'
-                sx={{
-                    display: { xs: 'flex', md: 'flex' },
-                    mt: 2,
-                    alignContent: 'center'
-                }}
-            >
-                {props.data
-                    ? props.data.map((d, i) => (
-                        <>
-                            <Box
+            <FoodContentLayout>
+                <FoodImage data={data} id={id} />
+                <FoodTitleLayout>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            flexGrow: 1
+                        }}
+                    >
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'row'
+                            }}
+                        >
+                            <Typography
+                                variant='h6'
                                 sx={{
-                                    display: 'flex',
-                                    flexWrap: 'wrap',
-                                    flexDirection: 'column',
-                                    height: '20vh',
-                                    backgroundImage: `url(${d.image})`,
-                                    backgroundPosition: 'center',
-                                    backgroundRepeat: 'no-repeat',
-                                    width: '70%',
-                                    backgroundSize: 'contain',
-                                    alignContent: 'center',
-                                    borderRadius: 1
-                                }}
-                            />
-
-                            {/* 음식 이름하고 하트버튼 */}
-                            <Box 
-                                sx={{
-                                    display: 'flex',
-                                    flexWrap: 'wrap',
-                                    flexDirection: 'row',
-                                    backgroundColor: 'blue',
-                                    alignContent: 'center',
-                                    borderRadius: 1
+                                    mt: 1.4,
+                                    ml: 2,
+                                    color: 'white'
                                 }}
                             >
-                                {/* 음식이름하고 몇명 왔는지 세로로 */}
-                                <Box
-                                    sx={{
-                                        display: 'flex',
-                                        flexDirection: 'column'
-                                    }}
-                                >
+                                {props.data[id].romanized_name.charAt(0).toUpperCase() + props.data[id].romanized_name.slice(1)}
+                            </Typography>
+                            <Typography
+                                variant='caption'
+                                sx={{
+                                    mt: 2,
+                                    ml: 0.5,
+                                    color: 'white'
+                                }}
+                            >
+                                {props.data[id].english_name + ', ' + props.data[id].korean_name}
+                            </Typography>
+                        </Box>
+                        <Typography
+                            variant='caption'
+                            sx={{
+                                mt: 1,
+                                ml: 2,
+                                color: 'white'
+                            }}
+                        >
+                            {props.data[id].hit + ' users find and ' + props.data[id].likes + ' users like this food!'}
+                        </Typography>
+                    </Box>
+                    <Button
+                        variant='contained'
+                        sx={{
 
-                                </Box>
+                        }}
+                    >
+                        버튼자리
+                    </Button>
+                </FoodTitleLayout>
 
-                                {/* 스크랩버튼 담는 곳 */}
-                                <Box>
 
-                                </Box>
-                            </Box>
-                        </>
-                    ))
-                    : 'loading'}
+                <FoodDescriptionLayout>
+                    <Typography
+                        variant='h6'
+                        sx={{
+                            color: '#1D4ED8'
+                        }}
+                    >
+                        ■ Categories :
+                    </Typography>
+                    <Typography
+                        variant='subtitle1'
+                        sx={{
+                            ml: 2.5
+                        }}
+                    >
+                        {props.data[id].keywords}
+                    </Typography>
 
-            </Paper>
+                    <Typography
+                        variant='h6'
+                        sx={{
+                            mt: 2.5,
+                            color: '#1D4ED8'
+                        }}
+                    >
+                        ■ Made with :
+                    </Typography>
+                    <Typography
+                        variant='subtitle1'
+                        sx={{
+                            ml: 2.5
+                        }}
+                    >
+                        {props.data[id].ingredients}
+                    </Typography>
+
+                    <Typography
+                        variant='h6'
+                        sx={{
+                            mt: 2.5,
+                            color: '#1D4ED8'
+                        }}
+                    >
+                        ■ Information :
+                    </Typography>
+                    <Typography
+                        variant='subtitle1'
+                        sx={{
+                            ml: 2.5
+                        }}
+                    >
+                        {props.data[id].info}
+                    </Typography>
+
+                    <FoodButtonStackLayout>
+                        <Button
+                            variant='contained'
+                            size='large'
+                            sx={{ width: '20rem' }}
+                            startIcon={<AssignmentTurnedInRoundedIcon />}
+                        >
+                            Will it suit my taste?
+                        </Button>
+
+                        <Button
+                            variant='contained'
+                            size='large'
+                            sx={{ width: '20rem' }}
+                            startIcon={<SoupKitchenRoundedIcon />}
+                        >
+                            Show this food recipe
+                        </Button>
+
+                    </FoodButtonStackLayout>
+
+
+                    <FoodTitleLayout>
+                        <Typography
+                            variant='h5'
+                            sx={{
+                                mt: 2.7,
+                                ml: 2,
+                                color: 'white'
+                            }}
+                        >
+                            Comments
+                        </Typography>
+                    </FoodTitleLayout>
+
+                </FoodDescriptionLayout>
+            </FoodContentLayout>
+
         </>
     )
 }
+

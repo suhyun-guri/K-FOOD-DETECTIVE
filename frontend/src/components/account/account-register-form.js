@@ -2,14 +2,15 @@ import * as React from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { Box, Button, TextField } from '@mui/material';
-import { useHistory } from "react-router-dom";
-import { register } from '../../utils/isLogin'; 
+import { Register } from '../../utils/isLogin'; 
+import { useNavigate } from 'react-router-dom';
 
 export function AccountRegisterForm() {
+    const navigate = useNavigate()
     //임시코드 시작
     const handleClick = ()=>{
         const values = {username: formik.values.username, email: formik.values.email, password: formik.values.password};
-        register(values);
+        Register(values, navigate);
     }
     //임시코드 끝
 
@@ -51,7 +52,7 @@ export function AccountRegisterForm() {
                     }
                 )
         }),
-        onSubmit: (values) => { register(values) }
+        onSubmit: (values) => { Register(values) }
     });
 
     return (

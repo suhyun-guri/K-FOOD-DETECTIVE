@@ -1,17 +1,20 @@
 import React from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
+import { useNavigate } from 'react-router-dom';
 import { Box, Button, TextField } from '@mui/material';
 import {login, logout, refresh} from '../../utils/isLogin'; 
 
 export function AccountLoginForm() {
+    const navigate = useNavigate()
+
     //여기는 임시코드입니다.
     const handleClick = ()=>{
         const values = {username: formik.values.username, password: formik.values.password};
-        login(values);
+        login(values, navigate);
     }
     const handleLogout = ()=>{
-        logout();
+        logout(navigate);
     }
     const handleRefresh = ()=>{
         refresh();

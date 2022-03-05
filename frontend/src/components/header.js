@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Stack, Toolbar, Typography, InputAdornment, TextField } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -30,12 +31,14 @@ export function Header() {
                         <Box
                             sx={{ flexGrow: 30, ml: 1, mr: 2, display: { xs: 'flex', md: 'flex' } }}
                         >
-                            <Button
-                                color='primary'
-                                variant='text'
-                            >
-                                LOGO
-                            </Button>
+                            <Link to='/'>
+                                <Button
+                                    color='primary'
+                                    variant='text'
+                                >
+                                    LOGO
+                                </Button>
+                            </Link>
 
                         </Box>
 
@@ -62,16 +65,18 @@ export function Header() {
                                 sx={{
                                     my: 1,
                                     alignItems: 'center',
-                                    display: { xs: 'none', md: 'block' }                             
+                                    display: { xs: 'none', md: 'block' }
                                 }}
                             />
 
                         </Box>
 
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                            <Stack spacing={1} direction='row'>
-                                <Button variant='contained' sx={{ width: '10vw' }}>Sign In</Button>
-                            </Stack>
+                            <Link to='/signin'>
+                                <Stack spacing={1} direction='row'>
+                                    <Button variant='contained' sx={{ width: '10vw' }}>Sign In</Button>
+                                </Stack>
+                            </Link>
                         </Box>
 
                         {/* 모바일용 */}

@@ -12,6 +12,9 @@ import FoodDetailDBPage from '../pages/food-detail-db';
 
 
 createGlobalStyle`
+  html {
+    font-size: 50%;
+  }
   body {
     margin: 0;
   }
@@ -25,8 +28,15 @@ export default function App() {
         <Route path="/about" element={<AboutPage />} exact />
         <Route path="/team" element={<TeamPage />} exact />
         <Route path="/signin" element={<SignInPage />} exact />
-        <Route path="/food-detail" element={<FoodDetailDBPage />} exact />
+
+        <Route path="/food-detail">
+          <Route index element={<FoodDetailDBPage />} />
+          <Route path=":romanized_name" element={<FoodDetailDBPage />} />
+        </Route>
+        
+
         <Route path="/my-page" element={<MyPage />} exact />
+        <Route path="/*" element={<h1>NOT FOUND</h1>} />
       </Routes>
     </ThemeProvider>
   )

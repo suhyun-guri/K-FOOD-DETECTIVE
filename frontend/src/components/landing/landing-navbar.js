@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Stack, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { AccountUserProfile } from '../account/account-user-profile';
 
 const LandigNavbarRoot = styled(AppBar)({
     backgroundColor: 'rgba(0,0,0,0.0)',
@@ -41,7 +42,6 @@ export function LandingNavbar() {
                                     LOGO
                                 </Button>
                             </Link>
-
                         </Box>
 
                         {/* 1200px 이상 일 때 */}

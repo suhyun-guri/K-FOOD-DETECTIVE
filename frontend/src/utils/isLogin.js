@@ -4,26 +4,31 @@ const ACCESS_KEY = 'accessKey';
 const REFRESH_KEY = 'refreshKey';
 
 
-export const register = (userInfo) => {
+export const Register = (userInfo, navigate) => {
     const URL = "/account/register"
-    // userInfo = {username: "name", email: "email", password: "password"}
+
     axios.post(URL, userInfo).then(res => {
         console.log(res.data);
         alert("성공");
-    }).catch(err=>console.log(err))
+        navigate('/signin?tab=signin');
+    }).catch(err=>{
+        console.log(err);
+        alert('오류발생');
+    })
 }
 
-export const login = (userInfo) => {
-    // userInfo = {username: "name", password: "password"}
+export const login = (userInfo, navigate) => {
     const URL = "/account/login";
+
     axios.post(URL, userInfo).then(res => {
         localStorage.setItem(ACCESS_KEY, res.data.access);
         localStorage.setItem(REFRESH_KEY, res.data.refresh);
         alert("성공");
+        navigate('/');
     }).catch(err=>console.log(err))
 }
 
-export const logout = () => {
+export const logout = (navigate) => {
     const URL = "/account/logout"
     const refreshToken = localStorage.getItem(REFRESH_KEY);
     axios.post(URL, {refresh: refreshToken}).then(res=>{
@@ -32,6 +37,7 @@ export const logout = () => {
     localStorage.removeItem(ACCESS_KEY);
     localStorage.removeItem(REFRESH_KEY);
     alert("성공")
+    navigate('/');
 }
 
 export const refresh = () => {
