@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ImageUploading from 'react-images-uploading';
 import { IconButton } from '@mui/material';
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
+import { detect } from '../utils/img-detect';
 
 
 export function UploadImageBtn() {
-
   const [images, setImages] = useState([]);
   const maxNumber = 1;
   const acceptType = ['jpg', 'png'];
   const maxFileSize = 1024;
+
+  const handleDetect = ()=>{
+    detect(images[0].file);
+  }
 
   const onChange = (imageList, addUpdateIndex) => {
     // data for submit
@@ -54,6 +58,13 @@ export function UploadImageBtn() {
             <IconButton
               style={isDragging ? { color: 'red' } : undefined}
               onClick={onImageUpload}
+              {...dragProps}
+            >
+              <ImageSearchIcon sx={{color: 'gray'}} />
+            </IconButton>
+            <IconButton
+              style={isDragging ? { color: 'red' } : undefined}
+              onClick={handleDetect}
               {...dragProps}
             >
               <ImageSearchIcon sx={{color: 'gray'}} />
