@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Stack, Toolbar, Typography, InputAdornment, TextField } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { UploadImageBtn } from './img-upload-btn';
+import { UserProfile } from './user-profile';
 
 const LandigNavbarRoot = styled(AppBar)(({ theme }) => ({
     backgroundColor: theme.palette.background.paper,
@@ -11,6 +12,21 @@ const LandigNavbarRoot = styled(AppBar)(({ theme }) => ({
 }));
 
 const pagesMobile = ['Search', 'Sign In']
+const btnColor = 'gray';
+
+function ShowUserProfile(props) {
+    const isLoggedIn = props.isLoggedIn;
+    const fontColor = 'black';
+
+    if (isLoggedIn) {
+        return <UserProfile fontColor={fontColor} />
+    }
+    return (
+        <Link to='/signin'>
+            <Button variant='contained' sx={{ width: '10vw' }} >Sign In</Button>
+        </Link>
+    );
+}
 
 export function Header() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -57,7 +73,7 @@ export function Header() {
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position="end">
-                                            <UploadImageBtn />
+                                            <UploadImageBtn btnColor={btnColor} />
                                         </InputAdornment>
                                     ),
                                 }}
@@ -72,11 +88,12 @@ export function Header() {
                         </Box>
 
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                            <Link to='/signin'>
+                            {/* <Link to='/signin'>
                                 <Stack spacing={1} direction='row'>
                                     <Button variant='contained' sx={{ width: '10vw' }}>Sign In</Button>
                                 </Stack>
-                            </Link>
+                            </Link> */}
+                            <ShowUserProfile isLoggedIn={true} />
                         </Box>
 
                         {/* 모바일용 */}

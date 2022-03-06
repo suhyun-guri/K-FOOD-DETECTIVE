@@ -1,3 +1,6 @@
+// /signin 페이지의 배경 이미지
+
+
 import React from 'react';
 import { Box, CssBaseline } from '@mui/material';
 

@@ -1,3 +1,7 @@
+// /food-detail 페이지의 main관련(우측 컨텐츠) 전체적인 내용을 담음
+// Page같이 되어서 이걸 component에 두어도 될지 고민
+
+
 import { Box, Button, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';

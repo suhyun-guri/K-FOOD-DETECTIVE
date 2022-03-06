@@ -1,3 +1,6 @@
+// / 페이지의 About을 클릭 시 보여지는 페이지
+
+
 import { useState, useEffect } from "react";
 import { Typography } from '@mui/material';
 import { LandingBackground } from '../components/landing/landing-background';

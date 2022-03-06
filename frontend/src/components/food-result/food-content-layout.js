@@ -1,3 +1,5 @@
+// /food-detail 페이지 전체 레이아웃 스타일 설정
+
 import React from 'react';
 import { Box, Paper } from '@mui/material';
 

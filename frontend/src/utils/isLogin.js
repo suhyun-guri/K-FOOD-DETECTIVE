@@ -1,3 +1,6 @@
+// Login과 Logout, Register관련하여 서버와 통신하는 코드
+
+
 import axios from 'axios';
 
 const ACCESS_KEY = 'accessKey';

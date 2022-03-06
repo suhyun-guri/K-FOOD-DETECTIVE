@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Stack, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { AccountUserProfile } from '../account/account-user-profile';
+import { UserProfile } from '../user-profile';
 
 const LandigNavbarRoot = styled(AppBar)({
     backgroundColor: 'rgba(0,0,0,0.0)',
@@ -12,6 +12,20 @@ const LandigNavbarRoot = styled(AppBar)({
 
 const pages = ['About', 'Team']
 const pagesMobile = ['About', 'Team', 'Sign In']
+
+function ShowUserProfile(props) {
+    const isLoggedIn = props.isLoggedIn;
+    const fontColor = 'white';
+
+    if (isLoggedIn) {
+        return <UserProfile fontColor={fontColor} />
+    }
+    return (
+        <Link to='/signin'>
+            <Button variant='contained' sx={{ width: '10vw' }} >Sign In</Button>
+        </Link>
+    );
+}
 
 export function LandingNavbar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -62,11 +76,10 @@ export function LandingNavbar() {
 
                         </Box>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                            <Stack spacing={1} direction='row'>
-                                <Link to='/signin'>
+                                {/* <Link to='/signin'>
                                     <Button variant='contained' sx={{width: '10vw'}} >Sign In</Button>
-                                </Link>
-                            </Stack>
+                                </Link> */}
+                                <ShowUserProfile isLoggedIn={true} />
                         </Box>
 
                         {/* 1200px 이하 일 때 */}
@@ -105,6 +118,7 @@ export function LandingNavbar() {
                                     display: { xs: 'block', md: 'none' },
                                 }}
                             >
+                                {/* 나중에 되면 drawer로 해도 좋겠디 */}
                                 {pagesMobile.map((page) => (
                                     <Link 
                                         to={{pathname: `/${page.replace(/ /g,"").toLowerCase()}`}}

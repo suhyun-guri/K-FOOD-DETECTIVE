@@ -1,3 +1,5 @@
+// 이미지 검색 시 서버와 통신하는 코드
+
 import axios from 'axios';
 
 

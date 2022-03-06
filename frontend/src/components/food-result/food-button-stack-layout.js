@@ -1,3 +1,5 @@
+// /food-detail 페이지에서 survey와 recipe 버튼의 레이아웃을 설정
+
 import React from 'react';
 import { Stack } from '@mui/material';
 

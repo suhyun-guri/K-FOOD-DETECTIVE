@@ -35,7 +35,7 @@ export default function App() {
         </Route>
         
 
-        <Route path="/my-page" element={<MyPage />} exact />
+        <Route path="/mypage" element={<MyPage />} exact />
         <Route path="/*" element={<h1>NOT FOUND</h1>} />
       </Routes>
     </ThemeProvider>

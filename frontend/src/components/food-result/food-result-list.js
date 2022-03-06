@@ -1,3 +1,6 @@
+// /food-detail 페이지에서 좌측의 결과 음식 메뉴 리스트
+
+
 import { Button, Card, CardContent, CardMedia, Stack, Box, Typography } from '@mui/material';
 import { Fragment, useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';

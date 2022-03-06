@@ -1,3 +1,6 @@
+// /food-detail 페이지의 파란색 구분 박스 스타일 레이아웃
+
+
 import { Box } from '@mui/material';
 
 export function FoodTitleLayout({ children }) {
