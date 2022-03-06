@@ -22,8 +22,17 @@ export function FoodResultList(props) {
                 {props.data
                     ? props.data.map((d, i) => (
                         <Fragment key={i}>
-                            <Link to={`/food-detail/${d.romanized_name}`}>
-                                <Card elevation={10} sx={{ display: 'flex', width: '100%', height: '15vh' }} > 
+                            <Link
+                                to={`/food-detail/${d.romanized_name}`}
+                                
+                            >
+                                <Card
+                                    elevation={10}
+                                    sx={{
+                                        display: 'flex',
+                                        width: '100%',
+                                        height: '15vh'
+                                    }} >
                                     <CardMedia
                                         component='img'
                                         sx={{ width: '10rem' }}

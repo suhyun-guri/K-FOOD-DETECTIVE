@@ -12,7 +12,7 @@ import { FoodTitleLayout } from './food-title-layout';
 import { FoodContentLayout } from './food-content-layout';
 import { FoodDescriptionLayout } from './food-description-layout';
 import { FoodButtonStackLayout } from './food-button-stack-layout';
-
+import { FoodFavoriteBtn } from './food-favorite-btn';
 
 export function FoodDetail(props) {
     const params = useParams();
@@ -84,14 +84,7 @@ export function FoodDetail(props) {
                             {props.data[id].hit + ' users find and ' + props.data[id].likes + ' users like this food!'}
                         </Typography>
                     </Box>
-                    <Button
-                        variant='contained'
-                        sx={{
-
-                        }}
-                    >
-                        버튼자리
-                    </Button>
+                    <FoodFavoriteBtn />
                 </FoodTitleLayout>
 
 
