@@ -5,6 +5,7 @@ db_mysql/data/*
 front/build
 db/data/*
 backend/account/migrations/*
+backend/food/migrations/*
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/linux,django,react,python,venv
