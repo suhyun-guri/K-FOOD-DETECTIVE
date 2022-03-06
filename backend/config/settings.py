@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # apps
     'account',
+    'food',
     # rest_framework
     'rest_framework',
     # simple-jwt
