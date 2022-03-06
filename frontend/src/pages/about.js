@@ -20,7 +20,7 @@ export default function AboutPage() {
 
   function createContents() {
     let contents = [];
-    console.log(landingPageData.Landing)
+
     for (let i = 0; i < contentsNum; i++) {
       contents.push(
         <>
@@ -36,8 +36,6 @@ export default function AboutPage() {
     return contents;
   }
 
-
-  console.log(landingPageData.Landing);
 
   return (
     <>
