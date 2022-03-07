@@ -1,14 +1,19 @@
+import pandas as pd
 from base64 import b64encode
 import json
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 import requests
 from django.views.decorators.csrf import csrf_exempt
-from food.models import Food
+from food.models import Food, Taste
 from account.models import CustomUser
 from rest_framework_simplejwt.tokens import AccessToken
 from food.serializers import FoodSerializer, FoodScrapSerializer
+from food.utils import recommender_system
 
 MODEL_SERVER_URL = "http://192.168.247.118:5000/detect"
+
+food_taste_list = Taste.objects.values_list('food__romanized_name', 'oily','spicy', 'sour', 'salty')
+food_taste_df = pd.DataFrame.from_records(food_taste_list, columns=['romanized_name', 'oily', 'spicy', 'sour', 'salty'])
 
 def get_user_id(request):
     header = request.META.get('HTTP_AUTHORIZATION', None)
@@ -25,6 +30,8 @@ def get_user_id(request):
 def get_food_data(food_name, user_id):
     try:
         food = Food.objects.get(romanized_name = food_name)
+        food.hit += 1
+        food.save()
         serialized_data = dict(FoodSerializer(food).data)
         scrap_user_id = [scrap_user.id for scrap_user in food.scrap_users.all()]
         is_liked = True if user_id in scrap_user_id else False
@@ -64,7 +71,8 @@ def image_detect(request):
                 }
 
             return JsonResponse(result)
-        except:
+        except Exception as e:
+            print(e)
             result = {"detail" : "image detection failed"}
             return JsonResponse(result, status=400)
 
@@ -73,10 +81,9 @@ def food_scrap(request):
     if request.method == 'POST':
         try:
             user_id = get_user_id(request)
-            food_id = json.loads(request.body).get('food_id')
-            print(food_id)
+            romanized_food_name = json.loads(request.body).get('romanized_name')
             user = CustomUser.objects.get(id = user_id)
-            food = Food.objects.get(id = food_id)
+            food = Food.objects.get(romanized_name = romanized_food_name)
             scrap_user_id = [scrap_user.id for scrap_user in food.scrap_users.all()]
             if user_id in scrap_user_id:
                 food.scrap_users.remove(user)
@@ -90,16 +97,52 @@ def food_scrap(request):
                 food.scrap_users.add(user)
                 food_likes_data = dict(FoodScrapSerializer(food).data)
                 result = {
-                    "detail" : f"{user.username} added {food.romanized_name} from like-list",
+                    "detail" : f"{user.username} added {food.romanized_name} into like-list",
                     "likes" : food_likes_data.get('likes')
                     }
                 return JsonResponse(result)
         except:
             result = {"detail" : "food_id is invalid or something went wrong"}
             return JsonResponse(result, status=400)
+
+
+# def score_test(a, b):
+#     return 1 if abs(a-b) <2 else 0
+
+score_grade_dict = {
+    0 : "perfect",
+    1 : "great",
+    2 : "good",
+    3 : "bad",
+    4 : "not recommend"
+}
+
+
+@csrf_exempt
+def recommend_test(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            romanized_food_name = data.get('romanized_name')
+            food = Food.objects.get(romanized_name = romanized_food_name)
+            oily = data.get('oily')
+            spicy = data.get('spicy')
+            sour = data.get('sour')
+            salty = data.get('salty')
+            user_taste_list = [oily, spicy, sour, salty]
+
+            taste = food.tastes.all()[0]
+            taste_list = [taste.oily, taste.spicy, taste.sour, taste.salty]
+            result = map(lambda x,y : abs(x-y), user_taste_list, taste_list)
+            score = sum(result) // 3.21
+            grade = score_grade_dict.get(score)
+            recommend_foods = recommender_system(food_taste_df, user_taste_list)
+
+            res = {
+                "result" : grade,
+                "recommend" : recommend_foods
+            }
             
-            
-
-
-
-
+            return JsonResponse(res, status=200)
+        except:
+            return JsonResponse({"result" : "failed"}, status=400)
