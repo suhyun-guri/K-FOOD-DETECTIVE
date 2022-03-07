@@ -1,4 +1,6 @@
 import * as React from 'react';
+import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, Typography, Radio, RadioGroup, FormControl, FormControlLabel, FormLabel } from '@mui/material';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import ModeRoundedIcon from '@mui/icons-material/ModeRounded';
@@ -7,6 +9,7 @@ import { ProgressBar } from './progress-bar';
 export function ScrollDialog() {
   const [open, setOpen] = React.useState(false);
   const tastes = [ 'oily', 'spicy', 'sour', 'salty' ];
+  const [percentage, setPercentage] = React.useState(0);
 
   const handleClickOpen = () => () => {
     setOpen(true);
@@ -15,6 +18,10 @@ export function ScrollDialog() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handlePercentage = () => {
+    setPercentage(percentage+25);
+  }
 
   const descriptionElementRef = React.useRef(null);
   React.useEffect(() => {
@@ -52,7 +59,7 @@ export function ScrollDialog() {
           </DialogActions>
         </Box>
 
-        <ProgressBar />
+        <ProgressBar percentage={percentage} />
         {/* <DialogContent dividers={scroll === 'paper'}> */}
         <DialogContent>
           <DialogContentText
@@ -96,12 +103,11 @@ export function ScrollDialog() {
                       </Typography>
 
                         <RadioGroup sx={{ mx: 3 }} row name='row-radio-buttons-group'>
-                            <FormControlLabel value='Dislike a lot' control={<Radio />} label='Dislike a lot' />
-                            <FormControlLabel value='Dislikes' control={<Radio />} label='Dislikes' />
-                            <FormControlLabel value='Fair' control={<Radio />} label='Fair' />
-                            <FormControlLabel value='Likes' control={<Radio />} label='Likes' />
-                            <FormControlLabel value='Likes a lot' control={<Radio />} label='Likes a lot' />
-
+                            <FormControlLabel value='Dislike a lot' control={<Radio />} label='Dislike a lot' onChange={handlePercentage} />
+                            <FormControlLabel value='Dislikes' control={<Radio />} label='Dislikes' onChange={handlePercentage} />
+                            <FormControlLabel value='Fair' control={<Radio />} label='Fair' onChange={handlePercentage} />
+                            <FormControlLabel value='Likes' control={<Radio />} label='Likes' onChange={handlePercentage} />
+                            <FormControlLabel value='Likes a lot' control={<Radio />} label='Likes a lot' onChange={handlePercentage} />
                         </RadioGroup>
 
                     </Box>
