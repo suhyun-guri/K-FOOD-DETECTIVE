@@ -14,7 +14,7 @@ import { FoodDescriptionLayout } from './food-description-layout';
 import { FoodButtonStackLayout } from './food-button-stack-layout';
 import { FoodFavoriteBtn } from './food-favorite-btn';
 
-import { ScrollDialog } from './test';
+import { FoodTasteSurvey } from './taste-survey/food-taste-survey';
 
 
 export function FoodDetail(props) {
@@ -146,44 +146,37 @@ export function FoodDetail(props) {
                     </Typography>
 
                     <FoodButtonStackLayout>
+                        {/* 음식 취향 분석 설문지 버튼 */}
+                        <FoodTasteSurvey />
+
                         <Button
                             variant='contained'
                             size='large'
                             sx={{ width: '20rem' }}
-                            startIcon={<AssignmentTurnedInRoundedIcon />}
+                            href={props.data[id].recipes}
+                            startIcon={<SoupKitchenRoundedIcon />}
                         >
-                            Will it suit my taste?
+                            Show this food recipe
                         </Button>
-
-                            <Button
-                                variant='contained'
-                                size='large'
-                                sx={{ width: '20rem' }}
-                                href = {props.data[id].recipes}
-                                startIcon={<SoupKitchenRoundedIcon />}
-                            >
-                                Show this food recipe
-                            </Button>
 
                     </FoodButtonStackLayout>
 
-                    </FoodDescriptionLayout>
 
-                    <FoodTitleLayout>
-                        <Typography
-                            variant='h5'
-                            sx={{
-                                mt: 2.7,
-                                ml: 2,
-                                color: 'white'
-                            }}
-                        >
-                            Comments
-                        </Typography>
-                    </FoodTitleLayout>
+                </FoodDescriptionLayout>
 
-                <ScrollDialog />
-                
+                <FoodTitleLayout>
+                    <Typography
+                        variant='h5'
+                        sx={{
+                            mt: 2.7,
+                            ml: 2,
+                            color: 'white'
+                        }}
+                    >
+                        Comments
+                    </Typography>
+                </FoodTitleLayout>
+
             </FoodContentLayout>
 
         </>
