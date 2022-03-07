@@ -14,6 +14,9 @@ import { FoodDescriptionLayout } from './food-description-layout';
 import { FoodButtonStackLayout } from './food-button-stack-layout';
 import { FoodFavoriteBtn } from './food-favorite-btn';
 
+import { ScrollDialog } from './test';
+
+
 export function FoodDetail(props) {
     const params = useParams();
     const data = props.data;
@@ -152,17 +155,19 @@ export function FoodDetail(props) {
                             Will it suit my taste?
                         </Button>
 
-                        <Button
-                            variant='contained'
-                            size='large'
-                            sx={{ width: '20rem' }}
-                            startIcon={<SoupKitchenRoundedIcon />}
-                        >
-                            Show this food recipe
-                        </Button>
+                            <Button
+                                variant='contained'
+                                size='large'
+                                sx={{ width: '20rem' }}
+                                href = {props.data[id].recipes}
+                                startIcon={<SoupKitchenRoundedIcon />}
+                            >
+                                Show this food recipe
+                            </Button>
 
                     </FoodButtonStackLayout>
 
+                    </FoodDescriptionLayout>
 
                     <FoodTitleLayout>
                         <Typography
@@ -177,7 +182,8 @@ export function FoodDetail(props) {
                         </Typography>
                     </FoodTitleLayout>
 
-                </FoodDescriptionLayout>
+                <ScrollDialog />
+                
             </FoodContentLayout>
 
         </>
