@@ -13,6 +13,7 @@ class Food(models.Model):
     image_url = models.URLField(max_length=500)
     info = models.CharField(max_length=1000)
     scrap_users = models.ManyToManyField(CustomUser, related_name='scrap_foods', db_table='scrap') 
+    test_users = models.ManyToManyField(CustomUser, related_name='test_foods', through='Test')
 
 
 class Recipe(models.Model):
