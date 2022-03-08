@@ -22,6 +22,9 @@ export function FoodDetail(props) {
     const data = props.data;
     const [food, setFood] = useState(undefined);
     const [id, setId] = useState(0);
+    const capitalizeName = (name) => name.charAt(0).toUpperCase() + name.slice(1)
+    const englishKoreanName = (name) => name.english_name + ', ' + name.korean_name
+
     console.log(params)
     console.log('food-detail에서 id : ', id)
 

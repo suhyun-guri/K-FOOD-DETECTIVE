@@ -35,7 +35,11 @@ export default function App() {
         </Route>
         
 
-        <Route path="/mypage" element={<MyPage />} exact />
+        {/* <Route path="/mypage" element={<MyPage />} exact /> */}
+        <Route path="/mypage">
+          <Route index element={<MyPage />} />
+          <Route path=":feature" element={<MyPage />} />
+        </Route>
         <Route path="/*" element={<h1>NOT FOUND</h1>} />
       </Routes>
     </ThemeProvider>

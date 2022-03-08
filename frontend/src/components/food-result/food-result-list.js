@@ -6,7 +6,7 @@ import { Fragment, useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 
 export function FoodResultList(props) {
-    const location = useLocation();
+    // const location = useLocation();
 
     return (
         <>
