@@ -1,10 +1,23 @@
-import * as React from 'react';
+import React from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { Box, Button, TextField } from '@mui/material';
-import { useNavigate } from "react-router-dom";
+import {login, logout, refresh} from '../../utils/isLogin'; 
 
 export function AccountLoginForm() {
+    //여기는 임시코드입니다.
+    const handleClick = ()=>{
+        const values = {username: formik.values.username, password: formik.values.password};
+        login(values);
+    }
+    const handleLogout = ()=>{
+        logout();
+    }
+    const handleRefresh = ()=>{
+        refresh();
+    }
+    //임시코드 끝
+
     const formik = useFormik({
         initialValues: {
             username: '',
@@ -22,7 +35,7 @@ export function AccountLoginForm() {
                 .required(
                     'Password is required')
         }),
-        onSubmit: () => { }
+        onSubmit: (values) => { login(values) }
     });
 
     return (
@@ -76,10 +89,34 @@ export function AccountLoginForm() {
                         width: '100%',
                         height: '6.8vh'
                     }}
+                    onClick={handleClick}
                 >
                     Log In
                 </Button>
+                
+                <Button
+                    variant='contained'
+                    sx={{
+                        mt: 1,
+                        width: '100%',
+                        height: '6.8vh'
+                    }}
+                    onClick={handleLogout}
+                >
+                    Log out
+                </Button>
 
+                <Button
+                    variant='contained'
+                    sx={{
+                        mt: 1,
+                        width: '100%',
+                        height: '6.8vh'
+                    }}
+                    onClick={handleRefresh}
+                >
+                    Refresh
+                </Button>
             </Box>
         </>
     )

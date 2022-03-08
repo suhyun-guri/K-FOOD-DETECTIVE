@@ -32,7 +32,7 @@ function getTabString(idx) {
   return 'register'
 } 
 
-export function AccountNavTab() {
+export function AccountNavTab(onClickfunc) {
   const location = useLocation();
   const [value, setValue] = React.useState(getTabIndex(new URLSearchParams(location.search).get('tab')));
   const navigate = useNavigate();
@@ -73,7 +73,7 @@ export function AccountNavTab() {
         <AccountLoginForm />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <AccountRegisterForm />
+        <AccountRegisterForm  />
       </TabPanel>
     </>
   );
