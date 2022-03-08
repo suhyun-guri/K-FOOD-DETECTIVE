@@ -1,16 +1,17 @@
 import pandas as pd
 from base64 import b64encode
 import json
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 import requests
 from django.views.decorators.csrf import csrf_exempt
-from food.models import Food, Taste
+from food.models import Food, Taste, Test
 from account.models import CustomUser
 from rest_framework_simplejwt.tokens import AccessToken
 from food.serializers import FoodSerializer, FoodScrapSerializer
 from food.utils import recommender_system
 
 MODEL_SERVER_URL = "http://192.168.247.118:5000/detect"
+NORMALIZER = 3.21
 
 food_taste_list = Taste.objects.values_list('food__romanized_name', 'oily','spicy', 'sour', 'salty')
 food_taste_df = pd.DataFrame.from_records(food_taste_list, columns=['romanized_name', 'oily', 'spicy', 'sour', 'salty'])
@@ -37,8 +38,11 @@ def get_food_data(food_name, user_id):
         is_liked = True if user_id in scrap_user_id else False
         serialized_data['is_liked'] = is_liked
         return serialized_data
-    except:
-        result = {"detail" : "image detection failed"}
+    except Exception as e:
+        result = {
+            "detail" : "failed to get foot data",
+            "error_log" : f"{e}"
+            }
         return JsonResponse(result, status=400)
 
 @csrf_exempt
@@ -72,8 +76,10 @@ def image_detect(request):
 
             return JsonResponse(result)
         except Exception as e:
-            print(e)
-            result = {"detail" : "image detection failed"}
+            result = {
+                "detail" : "image detection failed",
+                "error_log" : f"{e}"
+                }
             return JsonResponse(result, status=400)
 
 @csrf_exempt
@@ -101,13 +107,13 @@ def food_scrap(request):
                     "likes" : food_likes_data.get('likes')
                     }
                 return JsonResponse(result)
-        except:
-            result = {"detail" : "food_id is invalid or something went wrong"}
+        except Exception as e:
+            result = {
+                "detail" : "food_id is invalid or something went wrong",
+                "error_log" : f"{e}"
+                }
             return JsonResponse(result, status=400)
 
-
-# def score_test(a, b):
-#     return 1 if abs(a-b) <2 else 0
 
 score_grade_dict = {
     0 : "perfect",
@@ -134,7 +140,7 @@ def recommend_test(request):
             taste = food.tastes.all()[0]
             taste_list = [taste.oily, taste.spicy, taste.sour, taste.salty]
             result = map(lambda x,y : abs(x-y), user_taste_list, taste_list)
-            score = sum(result) // 3.21
+            score = sum(result) // NORMALIZER
             grade = score_grade_dict.get(score)
             recommend_foods = recommender_system(food_taste_df, user_taste_list)
 
@@ -142,7 +148,45 @@ def recommend_test(request):
                 "result" : grade,
                 "recommend" : recommend_foods
             }
-            
             return JsonResponse(res, status=200)
-        except:
-            return JsonResponse({"result" : "failed"}, status=400)
+
+        except Exception as e:
+            result = {
+                "detail" : "Either test or recommendation has failed",
+                "error_log" : f"{e}"
+                }
+            return JsonResponse(result, status=400)
+
+
+@csrf_exempt
+def save_test(request,romanized_name):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            romanized_food_name = romanized_name
+            user_id = get_user_id(request)
+            result = data.get('result')
+            recommends = data.get('recommend')
+                
+            user = CustomUser.objects.get(id = user_id)
+            food = Food.objects.get(romanized_name = romanized_food_name)
+            recommend_1 = Food.objects.get(romanized_name = recommends[0])
+            recommend_2 = Food.objects.get(romanized_name = recommends[1])
+
+            test = Test.objects.create(
+                user = user,
+                food = food,
+                result = result
+            )
+            test.recommend_foods.add(recommend_1, recommend_2)
+            test.save()
+            print(test.recommend_foods)
+
+            return HttpResponse(status=201)
+        except Exception as e:
+            result = {
+                "detail" : "Couldn't save the test result",
+                "error_log" : f"{e}"
+                }
+            return JsonResponse(result, status=400)
+        

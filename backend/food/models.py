@@ -45,3 +45,19 @@ class Taste(models.Model):
     spicy = models.SmallIntegerField()
     sour = models.SmallIntegerField()
     salty = models.SmallIntegerField()
+
+class Test(models.Model):
+    class Meta:
+        db_table = 'test'
+
+    class ResultChoice(models.IntegerChoices):
+        perfect = 0, 'perfect'
+        great = 1, 'great'
+        good = 2, 'good'
+        bad = 3, 'bad'
+        not_recommend = 4, 'not recommend'
+    
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    food = models.ForeignKey(Food, on_delete=models.CASCADE)
+    result = models.SmallIntegerField(choices=ResultChoice.choices)
+    recommend_foods = models.ManyToManyField(Food, related_name='recommend_tests', db_table='recommend') 
