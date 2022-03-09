@@ -13,8 +13,6 @@ from food.utils import recommender_system
 MODEL_SERVER_URL = "http://192.168.247.118:5000/detect"
 NORMALIZER = 3.21
 
-food_taste_list = Taste.objects.values_list('food__romanized_name', 'oily','spicy', 'sour', 'salty')
-food_taste_df = pd.DataFrame.from_records(food_taste_list, columns=['romanized_name', 'oily', 'spicy', 'sour', 'salty'])
 
 def get_user_id(request):
     header = request.META.get('HTTP_AUTHORIZATION', None)
@@ -128,6 +126,8 @@ score_grade_dict = {
 def recommend_test(request):
     if request.method == 'POST':
         try:
+            food_taste_list = Taste.objects.values_list('food__romanized_name', 'oily','spicy', 'sour', 'salty')
+            food_taste_df = pd.DataFrame.from_records(food_taste_list, columns=['romanized_name', 'oily', 'spicy', 'sour', 'salty'])
             data = json.loads(request.body)
             romanized_food_name = data.get('romanized_name')
             food = Food.objects.get(romanized_name = romanized_food_name)
