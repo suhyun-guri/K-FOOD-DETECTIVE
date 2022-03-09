@@ -2,14 +2,17 @@
 // LoginForm에서 받은 유저 정보를 어떻게 적용해주어야할지 고민 중
 
 import * as React from 'react';
+import { useContext } from 'react';
 import Avatar from '@mui/material/Avatar';
 import { Box, Button, Menu, MenuItem, Typography } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../utils/isLogin';
+import { UserContext } from '../reducers/userReducer';
 
 
 export function UserProfile({ fontColor }) {
   const navigate = useNavigate();
+  const [{userInfo}, dispatch] = useContext(UserContext);
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -23,16 +26,17 @@ export function UserProfile({ fontColor }) {
 
   const handleLogoutCloseUserProfile = () => {
     setAnchorElUser(null);
-    logout(navigate);
+    logout(navigate, dispatch);
   }
 
+  
 
   return (
     <Box display={'flex'} direction="row">
       <Button sx={{ textAlign: 'left' }} onClick={handleOpenUserProfile}>
         <Avatar alt="Remy Sharp" src="/images/avatar/default01.jpg" />
         <Box direction="column" sx={{ ml: 1 }}>
-          <Typography variant='subtitle2' sx={{ color: `${fontColor}` }}>Elice</Typography>
+          <Typography variant='subtitle2' sx={{ color: `${fontColor}` }}>{userInfo.username}</Typography>
           <Typography variant='body2' sx={{ color: `${fontColor}` }}>Default Nationality</Typography>
         </Box>
       </Button>

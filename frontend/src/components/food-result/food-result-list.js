@@ -2,11 +2,13 @@
 
 
 import { Card, CardContent, CardMedia, Stack, Box, Typography } from '@mui/material';
-import { Fragment, useState, useEffect } from 'react';
+import { Fragment, useState, useEffect, useContext } from 'react';
 import { useLocation, Link } from 'react-router-dom';
+import { UserContext } from '../../reducers/userReducer';
 
 export function FoodResultList(props) {
     // const location = useLocation();
+    const [state, dispatch] = useContext(UserContext);
 
     return (
         <>
@@ -19,8 +21,8 @@ export function FoodResultList(props) {
                     alignContent: 'center'
                 }}
             >
-                {props.data
-                    ? props.data.map((d, i) => (
+                {state.detectResult["food_list"].length !== 0
+                    ? state.detectResult["food_list"].map((d, i) => (
                         <Fragment key={i}>
                             <Link
                                 to={`/food-detail/${d.romanized_name}`}

@@ -1,22 +1,24 @@
 // /signin 페이지의 Login관련 form
 
 
-import React from 'react';
+import React, {useContext} from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, TextField } from '@mui/material';
 import { login, logout, refresh } from '../../utils/isLogin'; 
 import { UserProfile } from '../user-profile';
+import { UserContext } from '../../reducers/userReducer';
 
 export function AccountLoginForm() {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const [state, dispatch] = useContext(UserContext);
     
 
     //여기는 임시코드입니다.
     const handleClick = ()=>{
         const values = {username: formik.values.username, password: formik.values.password};
-        login(values, navigate);
+        login(values, navigate, dispatch);
         
     }
     const handleLogout = ()=>{
@@ -101,30 +103,6 @@ export function AccountLoginForm() {
                     onClick={handleClick}
                 >
                     Log In
-                </Button>
-                
-                <Button
-                    variant='contained'
-                    sx={{
-                        mt: 1,
-                        width: '100%',
-                        height: '6.8vh'
-                    }}
-                    onClick={handleLogout}
-                >
-                    Log out
-                </Button>
-
-                <Button
-                    variant='contained'
-                    sx={{
-                        mt: 1,
-                        width: '100%',
-                        height: '6.8vh'
-                    }}
-                    onClick={handleRefresh}
-                >
-                    Refresh
                 </Button>
             </Box>
         </>

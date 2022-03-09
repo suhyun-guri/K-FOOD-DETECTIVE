@@ -14,27 +14,33 @@ export const Register = (userInfo, navigate) => {
     return axios.post(URL, userInfo)
 }
 
-export const login = (userInfo, navigate) => {
+export const login = (userInfo, navigate, dispatch) => {
     const URL = "/account/login";
 
     axios.post(URL, userInfo).then(res => {
         localStorage.setItem(ACCESS_KEY, res.data.access);
         localStorage.setItem(REFRESH_KEY, res.data.refresh);
-        alert("성공");
+        const {userId, username, nationality, profileImage} = res.data;
+        dispatch({type: "setUserInfo", payload: {isLogin: true, userId, username, nationality, profileImage}})
         navigate('/');
     }).catch(err=>console.log(err))
 }
 
-export const logout = (navigate) => {
+export const logout = (navigate, dispatch) => {
     const URL = "/account/logout"
     const refreshToken = localStorage.getItem(REFRESH_KEY);
-    axios.post(URL, {refresh: refreshToken}).then(res=>{
+    const accessToken = localStorage.getItem(ACCESS_KEY)
+    const headers = {"Authorization": `Bearer ${accessToken}`}
+    axios.post(URL, {refresh: refreshToken}, {headers}).then(res=>{
         console.log(res.data);
-    }).catch(err=>console.log(err))
-    localStorage.removeItem(ACCESS_KEY);
-    localStorage.removeItem(REFRESH_KEY);
-    alert("성공")
-    navigate('/');
+        dispatch({type: "setUserInfo", payload: {isLogin: false}})
+        localStorage.removeItem(ACCESS_KEY);
+        localStorage.removeItem(REFRESH_KEY);
+        navigate('/');
+    }).catch(err=>{
+        console.log(err);
+        alert("실패");
+    })
 }
 
 export const refresh = () => {
