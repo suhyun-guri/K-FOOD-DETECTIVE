@@ -1,24 +1,43 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+// /food-detail에서 사용자가 입력한 이미지 없이 그냥 순수히 DB를 조회한 경우의 음식정보를 보여주는 페이지
+// 현재는 food-detail-search와 food-detail-db를 나누었는데 조건부 렌더링으로 한 파일로 합칠지
+// 계속 나누어둘지 고민 중
 
+
+import { useState, useEffect } from "react";
+import { Box, CssBaseline } from '@mui/material';
+import { Header } from '../components/header';
+import { FoodResultList } from '../components/food-result/food-result-list';
+import { FoodDetail } from '../components/food-result/food-detail';
+import { PageSideBar } from "../components/page-sidebar";
+import { PageMain } from "../components/page-main";
+import { Footer } from "../components/footer";
+import JsonData from '../data/data.json';
 
 export default function FoodDetailDBPage() {
-    const [open, setOpen] = useState(false);
-    const [windowSize, setWindowSize] = useState(window.innerWidth);
 
-    // 화면 사이즈에 따른 ui 변경을 위해 정의
-    const handleWindowResize = useCallback((event) => {
-        setWindowSize(window.innerWidth);
-    }, []);
+  const [FoodPageData, setFoodPageData] = useState(undefined);
+  useEffect(() => {
+    setFoodPageData(JsonData);
+  }, []);
 
-    useEffect(() => {
-        window.addEventListener("resize", handleWindowResize);
-        windowSize >= 600 && setOpen(false);
-        return () => {
-          window.removeEventListener("resize", handleWindowResize);
-        };
-      }, [windowSize]);
 
-    return (
-        <p>여긴 DB에 있는 음식 보여주는 페이지 노 써치</p>
-    )
+  return (
+    <>
+    <CssBaseline />
+      <Header /> 
+      <Box sx={{ display: 'flex', mt: '7%' }}>
+          <PageSideBar>
+          {FoodPageData && <FoodResultList data={FoodPageData.Foods} />}
+          </PageSideBar>
+       
+        <Box sx={{ flexGrow: 1 }}>
+          <PageMain>
+          {FoodPageData && <FoodDetail data={FoodPageData.Foods} />}
+          </PageMain>
+          
+          <Footer />
+        </Box>
+      </Box>
+    </>
+  );
 }

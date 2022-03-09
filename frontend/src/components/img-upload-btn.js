@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+// 이미지 검색할 때 쓰는 버튼 아이콘
+// 원래 사용자가 이미지를 업로드 확인 버튼을 누르자마자 바로 검색을 시작하는 것이 목표인데
+// 아직은 버튼 하나가 더 있어서 업로드 후 확인 버튼을 눌러주어야함
+
+import React, { useState, useEffect } from 'react';
 import ImageUploading from 'react-images-uploading';
 import { IconButton } from '@mui/material';
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
+import { detect } from '../utils/img-detect';
 
 
-export function UploadImageBtn() {
-
+export function UploadImageBtn({ btnColor }) {
   const [images, setImages] = useState([]);
   const maxNumber = 1;
   const acceptType = ['jpg', 'png'];
   const maxFileSize = 1024;
+
+  const handleDetect = ()=>{
+    detect(images[0].file);
+  }
 
   const onChange = (imageList, addUpdateIndex) => {
     // data for submit
@@ -28,6 +36,7 @@ export function UploadImageBtn() {
       alert('Selected file size exceed maxFileSize')
     }
   }
+
 
   return (
     <>
@@ -55,7 +64,14 @@ export function UploadImageBtn() {
               onClick={onImageUpload}
               {...dragProps}
             >
-              <ImageSearchIcon sx={{color: 'white'}} />
+              <ImageSearchIcon sx={{color: `${btnColor}`}} />
+            </IconButton>
+            <IconButton
+              style={isDragging ? { color: 'red' } : undefined}
+              onClick={handleDetect}
+              {...dragProps}
+            >
+              <ImageSearchIcon sx={{color: 'gray'}} />
             </IconButton>
             &nbsp;
            {/* <button onClick={onImageRemoveAll}>Remove all images</button> */}

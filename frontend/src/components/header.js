@@ -1,17 +1,34 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
-import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Stack, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Stack, Toolbar, Typography, InputAdornment, TextField } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { UploadImageBtn } from './img-upload-btn';
+import { UserProfile } from './user-profile';
 
 const LandigNavbarRoot = styled(AppBar)(({ theme }) => ({
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[3]
 }));
 
-const pages = ['About', 'Team']
-const pagesMobile = ['About', 'Team', 'Sign In', 'Register']
+const pagesMobile = ['Search', 'Sign In']
+const btnColor = 'gray';
 
-export function LandingNavbar() {
+function ShowUserProfile(props) {
+    const isLoggedIn = props.isLoggedIn;
+    const fontColor = 'black';
+
+    if (isLoggedIn) {
+        return <UserProfile fontColor={fontColor} />
+    }
+    return (
+        <Link to='/signin'>
+            <Button variant='contained' sx={{ width: '10vw' }} >Sign In</Button>
+        </Link>
+    );
+}
+
+export function Header() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
 
     const handleOpenNavMenu = (event) => {
@@ -28,36 +45,58 @@ export function LandingNavbar() {
                 <Container maxWidth="xl" justifyContent='space-between'>
                     <Toolbar disableGutters>
                         <Box
-                            sx={{ flexGrow: 20, ml: 1, mr: 2, display: { xs: 'flex', md: 'flex' } }}
+                            sx={{ flexGrow: 30, ml: 1, mr: 2, display: { xs: 'flex', md: 'flex' } }}
                         >
-                            <Button
-                                color='primary'
-                                variant='text'
-                            >
-                                LOGO
-                            </Button>
-
-                        </Box>
-
-                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                            {pages.map((page) => (
+                            <Link to='/'>
                                 <Button
-                                    key={page}
-                                    onClick={handleCloseNavMenu}
-                                    sx={{ my: 2, color: 'black', display: 'block' }}
+                                    color='primary'
+                                    variant='text'
                                 >
-                                    {page}
+                                    LOGO
                                 </Button>
-                            ))}
+                            </Link>
 
                         </Box>
+
+                        <Box
+                            sx={{
+                                alignItems: 'center',
+                                width: '30vw',
+                                flexGrow: 20
+                            }}
+                        >
+
+                            <TextField
+                                id="input-with-icon-textfield"
+                                label="Image URL"
+                                size='small'
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <UploadImageBtn btnColor={btnColor} />
+                                        </InputAdornment>
+                                    ),
+                                }}
+                                variant="outlined"
+                                sx={{
+                                    my: 1,
+                                    alignItems: 'center',
+                                    display: { xs: 'none', md: 'block' }
+                                }}
+                            />
+
+                        </Box>
+
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                            <Stack spacing={1} direction='row'>
-                                <Button variant='outlined'>Register</Button>
-                                <Button variant='contained'>Sign In</Button>
-                            </Stack>
+                            {/* <Link to='/signin'>
+                                <Stack spacing={1} direction='row'>
+                                    <Button variant='contained' sx={{ width: '10vw' }}>Sign In</Button>
+                                </Stack>
+                            </Link> */}
+                            <ShowUserProfile isLoggedIn={true} />
                         </Box>
 
+                        {/* 모바일용 */}
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} justifyContent='space-between'>
                             <IconButton
                                 size="large"
@@ -75,6 +114,7 @@ export function LandingNavbar() {
                             >
                                 <MenuIcon />
                             </IconButton>
+
                             <Menu
                                 id="menu-appbar"
                                 anchorEl={anchorElNav}

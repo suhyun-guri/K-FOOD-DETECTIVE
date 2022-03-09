@@ -1,3 +1,5 @@
+// /signin페이지에서 Login과 Register를 선택할 수 있는 탭
+
 import * as React from 'react';
 import { AppBar, Box, Tab, Tabs } from '@mui/material';
 import { useSearchParams, useNavigate, useLocation } from 'react-router-dom';
@@ -32,7 +34,7 @@ function getTabString(idx) {
   return 'register'
 } 
 
-export function AccountNavTab() {
+export function AccountNavTab(onClickfunc) {
   const location = useLocation();
   const [value, setValue] = React.useState(getTabIndex(new URLSearchParams(location.search).get('tab')));
   const navigate = useNavigate();
@@ -73,7 +75,7 @@ export function AccountNavTab() {
         <AccountLoginForm />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <AccountRegisterForm />
+        <AccountRegisterForm  />
       </TabPanel>
     </>
   );

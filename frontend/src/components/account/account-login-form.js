@@ -1,10 +1,32 @@
-import * as React from 'react';
+// /signin 페이지의 Login관련 form
+
+
+import React from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
+import { useNavigate } from 'react-router-dom';
 import { Box, Button, TextField } from '@mui/material';
-import { useNavigate } from "react-router-dom";
+import { login, logout, refresh } from '../../utils/isLogin'; 
+import { UserProfile } from '../user-profile';
 
 export function AccountLoginForm() {
+    const navigate = useNavigate()
+    
+
+    //여기는 임시코드입니다.
+    const handleClick = ()=>{
+        const values = {username: formik.values.username, password: formik.values.password};
+        login(values, navigate);
+        
+    }
+    const handleLogout = ()=>{
+        logout(navigate);
+    }
+    const handleRefresh = ()=>{
+        refresh();
+    }
+    //임시코드 끝
+
     const formik = useFormik({
         initialValues: {
             username: '',
@@ -22,7 +44,7 @@ export function AccountLoginForm() {
                 .required(
                     'Password is required')
         }),
-        onSubmit: () => { }
+        onSubmit: (values) => { login(values) }
     });
 
     return (
@@ -76,10 +98,34 @@ export function AccountLoginForm() {
                         width: '100%',
                         height: '6.8vh'
                     }}
+                    onClick={handleClick}
                 >
                     Log In
                 </Button>
+                
+                <Button
+                    variant='contained'
+                    sx={{
+                        mt: 1,
+                        width: '100%',
+                        height: '6.8vh'
+                    }}
+                    onClick={handleLogout}
+                >
+                    Log out
+                </Button>
 
+                <Button
+                    variant='contained'
+                    sx={{
+                        mt: 1,
+                        width: '100%',
+                        height: '6.8vh'
+                    }}
+                    onClick={handleRefresh}
+                >
+                    Refresh
+                </Button>
             </Box>
         </>
     )

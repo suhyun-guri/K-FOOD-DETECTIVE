@@ -1,3 +1,6 @@
+// /singin 페이지의 login, register form이 들어가는 박스의 스타일 지정
+
+
 import React from 'react';
 import { Box, Paper } from '@mui/material';
 
