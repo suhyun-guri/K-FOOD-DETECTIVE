@@ -18,7 +18,7 @@
   #### 초기 데이터베이스에 값 넣기
   `python manage.py makemigrations`  
   `python manage.py migrate`  
-  `cd dataset_pipeline && python3 upload_csv.py && cd..`
+  `cd dataset_pipeline && python3 upload_csv.py && python3 create_mock.py && cd..`
 
   * 위 명령어가 오류나면 아직 DB의 실행이 덜 끝나서 그러니, 잠시 뒤 한번 더 입력해주시면 됩니다.
   * 위 명령어는 최초 1회만 실행해주시고, 이후에는 자동으로 db_mysql/data 폴더 내 자료가 저장됩니다.
