@@ -1,3 +1,6 @@
+// / 페이지(Landing 페이지)
+
+
 import { Box, CssBaseline } from '@mui/material';
 import { LandingNavbar } from '../components/landing/landing-navbar';
 import { LandingSearch } from '../components/landing/landing-main-search';

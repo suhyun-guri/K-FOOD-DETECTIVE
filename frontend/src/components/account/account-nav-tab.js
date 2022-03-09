@@ -1,3 +1,5 @@
+// /signin페이지에서 Login과 Register를 선택할 수 있는 탭
+
 import * as React from 'react';
 import { AppBar, Box, Tab, Tabs } from '@mui/material';
 import { useSearchParams, useNavigate, useLocation } from 'react-router-dom';

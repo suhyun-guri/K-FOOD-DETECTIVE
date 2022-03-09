@@ -1,15 +1,37 @@
+// /signin 페이지의 Register관련 form
+// 아래 주석 코드는 현재 isLogin.js의 Register component의 alert 대신 Snackbar ui를 사용하려 했는데
+// 이를 이 파일에 사용할지 아니면 isLogin.js에 작성해야할지 몰라 남겨둠
+
 import * as React from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { Box, Button, TextField } from '@mui/material';
-import { useHistory } from "react-router-dom";
-import { register } from '../../utils/isLogin'; 
+import { Alert, Box, Button, TextField, Snackbar, MuiAlert } from '@mui/material';
+import { Register } from '../../utils/isLogin'; 
+import { useNavigate } from 'react-router-dom';
 
 export function AccountRegisterForm() {
+    const navigate = useNavigate()
+    const [open, setOpen] = React.useState(false);
+    const [isError, setIsError] = React.useState(false); 
+
     //임시코드 시작
     const handleClick = ()=>{
         const values = {username: formik.values.username, email: formik.values.email, password: formik.values.password};
-        register(values);
+        Register(values, navigate)
+            .then(res => {
+            console.log(res.data);
+            navigate('/signin?tab=signin');
+        }).catch(err=>{
+            setIsError(true);
+        });
+        setOpen(true);
+    }
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
     }
     //임시코드 끝
 
@@ -51,7 +73,7 @@ export function AccountRegisterForm() {
                     }
                 )
         }),
-        onSubmit: (values) => { register(values) }
+        onSubmit: (values) => { Register(values) }
     });
 
     return (
@@ -143,6 +165,12 @@ export function AccountRegisterForm() {
                 >
                     Register
                 </Button>
+
+                <Snackbar open={isError} autoHideDuration={6000} onClose={handleClose}>
+                    <Alert severity="error" onClose={handleClose} sx={{ width: '100%' }}>
+                        Register Error! Please try again.
+                    </Alert>
+                </Snackbar>
 
             </Box>
 

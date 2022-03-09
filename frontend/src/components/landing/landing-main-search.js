@@ -2,6 +2,8 @@ import { Box, Paper, Typography, InputAdornment, TextField, IconButton } from '@
 import { UploadImageBtn } from '../img-upload-btn'
 
 export function LandingSearch() {
+    const btnColor = 'white';
+
     return (
         <>
             <Paper
@@ -34,7 +36,7 @@ export function LandingSearch() {
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
-                            <UploadImageBtn />
+                            <UploadImageBtn btnColor={btnColor} />
                         </InputAdornment>
                       )
                     }}

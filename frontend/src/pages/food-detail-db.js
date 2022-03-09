@@ -1,3 +1,8 @@
+// /food-detail에서 사용자가 입력한 이미지 없이 그냥 순수히 DB를 조회한 경우의 음식정보를 보여주는 페이지
+// 현재는 food-detail-search와 food-detail-db를 나누었는데 조건부 렌더링으로 한 파일로 합칠지
+// 계속 나누어둘지 고민 중
+
+
 import { useState, useEffect } from "react";
 import { Box, CssBaseline } from '@mui/material';
 import { Header } from '../components/header';
@@ -5,56 +10,32 @@ import { FoodResultList } from '../components/food-result/food-result-list';
 import { FoodDetail } from '../components/food-result/food-detail';
 import { PageSideBar } from "../components/page-sidebar";
 import { PageMain } from "../components/page-main";
+import { Footer } from "../components/footer";
 import JsonData from '../data/data.json';
 
 export default function FoodDetailDBPage() {
-  const [FoodPageData, setFoodPageData] = useState({});
+
+  const [FoodPageData, setFoodPageData] = useState(undefined);
   useEffect(() => {
     setFoodPageData(JsonData);
   }, []);
 
-  const contentsNum = 1;
-
-  function createSideBarContents() {
-    let contents = [];
-
-    for (let i = 0; i < contentsNum; i++) {
-      contents.push(
-        <>
-          <FoodResultList data={FoodPageData.Foods} />
-        </>
-      );
-    }
-    return contents;
-  }
-
-  function createMainContents() {
-    let contents = [];
-
-    for (let i = 0; i < contentsNum; i++) {
-      contents.push(
-        <>
-          <FoodDetail data={FoodPageData.Foods} />
-        </>
-      );
-    return contents;
-  }
-}
 
   return (
     <>
     <CssBaseline />
       <Header /> 
-      {/* 양쪽 정렬 필요 */}
       <Box sx={{ display: 'flex', mt: '7%' }}>
           <PageSideBar>
-            {createSideBarContents()}
+          {FoodPageData && <FoodResultList data={FoodPageData.Foods} />}
           </PageSideBar>
        
         <Box sx={{ flexGrow: 1 }}>
           <PageMain>
-            {createMainContents()}
+          {FoodPageData && <FoodDetail data={FoodPageData.Foods} />}
           </PageMain>
+          
+          <Footer />
         </Box>
       </Box>
     </>

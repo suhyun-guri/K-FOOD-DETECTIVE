@@ -1,3 +1,5 @@
+// Landing Page /의 배경 화면 설정
+
 import React from 'react';
 import { Box, CssBaseline } from '@mui/material';
 
