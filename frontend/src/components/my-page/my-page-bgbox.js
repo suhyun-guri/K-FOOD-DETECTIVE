@@ -8,13 +8,15 @@ export function MyPageBgBox({ children }) {
         display: 'flex',
         mt: 2,
         mx: 3,
+        backgroundColor: '#EDF2FB',
         flexDirection: 'column',
         alignContent: 'center',
         overflow: 'auto'
     }
 
     const BoxStyle = {
-        mx: 8
+        mx: 3,
+        my: 2
     }
 
     return (

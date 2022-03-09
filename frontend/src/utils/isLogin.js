@@ -10,14 +10,8 @@ const REFRESH_KEY = 'refreshKey';
 export const Register = (userInfo, navigate) => {
     const URL = "/account/register"
 
-    axios.post(URL, userInfo).then(res => {
-        console.log(res.data);
-        alert("성공");
-        navigate('/signin?tab=signin');
-    }).catch(err=>{
-        console.log(err);
-        alert('오류발생');
-    })
+    // promise return
+    return axios.post(URL, userInfo)
 }
 
 export const login = (userInfo, navigate) => {

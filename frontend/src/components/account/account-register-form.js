@@ -11,20 +11,28 @@ import { useNavigate } from 'react-router-dom';
 
 export function AccountRegisterForm() {
     const navigate = useNavigate()
-    // const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false);
+    const [isError, setIsError] = React.useState(false); 
+
     //임시코드 시작
     const handleClick = ()=>{
         const values = {username: formik.values.username, email: formik.values.email, password: formik.values.password};
-        Register(values, navigate);
-        // setOpen(true);
+        Register(values, navigate)
+            .then(res => {
+            console.log(res.data);
+            navigate('/signin?tab=signin');
+        }).catch(err=>{
+            setIsError(true);
+        });
+        setOpen(true);
     }
 
-    // const handleClose = (event, reason) => {
-    //     if (reason === 'clickaway') {
-    //         return;
-    //     }
-    //     setOpen(false);
-    // }
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
+    }
     //임시코드 끝
 
     const formik = useFormik({
@@ -157,11 +165,12 @@ export function AccountRegisterForm() {
                 >
                     Register
                 </Button>
-                {/* <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                    <Alert severity="success" onClose={handleClose} sx={{ width: '100%' }}>
-                        This is a success message!
+
+                <Snackbar open={isError} autoHideDuration={6000} onClose={handleClose}>
+                    <Alert severity="error" onClose={handleClose} sx={{ width: '100%' }}>
+                        Register Error! Please try again.
                     </Alert>
-                </Snackbar> */}
+                </Snackbar>
 
             </Box>
 

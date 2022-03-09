@@ -1,7 +1,7 @@
 // /food-detail 페이지의 main관련(우측 컨텐츠) 전체적인 내용을 담음
 // Page같이 되어서 이걸 component에 두어도 될지 고민
 
-
+import * as React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -15,6 +15,7 @@ import { FoodButtonStackLayout } from './food-button-stack-layout';
 import { FoodFavoriteBtn } from './food-favorite-btn';
 
 import { FoodTasteSurvey } from './taste-survey/food-taste-survey';
+import { FoodTasteSurveyResult } from './taste-survey/food-taste-survey-result';
 
 
 export function FoodDetail(props) {
@@ -22,11 +23,15 @@ export function FoodDetail(props) {
     const data = props.data;
     const [food, setFood] = useState(undefined);
     const [id, setId] = useState(0);
-    const capitalizeName = (name) => name.charAt(0).toUpperCase() + name.slice(1)
-    const englishKoreanName = (name) => name.english_name + ', ' + name.korean_name
+    const [open, setOpen] = React.useState(false);
+    const [resultOpen, setResultOpen] = React.useState(false);
+    // const capitalizeName = (name) => name.charAt(0).toUpperCase() + name.slice(1)
+    // const englishKoreanName = (name) => name.english_name + ', ' + name.korean_name
 
     console.log(params)
     console.log('food-detail에서 id : ', id)
+
+
 
     useEffect(() => {
         props.data.map((d, i) => {
@@ -34,7 +39,7 @@ export function FoodDetail(props) {
                 setFood(params.romanized_name);
                 setId(i)
                 console.log('food : ', food);
-                console.log('id : ', id)
+                console.log('id : ', id);
             }
             return food;
         })
@@ -150,7 +155,17 @@ export function FoodDetail(props) {
 
                     <FoodButtonStackLayout>
                         {/* 음식 취향 분석 설문지 버튼 */}
-                        <FoodTasteSurvey />
+                        
+
+                        <Button
+                            variant='contained'
+                            size='large'
+                            sx={{ width: '20rem' }}
+                            startIcon={<AssignmentTurnedInRoundedIcon />}
+                            onClick={() => setOpen(true)}
+                        >
+                            Will it suit my taste?
+                        </Button>
 
                         <Button
                             variant='contained'
@@ -182,6 +197,9 @@ export function FoodDetail(props) {
 
             </FoodContentLayout>
 
+
+            <FoodTasteSurvey open={open} onClose={()=>setOpen(false)} onResultClick={()=> { setOpen(false); setResultOpen(true);}} />
+            <FoodTasteSurveyResult open={resultOpen} onClose={() => setResultOpen(false)} onRetry={() => {setOpen(true); setResultOpen(false)}} onSave={()=>{}} />
         </>
     )
 }

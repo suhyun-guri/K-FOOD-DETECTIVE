@@ -1,20 +1,17 @@
-// /food-detail 페이지에서 좌측의 결과 음식 메뉴 리스트
-
-
 import { Card, CardContent, CardMedia, Stack, Box, Typography } from '@mui/material';
 import { Fragment, useState, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-export function FoodResultList(props) {
-    // const location = useLocation();
-
+export function FavoritesCard(props) {
+    console.log('Favorites Card의 props : ', props)
     return (
         <>
             <Stack
                 direction='column'
                 spacing={2}
                 sx={{
-                    display: { xs: 'flex', md: 'flex' },
+                    display: 'flex',
+                    justifyContent: 'space-between',
                     mt: 2,
                     alignContent: 'center'
                 }}
@@ -22,6 +19,7 @@ export function FoodResultList(props) {
                 {props.data
                     ? props.data.map((d, i) => (
                         <Fragment key={i}>
+                            <Stack direction='row' display='flex' justifyContent='space-between' flexBasis='auto'>
                             <Link
                                 to={`/food-detail/${d.romanized_name}`}
                                 
@@ -66,12 +64,14 @@ export function FoodResultList(props) {
                                                     fontSize: '0.3rem'
                                                 }}
                                             >
-                                                {d.keywords}
+                                                {d.categories}
                                             </Typography>
                                         </CardContent>
                                     </Box>
                                 </Card>
                             </Link>
+                            </Stack>
+                            {(i!==0 && (i+1)%3===0) ? <br/> :' '}
                         </Fragment>
                     ))
                     : 'loading'}

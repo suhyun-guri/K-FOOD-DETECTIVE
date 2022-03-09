@@ -7,26 +7,20 @@ import { ProgressBar } from './progress-bar';
 import { FoodTasteSurveyResult } from './food-taste-survey-result';
 
 
-export function FoodTasteSurvey() {
-  const [open, setOpen] = React.useState(false);
+export function FoodTasteSurvey({open, onClose, onResultClick}) {
+  // const [open, setOpen] = React.useState(false);
+  // const [resultOpen, setResultOpen] = React.useState(false);
   const tastes = [ 'oily', 'spicy', 'sour', 'salty' ];
+  const answers = [ 'Dislike a lot', 'Dislikes', 'Fair', 'Likes', 'Likes a lot' ];
   const [percentage, setPercentage] = React.useState(0);
-  
+  const [answerMap, setAnswerMap] = React.useState({});
 
-  const handleClickOpen = () => () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-    setPercentage(0);
-  };
-
-  const handlePercentage = () => {
-    if(percentage >= 100) {
-      setPercentage(100);
+  const handlePercentage = (i) => {
+    if(answerMap[i]) {
+      return ; // undefinded return
     }
-    setPercentage(percentage+25);
+    answerMap[i] = true;
+    setPercentage(Math.min(100, percentage+(100/tastes.length)));
   }
 
 
@@ -35,6 +29,8 @@ export function FoodTasteSurvey() {
   
   React.useEffect(() => {
     if (open) {
+      setAnswerMap({});
+      setPercentage(0);
       const { current: descriptionElement } = descriptionElementRef;
       if (descriptionElement !== null) {
         descriptionElement.focus();
@@ -44,7 +40,7 @@ export function FoodTasteSurvey() {
 
   return (
     <>
-      <Button
+      {/* <Button
         variant='contained'
         size='large'
         sx={{ width: '20rem' }}
@@ -52,18 +48,18 @@ export function FoodTasteSurvey() {
         onClick={handleClickOpen('paper')}
       >
         Will it suit my taste?
-      </Button>
+      </Button> */}
   
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={onClose}
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
       >
   
         <Box display={'flex'}>
           <DialogActions sx={{ flexGrow:'1' }}>
-            <IconButton onClick={handleClose}>
+            <IconButton onClick={onClose}>
               <CloseRoundedIcon fontSize='large' />
             </IconButton>
           </DialogActions>
@@ -113,11 +109,20 @@ export function FoodTasteSurvey() {
                       </Typography>
   
                         <RadioGroup sx={{ mx: 3 }} row name='row-radio-buttons-group'>
-                            <FormControlLabel value='Dislike a lot' control={<Radio />} label='Dislike a lot' onChange={handlePercentage} />
-                            <FormControlLabel value='Dislikes' control={<Radio />} label='Dislikes' onChange={handlePercentage} />
-                            <FormControlLabel value='Fair' control={<Radio />} label='Fair' onChange={handlePercentage} />
-                            <FormControlLabel value='Likes' control={<Radio />} label='Likes' onChange={handlePercentage} />
-                            <FormControlLabel value='Likes a lot' control={<Radio />} label='Likes a lot' onChange={handlePercentage} />
+                            {answers
+                              .map(
+                                (answer) => (
+                                  <FormControlLabel 
+                                    key={answer}
+                                    value={answer}
+                                    label={answer}
+                                    control={<Radio />}
+                                    onChange={() => handlePercentage(i)}
+                                  />
+                                )
+                              )
+
+                            }
                         </RadioGroup>
   
                     </Box>
@@ -141,7 +146,7 @@ export function FoodTasteSurvey() {
               mx: 7
             }}
             startIcon={<ModeRoundedIcon />}
-            onClick={handleClose}
+            onClick={onResultClick}
           >
             SHOW THE RESULT
           </Button>

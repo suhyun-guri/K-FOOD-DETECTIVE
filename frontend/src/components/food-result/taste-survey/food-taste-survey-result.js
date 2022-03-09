@@ -5,17 +5,10 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import ModeRoundedIcon from '@mui/icons-material/ModeRounded';
 
 
-export function FoodTasteSurveyResult() {
-    const [open, setOpen] = React.useState(false);
+export function FoodTasteSurveyResult({open, onClose, onRetry, onSave}) {
+   
     const tastes = ['oily', 'spicy', 'sour', 'salty'];
 
-    const handleClickOpen = () => () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
 
     const descriptionElementRef = React.useRef(null);
     React.useEffect(() => {
@@ -29,7 +22,7 @@ export function FoodTasteSurveyResult() {
 
     return (
         <>
-            <Button
+            {/* <Button
                 variant='contained'
                 sx={{
                     width: '80%',
@@ -41,18 +34,18 @@ export function FoodTasteSurveyResult() {
                 onClick={handleClickOpen('paper')}
             >
                 SHOW THE RESULT
-            </Button>
+            </Button> */}
 
             <Dialog
                 open={open}
-                onClose={handleClose}
+                onClose={onClose}
                 aria-labelledby="scroll-dialog-title"
                 aria-describedby="scroll-dialog-description"
             >
 
                 <Box display={'flex'}>
                     <DialogActions sx={{ flexGrow: '1' }}>
-                        <IconButton onClick={handleClose}>
+                        <IconButton onClick={onClose}>
                             <CloseRoundedIcon fontSize='large' />
                         </IconButton>
                     </DialogActions>
@@ -66,8 +59,7 @@ export function FoodTasteSurveyResult() {
                         textAlign='center'
                         sx={{ mt: 1, mb: 2 }}
                     >
-                        This surey is to check if this food suits your taste. <br />
-                        Please check all questions.
+                        아주아아아아
                     </DialogContentText>
 
                     <FormControl sx={{ width: '100%' }}>
@@ -130,9 +122,22 @@ export function FoodTasteSurveyResult() {
                             mx: 7
                         }}
                         startIcon={<ModeRoundedIcon />}
-                        onClick={handleClose}
+                        onClick={onSave}
                     >
-                        SHOW THE RESULT
+                        SAVE TO MY PAGE 
+                    </Button>
+                    <Button
+                        variant='contained'
+                        sx={{
+                            width: '80%',
+                            height: '7vh',
+                            my: 1,
+                            mx: 7
+                        }}
+                        startIcon={<ModeRoundedIcon />}
+                        onClick={onRetry}
+                    >
+                        RETRY 
                     </Button>
                 </DialogActions>
 
