@@ -80,6 +80,26 @@ def image_detect(request):
                 }
             return JsonResponse(result, status=400)
 
+
+def food_detail(request,romanized_name):
+    if request.method == 'GET':
+        try:
+            food = Food.objects.get(romanized_name = romanized_name)
+            serialized_data = dict(FoodSerializer(food).data)
+            user_id = get_user_id(request)
+            scrap_user_id = [scrap_user.id for scrap_user in food.scrap_users.all()]
+            is_liked = True if user_id in scrap_user_id else False
+            serialized_data['is_liked'] = is_liked
+            
+            return JsonResponse(serialized_data, status=200)
+        except Exception as e:
+            result = {
+                "detail" : "failed to get foot data",
+                "error_log" : f"{e}"
+                }
+            return JsonResponse(result, status=400)
+
+
 @csrf_exempt
 def food_scrap(request):
     if request.method == 'POST':
