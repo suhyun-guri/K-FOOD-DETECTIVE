@@ -48,6 +48,7 @@ export function FoodDetail(props) {
     return (
         <>
             <FoodContentLayout>
+                
                 <FoodImage data={data} id={id} />
                 <FoodTitleLayout>
                     <Box
