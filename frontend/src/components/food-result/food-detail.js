@@ -18,6 +18,7 @@ import { FoodTasteSurvey } from './taste-survey/food-taste-survey';
 import { FoodTasteSurveyResult } from './taste-survey/food-taste-survey-result';
 
 import { UserContext } from '../../reducers/userReducer';
+import { taste, tasteSave } from '../../utils/img-detect';
 
 
 export function FoodDetail(props) {
@@ -29,6 +30,7 @@ export function FoodDetail(props) {
     const [resultOpen, setResultOpen] = React.useState(false);
     // const capitalizeName = (name) => name.charAt(0).toUpperCase() + name.slice(1)
     // const englishKoreanName = (name) => name.english_name + ', ' + name.korean_name
+    const [tasteResult, setTasteResult] = useState();
 
     console.log(params)
     console.log('food-detail에서 id : ', id)
@@ -50,11 +52,40 @@ export function FoodDetail(props) {
         })
     }, [params])
 
+    const handleResultClick = (userTaste)=>{
+        taste(userTaste)
+            .then(res=>{
+                setTasteResult(res.data);
+                setOpen(false);
+                setResultOpen(true);
+                console.log(res.data);
+                alert('성공');
+            })
+            .catch(err=>{
+                console.log(err);
+                alert('실패')
+            })
+    }
+
+    const handleSave = ()=>{
+        const accessToken = localStorage.getItem('accessKey');
+        if (!accessToken) {
+            return alert('먼저 로그인을 진행해주세요');
+        }
+        const foodName = state.detectResult["food_list"][id].romanized_name;
+        tasteSave(foodName, tasteResult)
+            .then(res=>{
+                alert("성공");
+            })
+            .catch(err=>{
+                console.log(err);
+                alert("fail")
+            })
+    }
+
     return (
         <>
             <FoodContentLayout>
-                
-                <FoodImage data={data} id={id} />
                 <FoodImage data={`data:image/jpeg;base64,${state.detectResult["result_image"]}`} id={id} />
                 <FoodTitleLayout>
                     <Box
@@ -102,7 +133,7 @@ export function FoodDetail(props) {
                             {state.detectResult["food_list"][id].hit + ' users find and ' + state.detectResult["food_list"][id].likes + ' users like this food!'}
                         </Typography>
                     </Box>
-                    <FoodFavoriteBtn />
+                    <FoodFavoriteBtn foodName={state.detectResult["food_list"][id].romanized_name} id={id}/>
                 </FoodTitleLayout>
 
 
@@ -205,8 +236,8 @@ export function FoodDetail(props) {
             </FoodContentLayout>
 
 
-            <FoodTasteSurvey open={open} onClose={()=>setOpen(false)} onResultClick={()=> { setOpen(false); setResultOpen(true);}} />
-            <FoodTasteSurveyResult open={resultOpen} onClose={() => setResultOpen(false)} onRetry={() => {setOpen(true); setResultOpen(false)}} onSave={()=>{}} />
+            <FoodTasteSurvey open={open} onClose={()=>setOpen(false)} onResultClick={handleResultClick} id={id} />
+            <FoodTasteSurveyResult open={resultOpen} onClose={() => setResultOpen(false)} onRetry={() => {setOpen(true); setResultOpen(false)}} onSave={handleSave} tasteResult={tasteResult} />
         </>
     )
 }

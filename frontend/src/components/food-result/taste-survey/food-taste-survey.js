@@ -1,28 +1,45 @@
 import * as React from 'react';
+import { useContext } from 'react';
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, Typography, Radio, RadioGroup, FormControl, FormControlLabel, FormLabel } from '@mui/material';
 import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import ModeRoundedIcon from '@mui/icons-material/ModeRounded';
 import { ProgressBar } from './progress-bar';
 import { FoodTasteSurveyResult } from './food-taste-survey-result';
+import { UserContext } from '../../../reducers/userReducer';
 
 
-export function FoodTasteSurvey({open, onClose, onResultClick}) {
+export function FoodTasteSurvey({open, onClose, onResultClick, id}) {
   // const [open, setOpen] = React.useState(false);
   // const [resultOpen, setResultOpen] = React.useState(false);
   const tastes = [ 'oily', 'spicy', 'sour', 'salty' ];
   const answers = [ 'Dislike a lot', 'Dislikes', 'Fair', 'Likes', 'Likes a lot' ];
   const [percentage, setPercentage] = React.useState(0);
   const [answerMap, setAnswerMap] = React.useState({});
+  const [{detectResult}, dispatch] = useContext(UserContext);
 
-  const handlePercentage = (i) => {
+  const handlePercentage = (i, j) => {
     if(answerMap[i]) {
       return ; // undefinded return
     }
-    answerMap[i] = true;
+    // answerMap[i] = true;
+    const newList = {...answerMap};
+    newList[i] = j+1
+    setAnswerMap(newList)
+
     setPercentage(Math.min(100, percentage+(100/tastes.length)));
   }
 
+  const handleResultClick = ()=>{
+    const userTaste = {
+      "romanized_name" : detectResult["food_list"][id].romanized_name,
+      "oily" : answerMap[0],
+      "spicy" : answerMap[1],
+      "sour" : answerMap[2],
+      "salty" : answerMap[3]
+    }
+    onResultClick(userTaste)
+  }
 
   const descriptionElementRef = React.useRef(null);
 
@@ -111,13 +128,13 @@ export function FoodTasteSurvey({open, onClose, onResultClick}) {
                         <RadioGroup sx={{ mx: 3 }} row name='row-radio-buttons-group'>
                             {answers
                               .map(
-                                (answer) => (
+                                (answer, j) => (
                                   <FormControlLabel 
                                     key={answer}
                                     value={answer}
                                     label={answer}
                                     control={<Radio />}
-                                    onChange={() => handlePercentage(i)}
+                                    onChange={() => handlePercentage(i, j)}
                                   />
                                 )
                               )
@@ -146,7 +163,7 @@ export function FoodTasteSurvey({open, onClose, onResultClick}) {
               mx: 7
             }}
             startIcon={<ModeRoundedIcon />}
-            onClick={onResultClick}
+            onClick={handleResultClick}
           >
             SHOW THE RESULT
           </Button>

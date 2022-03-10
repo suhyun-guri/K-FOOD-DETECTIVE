@@ -5,7 +5,7 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import ModeRoundedIcon from '@mui/icons-material/ModeRounded';
 
 
-export function FoodTasteSurveyResult({open, onClose, onRetry, onSave}) {
+export function FoodTasteSurveyResult({open, onClose, onRetry, onSave, tasteResult}) {
    
     const tastes = ['oily', 'spicy', 'sour', 'salty'];
 
@@ -59,7 +59,7 @@ export function FoodTasteSurveyResult({open, onClose, onRetry, onSave}) {
                         textAlign='center'
                         sx={{ mt: 1, mb: 2 }}
                     >
-                        아주아아아아
+                        {tasteResult ? tasteResult.result : "아하하하"}
                     </DialogContentText>
 
                     <FormControl sx={{ width: '100%' }}>
