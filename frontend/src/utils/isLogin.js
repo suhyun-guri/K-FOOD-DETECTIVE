@@ -8,14 +8,14 @@ const REFRESH_KEY = 'refreshKey';
 
 
 export const Register = (userInfo, navigate) => {
-    const URL = "/account/register"
+    const URL = "/api/account/register"
 
     // promise return
     return axios.post(URL, userInfo)
 }
 
 export const login = (userInfo, navigate, dispatch) => {
-    const URL = "/account/login";
+    const URL = "/api/account/login";
 
     axios.post(URL, userInfo).then(res => {
         localStorage.setItem(ACCESS_KEY, res.data.access);
@@ -27,7 +27,7 @@ export const login = (userInfo, navigate, dispatch) => {
 }
 
 export const logout = (navigate, dispatch) => {
-    const URL = "/account/logout"
+    const URL = "/api/account/logout"
     const refreshToken = localStorage.getItem(REFRESH_KEY);
     const accessToken = localStorage.getItem(ACCESS_KEY)
     const headers = {"Authorization": `Bearer ${accessToken}`}
