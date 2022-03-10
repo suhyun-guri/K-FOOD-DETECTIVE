@@ -1,5 +1,4 @@
 from django.db import models
-from account.models import CustomUser
 
 
 class Food(models.Model):
@@ -12,8 +11,10 @@ class Food(models.Model):
     hit = models.IntegerField(default=0)
     image_url = models.URLField(max_length=500)
     info = models.CharField(max_length=1000)
-    scrap_users = models.ManyToManyField(CustomUser, related_name='scrap_foods', db_table='scrap') 
-    test_users = models.ManyToManyField(CustomUser, related_name='test_foods', through='Test')
+    scrap_users = models.ManyToManyField('account.CustomUser', related_name='scrap_foods', db_table='scrap') 
+    test_users = models.ManyToManyField('account.CustomUser', related_name='test_foods', through='Test')
+    comment_users = models.ManyToManyField('account.CustomUser', related_name='comment_foods', through='comment.Comment')
+
 
 
 class Recipe(models.Model):
@@ -58,7 +59,7 @@ class Test(models.Model):
         bad = 3, 'bad'
         not_recommend = 4, 'not recommend'
     
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    food = models.ForeignKey(Food, on_delete=models.CASCADE)
+    user = models.ForeignKey('account.CustomUser', on_delete=models.CASCADE, related_name='tests')
+    food = models.ForeignKey(Food, on_delete=models.CASCADE, related_name='tests')
     result = models.SmallIntegerField(choices=ResultChoice.choices)
     recommend_foods = models.ManyToManyField(Food, related_name='recommend_tests', db_table='recommend') 
