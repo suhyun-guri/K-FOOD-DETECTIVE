@@ -14,11 +14,11 @@ for i in range(1,6):
     user = CustomUser.objects.get_or_create(
         username = f"test_user_{i}",
         email = f"test_{i}@test.com",
-        password = "password",
         nationality = "South Korea",
         gender = 1,
         age = 2,
     )
+    user[0].set_password('password')
     rand_seed_list = [random.randint(1,80) for i in range(3)]
     food_list = [Food.objects.get(id=rand_seed_list[i]) for i in range(3)]
     user[0].scrap_foods.add(food_list[0])
