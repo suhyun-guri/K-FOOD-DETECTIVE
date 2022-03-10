@@ -1,5 +1,5 @@
 import { Card, CardContent, CardMedia, Stack, Box, Typography } from '@mui/material';
-import { Fragment, useState, useEffect } from 'react';
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 export function FavoritesCard(props) {
@@ -40,7 +40,7 @@ export function FavoritesCard(props) {
                                         alt="Food Picture"
                                     />
                                     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                                        <CardContent sx={{ flex: '1 0 auto', mx: 0.5 }}>
+                                        <CardContent sx={{ flex: '1 0 auto', mx: 0.5, mt: 1 }}>
                                             <Typography
                                                 component="div"
                                                 sx={{

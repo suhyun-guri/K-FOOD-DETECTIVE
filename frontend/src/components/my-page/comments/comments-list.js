@@ -1,4 +1,4 @@
-import { Card, CardContent, CardMedia, Stack, Box, Typography } from '@mui/material';
+import { Card, CardContent, CardMedia, Stack, Box, Typography, Divider } from '@mui/material';
 import { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -9,12 +9,12 @@ export function CommentsList(props) {
     return (
         <>
             <Stack
-                direction='row'
+                direction='column'
                 spacing={1}
                 sx={{
                     display: 'flex',
-                    flexWrap: 'wrap',
-                    justifyContent: 'flex-start',
+                    // flexWrap: 'wrap',
+                    // justifyContent: 'flex-start',
                     mt: 2,
                     alignContent: 'center'
                 }}
@@ -30,7 +30,7 @@ export function CommentsList(props) {
                                     elevation={10}
                                     sx={{
                                         display: 'flex',
-                                        width: '25rem',
+                                        width: '100%',
                                         height: '15vh',
                                         mb: 3
                                     }} >
@@ -41,7 +41,7 @@ export function CommentsList(props) {
                                         alt="Food Picture"
                                     />
                                     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                                        <CardContent sx={{ flex: '1 0 auto', mx: 0.5 }}>
+                                        <CardContent sx={{ flex: '1 0 auto', mx: 0.5, mt: 1.5 }}>
                                             <Typography
                                                 component="div"
                                                 sx={{
@@ -69,8 +69,23 @@ export function CommentsList(props) {
                                             >
                                                 {d.categories}
                                             </Typography>
+
                                         </CardContent>
                                     </Box>
+
+                                    <Divider orientation="vertical" sx={{ mx: 2 }} />
+
+                                    <CardContent sx={{ flex: '1 0 auto', mx: 0.5, mt: 1.5 }}>
+                                        <Typography variant='subtitle2'>
+                                            {d.username}
+                                        </Typography>
+                                        <Typography variant='h6' sx={{ color:'#156AF4' }}>
+                                            {d.content}
+                                        </Typography>
+                                        <Typography variant='body2'>
+                                            {d.created_at}
+                                        </Typography>
+                                    </CardContent>
                                 </Card>
                             </Link>
                         </Fragment>
