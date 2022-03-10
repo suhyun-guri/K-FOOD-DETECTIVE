@@ -2,21 +2,29 @@
 // 원래 사용자가 이미지를 업로드 확인 버튼을 누르자마자 바로 검색을 시작하는 것이 목표인데
 // 아직은 버튼 하나가 더 있어서 업로드 후 확인 버튼을 눌러주어야함
 
+<<<<<<< HEAD
 import React, { useState } from 'react';
+=======
+import React, { useContext, useState } from 'react';
+>>>>>>> d0314fae1fd097e328b78953ba5b6d9b7f4e6dfe
 import ImageUploading from 'react-images-uploading';
 import { IconButton } from '@mui/material';
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
 import { detect } from '../utils/img-detect';
+import { useNavigate } from 'react-router-dom';
 
+import { UserContext } from '../reducers/userReducer'
 
 export function UploadImageBtn({ btnColor }) {
   const [images, setImages] = useState([]);
   const maxNumber = 1;
   const acceptType = ['jpg', 'png'];
   const maxFileSize = 1024;
+  const navigate = useNavigate();
+  const [state, dispatch] = useContext(UserContext);
 
   const handleDetect = ()=>{
-    detect(images[0].file);
+    detect(images[0].file, navigate, dispatch);
   }
 
   const onChange = (imageList, addUpdateIndex) => {
