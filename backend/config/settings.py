@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # apps
     'account',
     'food',
+    'comment',
     # rest_framework
     'rest_framework',
     # simple-jwt
