@@ -9,7 +9,7 @@ export const detect = (image, navigate, dispatch) => {
     header: {'content-type': 'multipart/form-data'}
   }
   formData.append("image", image)
-  axios.post('/food/detect', formData, config)
+  axios.post('/api/food/detect', formData, config)
     .then(res => {
       console.log(res.data)
       dispatch({type: "setDetectResult", payload: res.data})
