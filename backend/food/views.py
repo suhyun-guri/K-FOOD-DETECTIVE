@@ -10,7 +10,7 @@ from rest_framework_simplejwt.tokens import AccessToken
 from food.serializers import FoodSerializer, FoodScrapSerializer
 from food.utils import recommender_system
 
-MODEL_SERVER_URL = "http://192.168.247.118:5000/detect"
+MODEL_SERVER_URL = "http://elice-kdt-ai-3rd-team07.koreacentral.cloudapp.azure.com:5000/detect"
 NORMALIZER = 3.21
 
 
@@ -48,6 +48,7 @@ def image_detect(request):
     if request.method == 'POST':
         try:
             image = request.FILES.get('image', None)
+
             data = b64encode(image.read()).decode('utf-8')
             post_data = {"img" : data}
 
@@ -162,6 +163,8 @@ def recommend_test(request):
             result = map(lambda x,y : abs(x-y), user_taste_list, taste_list)
             score = sum(result) // NORMALIZER
             grade = score_grade_dict.get(score)
+            food_taste_list = Taste.objects.values_list('food__romanized_name', 'oily','spicy', 'sour', 'salty')
+            food_taste_df = pd.DataFrame.from_records(food_taste_list, columns=['romanized_name', 'oily', 'spicy', 'sour', 'salty'])
             recommend_foods = recommender_system(food_taste_df, user_taste_list)
 
             res = {

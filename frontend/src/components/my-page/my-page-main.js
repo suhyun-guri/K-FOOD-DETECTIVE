@@ -3,20 +3,23 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { MyPageBgBox } from './my-page-bgbox';
 import { FavoritesCard } from './favorites/favorites-card';
+import { CommentsList } from './comments/comments-list';
+import { AccountMain } from './account/account-main';
+
 
 
 export function MyPageMain(props) {
     const params = useParams('myfavorites');
-    const [data, setData] = useState();
+    const [data, setData] = useState(props.data.params);
     const [menu, setMenu] = useState('myfavorites');
     const [title, setTitle] = useState('My favorite K-Foods');
     const count = data ? data.length : 0;
-    
+
 
     console.log('my favorite data : ', props.data.MyFavorites);
     console.log('My Page params : ', params.feature);
 
-      
+
 
     useEffect(() => {
         if (params.feature === undefined || params.feature === 'myfavorites') {
@@ -96,13 +99,18 @@ export function MyPageMain(props) {
         }
     }
 
-
     return (
         <MyPageBgBox>
             <Box>
                 <SwitchContents params={params} />
             </Box>
-            <FavoritesCard data={data} />
+            {/* {(params.feature !== 'account') 
+            ? <FavoritesCard data={data} /> 
+            : <AccountMain data={data} />} */}
+            {(params.feature === undefined || params.feature === 'myfavorites') ? <FavoritesCard data={data} /> : '' }
+            {(params.feature === 'comments') ? <CommentsList data={data} /> : '' }
+            {(params.feature === 'testresults') ? <FavoritesCard data={data} /> : '' }
+            {(params.feature === 'account') ? <AccountMain data={data} /> : '' }
         </MyPageBgBox>
     );
 }

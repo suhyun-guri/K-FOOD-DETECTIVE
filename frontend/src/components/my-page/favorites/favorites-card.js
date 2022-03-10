@@ -3,15 +3,17 @@ import { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 export function FavoritesCard(props) {
-    console.log('Favorites Card의 props : ', props)
+    console.log('Favorites Card의 props : ', props.data)
+
     return (
         <>
             <Stack
-                direction='column'
-                spacing={2}
+                direction='row'
+                spacing={1}
                 sx={{
                     display: 'flex',
-                    justifyContent: 'space-between',
+                    flexWrap: 'wrap',
+                    justifyContent: 'flex-start',
                     mt: 2,
                     alignContent: 'center'
                 }}
@@ -19,17 +21,17 @@ export function FavoritesCard(props) {
                 {props.data
                     ? props.data.map((d, i) => (
                         <Fragment key={i}>
-                            <Stack direction='row' display='flex' justifyContent='space-between' flexBasis='auto'>
                             <Link
                                 to={`/food-detail/${d.romanized_name}`}
-                                
+
                             >
                                 <Card
                                     elevation={10}
                                     sx={{
                                         display: 'flex',
-                                        width: '100%',
-                                        height: '15vh'
+                                        width: '25rem',
+                                        height: '15vh',
+                                        mb: 3
                                     }} >
                                     <CardMedia
                                         component='img'
@@ -70,8 +72,6 @@ export function FavoritesCard(props) {
                                     </Box>
                                 </Card>
                             </Link>
-                            </Stack>
-                            {(i!==0 && (i+1)%3===0) ? <br/> :' '}
                         </Fragment>
                     ))
                     : 'loading'}

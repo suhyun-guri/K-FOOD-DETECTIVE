@@ -11,7 +11,7 @@ export function FoodImage({data, id}) {
             <Box
                     sx={{
                         height: '30vh',
-                        backgroundImage: `url(${data[id].image_url})`,
+                        backgroundImage: `url(${data})`,
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',
                         width: '100%',

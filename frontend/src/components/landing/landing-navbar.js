@@ -1,9 +1,11 @@
 import * as React from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Stack, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { UserProfile } from '../user-profile';
+import { UserContext } from '../../reducers/userReducer';
 
 const LandigNavbarRoot = styled(AppBar)({
     backgroundColor: 'rgba(0,0,0,0.0)',
@@ -37,6 +39,8 @@ export function LandingNavbar() {
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
+
+    const [{userInfo}, dispatch] = useContext(UserContext);
 
     return (
         <>
@@ -79,7 +83,7 @@ export function LandingNavbar() {
                                 {/* <Link to='/signin'>
                                     <Button variant='contained' sx={{width: '10vw'}} >Sign In</Button>
                                 </Link> */}
-                                <ShowUserProfile isLoggedIn={true} />
+                                <ShowUserProfile isLoggedIn={userInfo.isLogin} />
                         </Box>
 
                         {/* 1200px 이하 일 때 */}

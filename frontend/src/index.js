@@ -11,9 +11,9 @@ import App from './components/App'
 // import { UserHealthInfoProvider } from './store/user-health-info-context'
 
 const renderApp = () => (
-  <BrowserRouter basename={basename}>
-    <App />
-  </BrowserRouter>
+    <BrowserRouter basename={basename}>
+      <App />
+    </BrowserRouter>
 )
 
 

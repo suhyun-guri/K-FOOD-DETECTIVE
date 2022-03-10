@@ -1,10 +1,12 @@
 import * as React from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Stack, Toolbar, Typography, InputAdornment, TextField } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { UploadImageBtn } from './img-upload-btn';
 import { UserProfile } from './user-profile';
+import { UserContext } from '../reducers/userReducer';
 
 const LandigNavbarRoot = styled(AppBar)(({ theme }) => ({
     backgroundColor: theme.palette.background.paper,
@@ -38,6 +40,8 @@ export function Header() {
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
+
+    const [{userInfo}, dispatch] = useContext(UserContext);
 
     return (
         <>
@@ -93,7 +97,7 @@ export function Header() {
                                     <Button variant='contained' sx={{ width: '10vw' }}>Sign In</Button>
                                 </Stack>
                             </Link> */}
-                            <ShowUserProfile isLoggedIn={true} />
+                            <ShowUserProfile isLoggedIn={userInfo.isLogin} />
                         </Box>
 
                         {/* 모바일용 */}
