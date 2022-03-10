@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { MyPageBgBox } from './my-page-bgbox';
 import { FavoritesCard } from './favorites/favorites-card';
 import { CommentsList } from './comments/comments-list';
+import { TestResultsList } from './test-results/test-results-list';
 import { AccountMain } from './account/account-main';
 
 
@@ -109,7 +110,7 @@ export function MyPageMain(props) {
             : <AccountMain data={data} />} */}
             {(params.feature === undefined || params.feature === 'myfavorites') ? <FavoritesCard data={data} /> : '' }
             {(params.feature === 'comments') ? <CommentsList data={data} /> : '' }
-            {(params.feature === 'testresults') ? <FavoritesCard data={data} /> : '' }
+            {(params.feature === 'testresults') ? <TestResultsList data={data} /> : '' }
             {(params.feature === 'account') ? <AccountMain data={data} /> : '' }
         </MyPageBgBox>
     );
