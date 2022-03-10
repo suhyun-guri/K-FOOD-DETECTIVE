@@ -53,12 +53,9 @@ export function FoodDetail(props) {
     return (
         <>
             <FoodContentLayout>
-<<<<<<< HEAD
                 
                 <FoodImage data={data} id={id} />
-=======
                 <FoodImage data={`data:image/jpeg;base64,${state.detectResult["result_image"]}`} id={id} />
->>>>>>> d0314fae1fd097e328b78953ba5b6d9b7f4e6dfe
                 <FoodTitleLayout>
                     <Box
                         sx={{

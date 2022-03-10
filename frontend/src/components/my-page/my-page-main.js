@@ -107,7 +107,7 @@ export function MyPageMain(props) {
             {/* {(params.feature !== 'account') 
             ? <FavoritesCard data={data} /> 
             : <AccountMain data={data} />} */}
-            {(params.feature === 'myfavorites') ? <FavoritesCard data={data} /> : '' }
+            {(params.feature === undefined || params.feature === 'myfavorites') ? <FavoritesCard data={data} /> : '' }
             {(params.feature === 'comments') ? <CommentsList data={data} /> : '' }
             {(params.feature === 'testresults') ? <FavoritesCard data={data} /> : '' }
             {(params.feature === 'account') ? <AccountMain data={data} /> : '' }
