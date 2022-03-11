@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 
 def profile_directory_path(instance, filename):
-    return 'profile_img/{0}/{1}'.format(instance.username, filename)
+    return 'profile/{0}/{1}'.format(instance.username, filename)
 
 
 class CustomUserManager(BaseUserManager):
