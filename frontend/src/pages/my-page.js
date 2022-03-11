@@ -8,6 +8,7 @@ import { MyPageSideBar } from '../components/my-page/my-page-sidebar';
 import { MyPageMain } from '../components/my-page/my-page-main';
 import { FavoritesList } from '../components/my-page/favorites/favorites-list'
 import JsonData from '../data/data.json';
+import { getFavorites } from "../utils/mypage"; 
 
 
 
