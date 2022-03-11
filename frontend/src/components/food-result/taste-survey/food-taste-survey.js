@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { useContext } from 'react';
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, Typography, Radio, RadioGroup, FormControl, FormControlLabel, FormLabel } from '@mui/material';
-import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, IconButton, Typography, Radio, RadioGroup, FormControl, FormControlLabel } from '@mui/material';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import ModeRoundedIcon from '@mui/icons-material/ModeRounded';
 import { ProgressBar } from './progress-bar';
-import { FoodTasteSurveyResult } from './food-taste-survey-result';
 import { UserContext } from '../../../reducers/userReducer';
 
 

@@ -1,5 +1,57 @@
 import { useState } from 'react';
+// import "react-languages-select/css/react-languages-select.css";
+import { CountryDropdown } from "react-country-region-selector";
 import { Box, Button, Card, CardContent, CardHeader, Divider, Grid, TextField } from '@mui/material';
+import { borderRadius } from '@mui/system';
+
+
+const age = [
+  {
+    value: '0',
+    label: '0 ~ 19'
+  },
+  {
+    value: '1',
+    label: '20 ~ 29'
+  },
+  {
+    value: '2',
+    label: '30 ~ 39'
+  },
+  {
+    value: '3',
+    label: '40 ~ 49'
+  },
+  {
+    value: '4',
+    label: '50 ~ 59'
+  },
+  {
+    value: '5',
+    label: '60 ~ 69'
+  },
+  {
+    value: '6',
+    label: '70 ~'
+  }
+]
+
+
+const gender = [
+  {
+    value: '0',
+    label: 'male'
+  },
+  {
+    value: '1',
+    label: 'female'
+  },
+  {
+    value: '2',
+    label: 'other'
+  }
+]
+
 
 export function AccountProfileDetails(props) {
     console.log('Account Profile Details의 props : ', props.data)
@@ -50,7 +102,7 @@ export function AccountProfileDetails(props) {
                 name="username"
                 onChange={handleChange}
                 required
-                value={props.data.username}
+                value={values.username}
                 variant="outlined"
               />
             </Grid>
@@ -65,9 +117,20 @@ export function AccountProfileDetails(props) {
                 name="age"
                 onChange={handleChange}
                 // required
-                value={props.data.age}
+                select
+                SelectProps={{ native: true }}
+                value={values.age}
                 variant="outlined"
-              />
+              >
+                {age.map((option) => (
+                  <option
+                    key={option.value}
+                    value={option.value}
+                  >
+                    {option.label}
+                  </option>
+                ))}
+              </TextField>
             </Grid>
             <Grid
               item
@@ -79,11 +142,24 @@ export function AccountProfileDetails(props) {
                 label="Nationality"
                 name="nationality"
                 onChange={handleChange}
-                // required
-                value={props.data.nationality}
+                value={values.nationality}
                 variant="outlined"
-              />
+                select
+                SelectProps={{ native: true }}
+              >
+                {/* <CountryDropdown
+                  value={values.nationality}
+                  onChange={handleChange}
+                /> */}
+              </TextField>
+              {/* <CountryDropdown
+                value={values.nationality}
+                onChange={handleChange}
+                variant="outlined"
+                sx={{ borderRadius:2, height: '10rem' }}
+              /> */}
             </Grid>
+
             <Grid
               item
               md={6}
@@ -95,7 +171,7 @@ export function AccountProfileDetails(props) {
                 name="email"
                 onChange={handleChange}
                 required
-                value={props.data.email}
+                value={values.email}
                 variant="outlined"
               />
             </Grid>
@@ -110,9 +186,20 @@ export function AccountProfileDetails(props) {
                 name="gender"
                 onChange={handleChange}
                 // required
-                value={props.data.gender}
+                select
+                SelectProps={{ native: true }}
+                value={values.gender}
                 variant="outlined"
-              />
+              >
+                {gender.map((option) => (
+                  <option
+                    key={option.value}
+                    value={option.value}
+                  >
+                    {option.label}
+                  </option>
+                ))}
+              </TextField>
             </Grid>
           </Grid>
         </CardContent>

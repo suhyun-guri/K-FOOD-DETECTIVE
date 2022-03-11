@@ -7,12 +7,15 @@ export function FoodButtonStackLayout({ children }) {
     const StackStyle = {
         mt: 8,
         mb: 10,
-        alignItems: 'center'
+        mx: 25,
+        alignItems: 'center',
+        justify: 'space-between'
     }
 
     return (
         <>
             <Stack 
+                display= 'flex'
                 spacing={8}
                 direction='row'
                 justify="center"
