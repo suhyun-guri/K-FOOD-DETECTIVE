@@ -13,7 +13,7 @@ class Food(models.Model):
     info = models.CharField(max_length=1000)
     scrap_users = models.ManyToManyField('account.CustomUser', related_name='scrap_foods', db_table='scrap') 
     test_users = models.ManyToManyField('account.CustomUser', related_name='test_foods', through='Test')
-    comment_users = models.ManyToManyField('account.CustomUser', related_name='comment_foods', through='comment.Comment')
+    comment_users = models.ManyToManyField('account.CustomUser', related_name='comment_foods', through='Comment')
 
 
 
@@ -63,3 +63,16 @@ class Test(models.Model):
     food = models.ForeignKey(Food, on_delete=models.CASCADE, related_name='tests')
     result = models.SmallIntegerField(choices=ResultChoice.choices)
     recommend_foods = models.ManyToManyField(Food, related_name='recommend_tests', db_table='recommend') 
+
+
+class Comment(models.Model):
+    class Meta:
+        db_table = 'comment'
+    
+    def __str__(self):
+        return f"{self.id}-{self.user.username}-{self.content[:10]}"
+    
+    content = models.CharField(max_length=1000)
+    created_at = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey('account.CustomUser', on_delete=models.CASCADE)
+    food = models.ForeignKey('food.Food', on_delete=models.CASCADE)
