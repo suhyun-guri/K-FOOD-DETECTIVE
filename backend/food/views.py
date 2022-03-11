@@ -10,7 +10,8 @@ from rest_framework_simplejwt.tokens import AccessToken
 from food.serializers import FoodSerializer, FoodScrapSerializer
 from food.utils import recommender_system
 
-MODEL_SERVER_URL = "http://elice-kdt-ai-3rd-team07.koreacentral.cloudapp.azure.com:5000/detect"
+# MODEL_SERVER_URL = "http://elice-kdt-ai-3rd-team07.koreacentral.cloudapp.azure.com:5000/detect"
+MODEL_SERVER_URL = "http://yolo:5001/detect"
 NORMALIZER = 3.21
 
 

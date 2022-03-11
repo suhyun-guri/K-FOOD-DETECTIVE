@@ -37,4 +37,15 @@ services:
       - "80:80"
     volumes:
       - ./frontend:/usr/src/app
-
+  yolo:
+    depends_on:
+      - frontend
+    build: 
+      context: ./yolo
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./yolo:/usr/src/app
+    environment:
+      FLASK_ENV: development
