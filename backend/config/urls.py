@@ -4,8 +4,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('account/', include('account.urls')),
-    path('food/', include('food.urls')),
-    path('comment/', include('comment.urls'))
+    path('api/admin/', admin.site.urls),
+    path('api/account/', include('account.urls')),
+    path('api/food/', include('food.urls')),
+    path('api/comment/', include('comment.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
