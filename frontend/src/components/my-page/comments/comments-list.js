@@ -8,6 +8,13 @@ export function CommentsList(props) {
 
     return (
         <>
+            <Typography variant='h5'>
+                Comments
+            </Typography>
+            <Typography variant='subtitle1' sx={{ mt: 1 }}>
+                Total {props.data.length} comment you written
+            </Typography>
+
             <Stack
                 direction='column'
                 spacing={1}
@@ -79,7 +86,7 @@ export function CommentsList(props) {
                                         <Typography variant='subtitle2'>
                                             {d.username}
                                         </Typography>
-                                        <Typography variant='h6' sx={{ color:'#156AF4' }}>
+                                        <Typography variant='h6' sx={{ color: '#156AF4' }}>
                                             {d.content}
                                         </Typography>
                                         <Typography variant='body2'>

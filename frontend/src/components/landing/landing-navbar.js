@@ -45,7 +45,7 @@ export function LandingNavbar() {
     return (
         <>
             <LandigNavbarRoot>
-                <Container maxWidth="xl" justifyContent='space-between'>
+                <Container maxWidth="xl" justify='space-between'>
                     <Toolbar disableGutters>
                         <Box
                             sx={{ flexGrow: 20, ml: 1, mr: 2, display: { xs: 'flex', md: 'flex' } }}
@@ -57,7 +57,7 @@ export function LandingNavbar() {
                                     }}
                                     variant='text'
                                 >
-                                    LOGO
+                                    <img src='/logo_white.png' alt='Logo' width='100rem' />
                                 </Button>
                             </Link>
                         </Box>

@@ -1,5 +1,7 @@
 FROM node:17
 
+ENV CHOKIDAR_USEPOLLING=true
+
 WORKDIR /usr/src/app
 
 COPY ./package.json ./

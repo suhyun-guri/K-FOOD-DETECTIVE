@@ -1,5 +1,4 @@
 // 이미지 검색 시 서버와 통신하는 코드
-
 import axios from 'axios';
 
 const ACCESS_KEY = 'accessKey';
@@ -23,7 +22,7 @@ export const detect = (image, navigate, dispatch) => {
     }
   } 
   formData.append("image", image)
-  axios.post('/food/detect', formData, config)
+  axios.post('/api/food/detect', formData, config)
     .then(res => {
       console.log(res.data)
       dispatch({type: "setDetectResult", payload: res.data})
@@ -36,7 +35,7 @@ export const detect = (image, navigate, dispatch) => {
 }
 
 export const taste = (userTaste)=>{
-  return axios.post('/food/test', userTaste)
+  return axios.post('/api/food/test', userTaste)
 }
 
 export const tasteSave = (foodName, tasteResult)=>{
@@ -62,7 +61,7 @@ export const tasteSave = (foodName, tasteResult)=>{
     default:
       break;
   }
-  const URL = `/food/test/${foodName}`;
+  const URL = `/api/food/test/${foodName}`;
   return axios.post(URL, data, {headers})
 }
 
@@ -70,6 +69,6 @@ export const scrap = (foodName)=>{
   const accessToken = localStorage.getItem(ACCESS_KEY)
   const headers = {"Authorization": `Bearer ${accessToken}`}
   const data = {romanized_name: foodName};
-  const URL = `/food/scrap`;
+  const URL = `/api/food/scrap`;
   return axios.post(URL, data, {headers})
 }

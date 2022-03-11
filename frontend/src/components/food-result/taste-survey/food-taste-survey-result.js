@@ -69,13 +69,13 @@ export function FoodTasteSurveyResult({ open, onClose, onRetry, onSave, tasteRes
                     >
                         {tasteResult ? `${tasteResult.result}!` : "아하하하"}
                     </DialogContentText>
-                    <DialogContentText
+                    {/* <DialogContentText
                         variant='subtitle1'
                         textAlign='center'
                         sx={{ mt: 1, mb: 2 }}
                     >
                         Maybe you like {tasteResult.romanized_name}!
-                    </DialogContentText>
+                    </DialogContentText> */}
 
 
 
@@ -84,9 +84,9 @@ export function FoodTasteSurveyResult({ open, onClose, onRetry, onSave, tasteRes
                     </DialogContentText>
 
 
-                    <DialogContentText variant='body2'>
+                    {/* <DialogContentText variant='body2'>
                         ◾ {tasteResult.recommend}
-                    </DialogContentText>
+                    </DialogContentText> */}
 
 
                 </DialogContent>

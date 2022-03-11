@@ -7,6 +7,12 @@ export function FavoritesCard(props) {
 
     return (
         <>
+            <Typography variant='h5'>
+                My Favorite K-Foods
+            </Typography>
+            <Typography variant='subtitle1' sx={{ mt: 1 }}>
+                Total {props.data.length} K-Foods what you scrapped
+            </Typography>
             <Stack
                 direction='row'
                 spacing={1}

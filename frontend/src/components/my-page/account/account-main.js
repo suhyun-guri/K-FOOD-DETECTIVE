@@ -1,4 +1,4 @@
-import { Box, Container, Grid } from '@mui/material';
+import { Box, Container, Grid, Typography } from '@mui/material';
 import { AccountProfile } from './account-profile';
 import { AccountProfileDetails } from './account-profile-details';
 
@@ -6,6 +6,9 @@ export function AccountMain(props) {
     console.log('AccountMain의 props.data : ', props.data)
     return (
         <>
+            <Typography variant='h5'>
+                Account
+            </Typography>
             <Box
                 component="main"
                 sx={{
