@@ -23,18 +23,18 @@ services:
       context: ./backend
       dockerfile: dockerfile.dev
     ports:
-      - "8000:8000"
+      - "80:80"
     volumes:
       - ./backend:/usr/src/app
     restart: always
-  frontend:
-    depends_on:
-      - backend
-    build:
-      context: ./frontend
-      dockerfile: dockerfile.dev
-    ports:
-      - "80:80"
-    volumes:
-      - ./frontend:/usr/src/app
+  # frontend:
+  #   depends_on:
+  #     - backend
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: dockerfile.dev
+  #   ports:
+  #     - "80:80"
+  #   volumes:
+  #     - ./frontend:/usr/src/app
 
