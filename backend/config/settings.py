@@ -181,5 +181,5 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ORIGIN_WHITELIST = ['*', 'http://20.194.97.166:80','http://20.194.97.166:3000']
+CORS_ORIGIN_WHITELIST = ['http://20.194.97.166:80','http://20.194.97.166:3000']
 CORS_ALLOW_CREDENTIALS = True
