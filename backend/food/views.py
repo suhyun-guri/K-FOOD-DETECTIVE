@@ -10,7 +10,7 @@ from rest_framework_simplejwt.tokens import AccessToken
 from food.serializers import FoodSerializer, FoodScrapSerializer
 from food.utils import recommender_system
 
-MODEL_SERVER_URL = "http://192.168.247.118:5000/detect"
+MODEL_SERVER_URL = "http://elice-kdt-ai-3rd-team07.koreacentral.cloudapp.azure.com:5000/detect"
 NORMALIZER = 3.21
 
 
@@ -48,6 +48,7 @@ def image_detect(request):
     if request.method == 'POST':
         try:
             image = request.FILES.get('image', None)
+
             data = b64encode(image.read()).decode('utf-8')
             post_data = {"img" : data}
 
@@ -79,6 +80,26 @@ def image_detect(request):
                 "error_log" : f"{e}"
                 }
             return JsonResponse(result, status=400)
+
+
+def food_detail(request,romanized_name):
+    if request.method == 'GET':
+        try:
+            food = Food.objects.get(romanized_name = romanized_name)
+            serialized_data = dict(FoodSerializer(food).data)
+            user_id = get_user_id(request)
+            scrap_user_id = [scrap_user.id for scrap_user in food.scrap_users.all()]
+            is_liked = True if user_id in scrap_user_id else False
+            serialized_data['is_liked'] = is_liked
+            
+            return JsonResponse(serialized_data, status=200)
+        except Exception as e:
+            result = {
+                "detail" : "failed to get foot data",
+                "error_log" : f"{e}"
+                }
+            return JsonResponse(result, status=400)
+
 
 @csrf_exempt
 def food_scrap(request):
@@ -142,6 +163,8 @@ def recommend_test(request):
             result = map(lambda x,y : abs(x-y), user_taste_list, taste_list)
             score = sum(result) // NORMALIZER
             grade = score_grade_dict.get(score)
+            food_taste_list = Taste.objects.values_list('food__romanized_name', 'oily','spicy', 'sour', 'salty')
+            food_taste_df = pd.DataFrame.from_records(food_taste_list, columns=['romanized_name', 'oily', 'spicy', 'sour', 'salty'])
             recommend_foods = recommender_system(food_taste_df, user_taste_list)
 
             res = {

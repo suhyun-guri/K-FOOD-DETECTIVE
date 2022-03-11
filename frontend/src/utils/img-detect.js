@@ -3,16 +3,17 @@
 import axios from 'axios';
 
 
-export const detect = (image) => {
+export const detect = (image, navigate, dispatch) => {
   let formData = new FormData();
   const config = {
     header: {'content-type': 'multipart/form-data'}
   }
   formData.append("image", image)
-  axios.post('/food/detect', formData, config)
+  axios.post('/api/food/detect', formData, config)
     .then(res => {
       console.log(res.data)
-      alert('성공')
+      dispatch({type: "setDetectResult", payload: res.data})
+      navigate(`/food-detail/${res.data.food_list[0].romanized_name}`)
     })
     .catch(err => {
       console.log(err)

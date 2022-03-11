@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 import { Box, Button, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
 import SoupKitchenRoundedIcon from '@mui/icons-material/SoupKitchenRounded';
@@ -16,6 +16,8 @@ import { FoodFavoriteBtn } from './food-favorite-btn';
 
 import { FoodTasteSurvey } from './taste-survey/food-taste-survey';
 import { FoodTasteSurveyResult } from './taste-survey/food-taste-survey-result';
+
+import { UserContext } from '../../reducers/userReducer';
 
 
 export function FoodDetail(props) {
@@ -31,10 +33,13 @@ export function FoodDetail(props) {
     console.log(params)
     console.log('food-detail에서 id : ', id)
 
+    const [state, dispatch] = useContext(UserContext);
 
+    console.log('this is state value');
+    console.log(state.detectResult);
 
     useEffect(() => {
-        props.data.map((d, i) => {
+        state.detectResult["food_list"].map((d, i) => {
             if (d.romanized_name === params.romanized_name) {
                 setFood(params.romanized_name);
                 setId(i)
@@ -48,7 +53,9 @@ export function FoodDetail(props) {
     return (
         <>
             <FoodContentLayout>
+                
                 <FoodImage data={data} id={id} />
+                <FoodImage data={`data:image/jpeg;base64,${state.detectResult["result_image"]}`} id={id} />
                 <FoodTitleLayout>
                     <Box
                         sx={{
@@ -71,7 +78,7 @@ export function FoodDetail(props) {
                                     color: 'white'
                                 }}
                             >
-                                {props.data[id].romanized_name.charAt(0).toUpperCase() + props.data[id].romanized_name.slice(1)}
+                                {state.detectResult["food_list"][id].romanized_name.charAt(0).toUpperCase() + state.detectResult["food_list"][id].romanized_name.slice(1)}
                             </Typography>
                             <Typography
                                 variant='caption'
@@ -81,7 +88,7 @@ export function FoodDetail(props) {
                                     color: 'white'
                                 }}
                             >
-                                {props.data[id].english_name + ', ' + props.data[id].korean_name}
+                                {state.detectResult["food_list"][id].english_name + ', ' + state.detectResult["food_list"][id].korean_name}
                             </Typography>
                         </Box>
                         <Typography
@@ -92,7 +99,7 @@ export function FoodDetail(props) {
                                 color: 'white'
                             }}
                         >
-                            {props.data[id].hit + ' users find and ' + props.data[id].likes + ' users like this food!'}
+                            {state.detectResult["food_list"][id].hit + ' users find and ' + state.detectResult["food_list"][id].likes + ' users like this food!'}
                         </Typography>
                     </Box>
                     <FoodFavoriteBtn />
@@ -114,7 +121,7 @@ export function FoodDetail(props) {
                             ml: 2.5
                         }}
                     >
-                        {props.data[id].keywords}
+                        {state.detectResult["food_list"][id].categories.join(', ')}
                     </Typography>
 
                     <Typography
@@ -132,7 +139,7 @@ export function FoodDetail(props) {
                             ml: 2.5
                         }}
                     >
-                        {props.data[id].ingredients}
+                        {state.detectResult["food_list"][id].ingredients.join(', ')}
                     </Typography>
 
                     <Typography
@@ -150,7 +157,7 @@ export function FoodDetail(props) {
                             ml: 2.5
                         }}
                     >
-                        {props.data[id].info}
+                        {state.detectResult["food_list"][id].info}
                     </Typography>
 
                     <FoodButtonStackLayout>
@@ -171,7 +178,7 @@ export function FoodDetail(props) {
                             variant='contained'
                             size='large'
                             sx={{ width: '20rem' }}
-                            href={props.data[id].recipes}
+                            href={state.detectResult["food_list"][id].recipes}
                             startIcon={<SoupKitchenRoundedIcon />}
                         >
                             Show this food recipe
