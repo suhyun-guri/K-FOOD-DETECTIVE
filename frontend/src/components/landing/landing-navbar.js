@@ -87,7 +87,7 @@ export function LandingNavbar() {
                         </Box>
 
                         {/* 1200px 이하 일 때 */}
-                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} justifyContent='space-between'>
+                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} justify='space-between'>
                             <IconButton
                                 size="large"
                                 aria-label="account of current user"

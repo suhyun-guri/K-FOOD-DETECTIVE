@@ -120,7 +120,7 @@ export function AccountProfileDetails(props) {
         <Box
           sx={{
             display: 'flex',
-            justifyContent: 'flex-end',
+            justify: 'flex-end',
             p: 2
           }}
         >

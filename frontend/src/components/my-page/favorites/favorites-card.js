@@ -13,7 +13,7 @@ export function FavoritesCard(props) {
                 sx={{
                     display: 'flex',
                     flexWrap: 'wrap',
-                    justifyContent: 'flex-start',
+                    justify: 'flex-start',
                     mt: 2,
                     alignContent: 'center'
                 }}

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export function CommentsList(props) {
     console.log('CommentsList의 props : ', props.data)
-    console.log('CommentsList의 content : ', props.data[0].content)
+    // console.log('CommentsList의 content : ', props.data[0].content)
 
     return (
         <>

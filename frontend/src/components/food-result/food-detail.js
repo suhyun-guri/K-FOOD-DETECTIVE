@@ -14,6 +14,8 @@ import { FoodDescriptionLayout } from './food-description-layout';
 import { FoodButtonStackLayout } from './food-button-stack-layout';
 import { FoodFavoriteBtn } from './food-favorite-btn';
 
+import { CommentsInput } from './comments/comments-input';
+
 import { FoodTasteSurvey } from './taste-survey/food-taste-survey';
 import { FoodTasteSurveyResult } from './taste-survey/food-taste-survey-result';
 
@@ -59,7 +61,7 @@ export function FoodDetail(props) {
                 setOpen(false);
                 setResultOpen(true);
                 console.log(res.data);
-                alert('성공');
+                // alert('성공');
             })
             .catch(err=>{
                 console.log(err);
@@ -232,6 +234,11 @@ export function FoodDetail(props) {
                         Comments
                     </Typography>
                 </FoodTitleLayout>
+
+                <Box sx={{ my: 3}}>
+                    <CommentsInput />
+                </Box>
+
 
             </FoodContentLayout>
 

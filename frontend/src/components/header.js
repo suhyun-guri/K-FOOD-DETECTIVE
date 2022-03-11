@@ -46,7 +46,7 @@ export function Header() {
     return (
         <>
             <LandigNavbarRoot>
-                <Container maxWidth="xl" justifyContent='space-between'>
+                <Container maxWidth="xl" justify='space-between'>
                     <Toolbar disableGutters>
                         <Box
                             sx={{ flexGrow: 30, ml: 1, mr: 2, display: { xs: 'flex', md: 'flex' } }}
@@ -101,7 +101,7 @@ export function Header() {
                         </Box>
 
                         {/* 모바일용 */}
-                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} justifyContent='space-between'>
+                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} justify='space-between'>
                             <IconButton
                                 size="large"
                                 aria-label="account of current user"

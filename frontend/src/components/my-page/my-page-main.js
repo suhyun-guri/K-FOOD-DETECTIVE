@@ -17,7 +17,7 @@ export function MyPageMain(props) {
     const count = data ? data.length : 0;
 
 
-    console.log('my favorite data : ', props.data.MyFavorites);
+    // console.log('my favorite data : ', props.data.MyFavorites);
     console.log('My Page params : ', params.feature);
 
 
@@ -45,9 +45,9 @@ export function MyPageMain(props) {
 
     function SwitchContents(params) {
         if (params.feature === undefined || params.feature === 'myfavorites') {
-            console.log('제목 : ', title)
-            console.log('데이터 : ', data)
-            console.log('count : ', count)
+            // console.log('제목 : ', title)
+            // console.log('데이터 : ', data)
+            // console.log('count : ', count)
             return (
                 <>
                     <Typography variant='h5'>
@@ -59,9 +59,9 @@ export function MyPageMain(props) {
                 </>
             )
         } else if (params.feature === 'comments') {
-            console.log('제목 : ', title)
-            console.log('데이터 : ', data)
-            console.log('count : ', count)
+            // console.log('제목 : ', title)
+            // console.log('데이터 : ', data)
+            // console.log('count : ', count)
             return (
                 <>
                     <Typography variant='h5'>
@@ -73,9 +73,9 @@ export function MyPageMain(props) {
                 </>
             )
         } else if (params.feature === 'testresults') {
-            console.log('제목 : ', title)
-            console.log('데이터 : ', data)
-            console.log('count : ', count)
+            // console.log('제목 : ', title)
+            // console.log('데이터 : ', data)
+            // console.log('count : ', count)
             return (
                 <>
                     <Typography variant='h5'>
@@ -87,9 +87,9 @@ export function MyPageMain(props) {
                 </>
             )
         } else {
-            console.log('제목 : ', title)
-            console.log('데이터 : ', data)
-            console.log('count : ', count)
+            // console.log('제목 : ', title)
+            // console.log('데이터 : ', data)
+            // console.log('count : ', count)
             return (
                 <>
                     <Typography variant='h5'>

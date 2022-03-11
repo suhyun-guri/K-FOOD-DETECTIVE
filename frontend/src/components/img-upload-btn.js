@@ -4,7 +4,7 @@
 
 import React, { useContext, useState } from 'react';
 import ImageUploading from 'react-images-uploading';
-import { IconButton } from '@mui/material';
+import { Box, Button, IconButton } from '@mui/material';
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
 import { detect } from '../utils/img-detect';
 import { useNavigate } from 'react-router-dom';
@@ -70,6 +70,7 @@ export function UploadImageBtn({ btnColor }) {
             >
               <ImageSearchIcon sx={{color: `${btnColor}`}} />
             </IconButton>
+
             <IconButton
               style={isDragging ? { color: 'red' } : undefined}
               onClick={handleDetect}
@@ -77,16 +78,16 @@ export function UploadImageBtn({ btnColor }) {
             >
               <ImageSearchIcon sx={{color: 'gray'}} />
             </IconButton>
+
             &nbsp;
-           {/* <button onClick={onImageRemoveAll}>Remove all images</button> */}
             {imageList.map((image, index) => (
-              <div key={index} className="image-item">
+              <Box key={index} className="image-item" sx={{ backgroundColor: 'orange' }}>
                 <img src={image['data_url']} alt="" width="100" />
-                <div className="image-item__btn-wrapper">
-                  <button onClick={() => onImageUpdate(index)}>수정</button>
-                  <button onClick={() => onImageRemove(index)}>삭제</button>
-                </div>
-              </div>
+                <Box className="image-item__btn-wrapper">
+                  <Button variant='outlined' onClick={() => onImageUpdate(index)}>수정</Button>
+                  <Button variant='outlined' onClick={() => onImageRemove(index)}>삭제</Button>
+                </Box>
+              </Box>
             ))}
           </div>
         )}

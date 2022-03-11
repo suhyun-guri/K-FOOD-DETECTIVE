@@ -15,7 +15,7 @@ export function FoodButtonStackLayout({ children }) {
             <Stack 
                 spacing={8}
                 direction='row'
-                justifyContent="center"
+                justify="center"
                 alignItems="center"
                 sx={StackStyle}
             >

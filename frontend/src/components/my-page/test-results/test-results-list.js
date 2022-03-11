@@ -7,6 +7,26 @@ export function TestResultsList(props) {
     // console.log('TestResultsList result : ', props.data[0].result)
     // console.log('TestResultsList recommend : ', props.data[0].recommend)
 
+    function matchColor(result) {
+        if(result === 'perfect') {
+            console.log('perfect')
+            return 'blue'
+        } else if(result === 'great') {
+            console.log('great')
+            return 'green'
+        } else if(result === 'good') {
+            console.log('good')
+            return 'black'
+        } else if(result === 'bad') {
+            console.log('bad')
+            return 'orange'
+        } else {
+            console.log('not recommend')
+            return 'red'
+        }
+    }
+
+
     return (
         <>
             <Stack
@@ -23,7 +43,6 @@ export function TestResultsList(props) {
                         <Fragment key={i}>
                             <Link
                                 to={`/food-detail/${d.romanized_name}`}
-
                             >
                                 <Card
                                     elevation={10}
@@ -47,7 +66,8 @@ export function TestResultsList(props) {
                                                     fontSize: '1.0rem'
                                                 }}
                                             >
-                                                {d.romanized_name.charAt(0).toUpperCase() + d.romanized_name.slice(1)}
+                                                {/* {d.romanized_name.charAt(0).toUpperCase() + d.romanized_name.slice(1)} */}
+                                                {d.romanized_name}
                                             </Typography>
                                             <Typography
                                                 color="text.secondary"
@@ -75,14 +95,22 @@ export function TestResultsList(props) {
                                     <Divider orientation="vertical" sx={{ mx: 2 }} />
 
                                     <CardContent sx={{ flex: '1 0 auto', mx: 0.5, mt: 1.5 }}>
-                                        <Typography variant='h5' sx={{ mb: 1 }}>
-                                            {d.result.charAt(0).toUpperCase() + d.result.slice(1)}
+                                        <Typography 
+                                            variant='h5' 
+                                            sx={{
+                                                mb: 1,
+                                                color: `${matchColor(d.result)}`
+                                            }}
+                                        >
+                                            {/* {d.result.charAt(0).toUpperCase() + d.result.slice(1)} */}
+                                            {`${d.result}`.toUpperCase()}
                                         </Typography>
                                         <Typography variant='body1'>
                                             Other recommended foods : 
                                             {d.recommend
                                             ? d.recommend.map((r) => (
-                                                ` ${r.charAt(0).toUpperCase() + r.slice(1)}`
+                                                // ` ${r.charAt(0).toUpperCase() + r.slice(1)}`
+                                                ` ${r.charAt(0).toUpperCase()}${r.slice(1)}`
                                             )).join(', ')
                                         : ''}
                                         </Typography>
