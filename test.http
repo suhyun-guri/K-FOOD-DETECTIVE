@@ -1,0 +1,9 @@
+###
+POST http://elice-kdt-ai-3rd-team07.koreacentral.cloudapp.azure.com:80/api/account/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "aaa",
+  "email": "aaa@aa.com",
+  "password": "aaa"
+}
