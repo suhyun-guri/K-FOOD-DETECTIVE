@@ -53,10 +53,13 @@ def image_detect(request):
             post_data = {"img" : data}
 
             req = requests.post(MODEL_SERVER_URL, json=post_data)
+            
             res = req.json()
-
+            
             result_image = res.get('image', None)
+            
             food_list = res.get('class', None)
+            
             bbox_list = res.get('bbox', None)
 
             user_id = get_user_id(request)

@@ -3,7 +3,7 @@ version: '3'
 services:
   db:
     # MacOS m1칩 사용자들은 아래 주석을 해제하고 실행해주세요
-    # platform: linux/x86_64
+    platform: linux/x86_64
     volumes:
       - ./db/data:/var/lib/mysql
     build:
