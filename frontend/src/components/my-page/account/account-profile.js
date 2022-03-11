@@ -89,7 +89,7 @@ export function AccountProfile(props) {
                             dragProps,
                         }) => (
                             // write your building UI
-                            <Box sx={{ display: 'flex', justifyContent:'space-between' }}>
+                            <Box sx={{ display: 'flex', justify:'space-between' }}>
                                 <Button
                                     style={isDragging ? { color: 'red' } : undefined}
                                     onClick={onImageUpload}

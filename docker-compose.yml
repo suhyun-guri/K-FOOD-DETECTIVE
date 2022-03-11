@@ -37,4 +37,5 @@ services:
       - "80:80"
     volumes:
       - ./frontend:/usr/src/app
-
+    environment:
+      CHOKIDAR_USEPOLLING: 'true' 

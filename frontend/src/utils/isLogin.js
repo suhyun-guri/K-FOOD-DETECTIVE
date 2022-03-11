@@ -1,6 +1,5 @@
 // Login과 Logout, Register관련하여 서버와 통신하는 코드
 
-
 import axios from 'axios';
 
 const ACCESS_KEY = 'accessKey';
@@ -44,8 +43,7 @@ export const logout = (navigate, dispatch) => {
 }
 
 export const refresh = () => {
-    // const URL = "/account/refresh"
-    const URL = "https://ec5fbd63-aaa3-42c5-b672-efdd5707128d.mock.pstmn.io/account/refresh"
+    const URL = "/api/account/refresh"
     const data = {refresh: localStorage.getItem(REFRESH_KEY)};
     const headers = {Authorization: "Bearer " + localStorage.getItem(ACCESS_KEY)}
     axios.post(URL, data, headers).then(res => {

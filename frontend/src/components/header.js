@@ -7,6 +7,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { UploadImageBtn } from './img-upload-btn';
 import { UserProfile } from './user-profile';
 import { UserContext } from '../reducers/userReducer';
+import { borderRadius } from '@mui/system';
+import { ImageUpload } from './image-upload';
 
 const LandigNavbarRoot = styled(AppBar)(({ theme }) => ({
     backgroundColor: theme.palette.background.paper,
@@ -41,12 +43,12 @@ export function Header() {
         setAnchorElNav(null);
     };
 
-    const [{userInfo}, dispatch] = useContext(UserContext);
+    const [{ userInfo }, dispatch] = useContext(UserContext);
 
     return (
         <>
             <LandigNavbarRoot>
-                <Container maxWidth="xl" justifyContent='space-between'>
+                <Container maxWidth="xl" justify='space-between'>
                     <Toolbar disableGutters>
                         <Box
                             sx={{ flexGrow: 30, ml: 1, mr: 2, display: { xs: 'flex', md: 'flex' } }}
@@ -56,7 +58,7 @@ export function Header() {
                                     color='primary'
                                     variant='text'
                                 >
-                                    LOGO
+                                    <img src='/logo_black.png' alt='Logo' width='100rem' />
                                 </Button>
                             </Link>
 
@@ -69,26 +71,24 @@ export function Header() {
                                 flexGrow: 20
                             }}
                         >
+                            
+                            <ImageUpload />
 
-                            <TextField
+                            {/* <Button
                                 id="input-with-icon-textfield"
                                 label="Image URL"
                                 size='small'
-                                InputProps={{
-                                    endAdornment: (
-                                        <InputAdornment position="end">
-                                            <UploadImageBtn btnColor={btnColor} />
-                                        </InputAdornment>
-                                    ),
-                                }}
                                 variant="outlined"
                                 sx={{
                                     my: 1,
+                                    width: '20rem',
                                     alignItems: 'center',
-                                    display: { xs: 'none', md: 'block' }
+                                    display: { xs: 'none', md: 'block' },
+                                    borderStyle: 'dashed'
                                 }}
-                            />
-
+                            >
+                                Search K-Food
+                            </Button> */}
                         </Box>
 
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -101,7 +101,7 @@ export function Header() {
                         </Box>
 
                         {/* 모바일용 */}
-                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} justifyContent='space-between'>
+                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} justify='space-between'>
                             <IconButton
                                 size="large"
                                 aria-label="account of current user"
