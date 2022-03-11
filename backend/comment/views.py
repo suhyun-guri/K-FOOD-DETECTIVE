@@ -1,10 +1,12 @@
-from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import ListCreateAPIView, get_object_or_404
 from rest_framework.mixins import DestroyModelMixin
 from rest_framework_simplejwt.tokens import AccessToken
-from rest_framework import status
-from rest_framework.response import Response
 from comment.serializers import CommentSerializer
-from comment.models import Comment
+from rest_framework.response import Response
+from rest_framework import status
+
+
+from food.models import Comment
 
 
 def get_user_id(request):
@@ -15,24 +17,46 @@ def get_user_id(request):
         user_id = access_token['user_id']
     else:
         user_id = None
-
     return user_id
+
 
 class CommentView(ListCreateAPIView, DestroyModelMixin):
     serializer_class = CommentSerializer
+    lookup_url_kwarg = 'romanized_name', 'comment_id'
 
     def get_queryset(self):
         romanized_name = self.kwargs.get('romanized_name')
         queryset = Comment.objects.filter(food__romanized_name = romanized_name)
         return queryset
-    
-    def create(self, request, *args, **kwargs):
-        data = request.data
-        data['user_id'] = get_user_id(request)
-        data['romanized_name'] = self.kwargs.get('romanized_name')
-        serializer = self.get_serializer(data=data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
 
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        user_id = get_user_id(self.request)
+        romanized_name = self.kwargs.get('romanized_name')
+        comment_id = self.kwargs.get('comment_id')
+        context['user_id'] = user_id
+        context['romanized_name'] = romanized_name
+        context['comment_id'] = comment_id
+        return context
+
+    def create(self, request, *args, **kwargs):
+        result = super().create(request, *args, **kwargs)
+        data = self.get_queryset()
+        serializer = self.get_serializer(data=data, many=True)
+        serializer.is_valid()
+        result.data = serializer.data
+        return result
+    
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+    
+    def destroy(self, request, *args, **kwargs):
+        user_id = get_user_id(request)
+        comment_id = self.kwargs.get('comment_id')
+        instance = get_object_or_404(Comment, id=comment_id)
+        if instance.user.id == user_id:
+            self.perform_destroy(instance)
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            result = {"detail" : "User is unauthorized. Check if Bearer Token is valid"}
+            return Response(data=result, status=status.HTTP_401_UNAUTHORIZED)
