@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 import db_settings
+import secret_key
 from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ikbih-9m9(z*-p=5$09kqysz*q!p2!_rot#938#r!@n_1d(uz%'
+SECRET_KEY = secret_key.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -49,11 +50,14 @@ INSTALLED_APPS = [
     # simple-jwt
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
+    # CORS
+    'corsheaders'
 ]
 
 AUTH_USER_MODEL = 'account.CustomUser'
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -61,6 +65,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+#CORS
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:80',
+    'http://0.0.0.0:80',
+    'http://elice-kdt-ai-3rd-team07.koreacentral.cloudapp.azure.com'
 ]
 
 ROOT_URLCONF = 'config.urls'

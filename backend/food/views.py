@@ -4,11 +4,15 @@ import json
 from django.http import JsonResponse, HttpResponse
 import requests
 from django.views.decorators.csrf import csrf_exempt
+from food.serializers import FoodSerializer, FoodScrapSerializer
+from food.utils import recommender_system
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTTokenUserAuthentication
+
 from food.models import Food, Taste, Test
 from account.models import CustomUser
 from rest_framework_simplejwt.tokens import AccessToken
-from food.serializers import FoodSerializer, FoodScrapSerializer
-from food.utils import recommender_system
 
 MODEL_SERVER_URL = "http://elice-kdt-ai-3rd-team07.koreacentral.cloudapp.azure.com:5000/detect"
 NORMALIZER = 3.21
@@ -105,6 +109,9 @@ def food_detail(request,romanized_name):
 
 
 @csrf_exempt
+@api_view(['POST'])
+@authentication_classes([JWTTokenUserAuthentication])
+@permission_classes([IsAuthenticated])
 def food_scrap(request):
     if request.method == 'POST':
         try:
@@ -185,6 +192,9 @@ def recommend_test(request):
 
 
 @csrf_exempt
+@api_view(['POST'])
+@authentication_classes([JWTTokenUserAuthentication])
+@permission_classes([IsAuthenticated])
 def save_test(request,romanized_name):
     if request.method == 'POST':
         try:

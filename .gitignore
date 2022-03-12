@@ -7,6 +7,7 @@ db/data/*
 **/migrations/**
 !**/migrations
 !**/migrations/__init__.py
+backend/secret_key.py
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/linux,django,react,python,venv
@@ -294,3 +295,4 @@ pyvenv.cfg
 pip-selfcheck.json
 
 # End of https://www.toptal.com/developers/gitignore/api/linux,django,react,python,venv
+
