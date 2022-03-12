@@ -96,7 +96,7 @@ export function FoodTasteSurveyResult({ open, onClose, onRetry, onSave, tasteRes
                     <img src='/images/survey-results/bad-avatar.png' alt='Bad Avatar' />
                 </Box>
             )
-        } else {
+        } else if (result === 'not recommend') {
             console.log('not recommend')
             return (
                 <Box sx={{ mb: 3, alignContent: 'center', textAlign: 'center' }}>

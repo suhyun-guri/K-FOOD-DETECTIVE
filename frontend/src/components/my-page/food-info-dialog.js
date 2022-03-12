@@ -49,7 +49,7 @@ export function FoodInfoDialog({ open, onClose, data }) {
                                         color: 'white'
                                     }}
                                 >
-                                    {data.length!==0 ? data.romanized_name.charAt(0).toUpperCase() + data.romanized_name.slice(1) : 'loading'}
+                                    {data.length!==0 ? data.romanized_name.charAt(0).toUpperCase() + data.romanized_name.slice(1) : ''}
                                 </Typography>
                                 <Typography
                                     variant='caption'
@@ -59,7 +59,7 @@ export function FoodInfoDialog({ open, onClose, data }) {
                                         color: 'white'
                                     }}
                                 >
-                                    {data.length!==0 ? data.english_name + ', ' + data.korean_name : 'loading'}
+                                    {data.length!==0 ? data.english_name + ', ' + data.korean_name : ''}
                                 </Typography>
                             </Box>
                             <Typography
@@ -70,7 +70,7 @@ export function FoodInfoDialog({ open, onClose, data }) {
                                     color: 'white'
                                 }}
                             >
-                                {data.length!==0 ? data.hit + ' users find and ' + data.likes + ' users like this food!' : 'loading'}
+                                {data.length!==0 ? data.hit + ' users find and ' + data.likes + ' users like this food!' : ''}
                             </Typography>
                         </Box>
                         {/* <FoodFavoriteBtn foodName={data.length!==0 ? data.romanized_name :''}/> */}
@@ -92,7 +92,7 @@ export function FoodInfoDialog({ open, onClose, data }) {
                                 ml: 2.5
                             }}
                         >
-                            {data.length!==0 ? data.categories.join(', ') : 'loading'}
+                            {data.length!==0 ? data.categories.join(', ') : ''}
                         </Typography>
 
                         <Typography
@@ -110,7 +110,7 @@ export function FoodInfoDialog({ open, onClose, data }) {
                                 ml: 2.5
                             }}
                         > 
-                            {data.length!==0 ? data.ingredients.join(', ') : 'loading'}
+                            {data.length!==0 ? data.ingredients.join(', ') : ''}
                         </Typography>
 
                         <Typography
@@ -129,7 +129,7 @@ export function FoodInfoDialog({ open, onClose, data }) {
                                 mb: 8
                             }}
                         >
-                            {data.length!==0 ? data.info : 'loading'}
+                            {data.length!==0 ? data.info : ''}
                         </Typography>
                     </FoodDescriptionLayout>
 

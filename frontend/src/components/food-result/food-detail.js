@@ -2,7 +2,7 @@
 // Page같이 되어서 이걸 component에 두어도 될지 고민
 
 import * as React from 'react';
-import { Box, Button, Typography } from '@mui/material';
+import { Alert, Box, Button, Typography } from '@mui/material';
 import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
@@ -89,7 +89,8 @@ export function FoodDetail(props) {
         const foodName = state.detectResult["food_list"][id].romanized_name;
         tasteSave(foodName, tasteResult)
             .then(res=>{
-                alert("성공");
+                alert("Success to save your survey result! You can check this in 'My Page'");
+                console.log('success');
             })
             .catch(err=>{
                 console.log(err);
