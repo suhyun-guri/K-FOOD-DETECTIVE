@@ -1,9 +1,19 @@
+import os
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.core.files.storage import FileSystemStorage
 
 def profile_directory_path(instance, filename):
+    extension = filename.split('.')[-1]
+    filename = f"profile_img.{extension}"
     return 'profile/{0}/{1}'.format(instance.username, filename)
 
+class CustomStorage(FileSystemStorage):
+    def get_available_name(self, name, max_length=None):
+        if self.exists(name):
+            os.remove(os.path.join(settings.MEDIA_ROOT, name))
+        return name
 
 class CustomUserManager(BaseUserManager):
 
@@ -69,7 +79,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     nationality = models.CharField(default='please set this value', max_length=25, blank=True)
     gender = models.SmallIntegerField(choices=GenderChoice.choices, default=GenderChoice.empty, blank=True)
     age = models.SmallIntegerField(choices=AgeChoice.choices, default=AgeChoice.empty, blank=True)
-    profile_image = models.ImageField(upload_to=profile_directory_path, default='profile/default_img.jpg')
+    profile_image = models.ImageField(upload_to=profile_directory_path, storage=CustomStorage, default='profile/default_img.jpg')
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateField(auto_now_add=True)
