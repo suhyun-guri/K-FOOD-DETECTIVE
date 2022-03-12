@@ -15,7 +15,7 @@ export function MyPageMain(props) {
     // const [myfavorites, setMyFavorites] = useState(props.data.MyFavorites);
     const [myfavorites, setMyFavorites] = useState([]);
     const [comments, setComments] = useState(props.data.Comments);
-    const [testresults, setTestResults] = useState(props.data.Tests);
+    const [testresults, setTestResults] = useState([]);
     const [account, setAccount] = useState(props.data.Account);
 
     console.log('My Page params : ', params.feature);
@@ -35,7 +35,8 @@ export function MyPageMain(props) {
             setComments(props.data.Comments);
         } else if (params.feature === 'testresults') {
             getTestResult().then(res=>{
-                console.log(res.data)
+                console.log('라면인건가: ');
+                console.log(res.data);
                 setTestResults(res.data);
             }).catch(err=>{
                 console.log(err);

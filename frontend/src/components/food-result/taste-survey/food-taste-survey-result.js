@@ -136,14 +136,14 @@ export function FoodTasteSurveyResult({ open, onClose, onRetry, onSave, tasteRes
                         textAlign='center'
                         sx={{
                             mt: 1,
-                            color: `${MatchColor(tasteResult.result)}`
+                            color: `${tasteResult ? MatchColor(tasteResult.result) : 'black'}`
                         }}
                     >
                         {tasteResult ? `${tasteResult.result}`.toUpperCase() + '!' : "아하하하"}
                     </DialogContentText>
 
 
-                    {SwitchContents(tasteResult.result)}
+                    {tasteResult && SwitchContents(tasteResult.result)}
 
                     {/* <DialogContentText
                         variant='subtitle1'
@@ -173,7 +173,7 @@ export function FoodTasteSurveyResult({ open, onClose, onRetry, onSave, tasteRes
 
                 <DialogContentText variant='body2' sx={{ ml: 1.5 }}>
                     : 
-                    {tasteResult.recommend
+                    {tasteResult
                         ? tasteResult.recommend.map((d) => {
                             return ` ${d.charAt(0).toUpperCase() + d.slice(1)}`
                         }).join(', ')

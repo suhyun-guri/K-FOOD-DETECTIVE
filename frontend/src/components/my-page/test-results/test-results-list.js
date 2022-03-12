@@ -46,7 +46,7 @@ export function TestResultsList(props) {
                     ? props.data.map((d, i) => (
                         <Fragment key={i}>
                             <Link
-                                to={`/food-detail/${d.romanized_name}`}
+                                to={`/food-detail/${d.food.romanized_name}`}
                             >
                                 <Card
                                     elevation={10}
@@ -59,7 +59,7 @@ export function TestResultsList(props) {
                                     <CardMedia
                                         component='img'
                                         sx={{ width: '10rem' }}
-                                        image={d.image_url}
+                                        image={d.food.image_url}
                                         alt="Food Picture"
                                     />
                                     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -70,7 +70,7 @@ export function TestResultsList(props) {
                                                     fontSize: '1.0rem'
                                                 }}
                                             >
-                                                {d.romanized_name}
+                                                {d.food.romanized_name}
                                             </Typography>
                                             <Typography
                                                 color="text.secondary"
@@ -79,7 +79,7 @@ export function TestResultsList(props) {
                                                     fontSize: '0.7rem'
                                                 }}
                                             >
-                                                {d.english_name}, {d.korean_name}
+                                                {d.food.english_name}, {d.food.korean_name}
                                             </Typography>
                                             <Typography
                                                 color="text.secondary"
@@ -89,7 +89,7 @@ export function TestResultsList(props) {
                                                     fontSize: '0.3rem'
                                                 }}
                                             >
-                                                {d.categories}
+                                                {d.food.categories}
                                             </Typography>
 
                                         </CardContent>
@@ -110,8 +110,8 @@ export function TestResultsList(props) {
                                         </Typography>
                                         <Typography variant='body1'>
                                             Other recommended foods :
-                                            {d.recommend
-                                                ? d.recommend.map((r) => (
+                                            {d.recommend_foods
+                                                ? d.recommend_foods.map((r) => (
                                                     // ` ${r.charAt(0).toUpperCase() + r.slice(1)}`
                                                     ` ${r.charAt(0).toUpperCase()}${r.slice(1)}`
                                                 )).join(', ')
