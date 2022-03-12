@@ -1,61 +1,14 @@
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
 import { useState } from 'react';
-// import "react-languages-select/css/react-languages-select.css";
-// import { CountryDropdown } from "react-country-region-selector";
 import { Box, Button, Card, CardContent, CardHeader, Divider, Grid, TextField } from '@mui/material';
-import { borderRadius } from '@mui/system';
-
-
-const age = [
-  {
-    value: '0',
-    label: '0 ~ 19'
-  },
-  {
-    value: '1',
-    label: '20 ~ 29'
-  },
-  {
-    value: '2',
-    label: '30 ~ 39'
-  },
-  {
-    value: '3',
-    label: '40 ~ 49'
-  },
-  {
-    value: '4',
-    label: '50 ~ 59'
-  },
-  {
-    value: '5',
-    label: '60 ~ 69'
-  },
-  {
-    value: '6',
-    label: '70 ~'
-  }
-]
-
-
-const gender = [
-  {
-    value: '0',
-    label: 'male'
-  },
-  {
-    value: '1',
-    label: 'female'
-  },
-  {
-    value: '2',
-    label: 'other'
-  }
-]
 
 
 export function AccountProfileDetails(props) {
     console.log('Account Profile Details의 props : ', props.data)
     console.log('Account Profile Details의 nationlity : ', props.data.nationality)
+
+    const [isError, setIsError] = useState(false);
 
     const [values, setValues] = useState({
         username: `${props.data.username}`,
@@ -144,20 +97,7 @@ export function AccountProfileDetails(props) {
                 onChange={handleChange}
                 value={values.nationality}
                 variant="outlined"
-                select
-                SelectProps={{ native: true }}
-              >
-                {/* <CountryDropdown
-                  value={values.nationality}
-                  onChange={handleChange}
-                /> */}
-              </TextField>
-              {/* <CountryDropdown
-                value={values.nationality}
-                onChange={handleChange}
-                variant="outlined"
-                sx={{ borderRadius:2, height: '10rem' }}
-              /> */}
+              />
             </Grid>
 
             <Grid
@@ -223,3 +163,52 @@ export function AccountProfileDetails(props) {
         </>
     )
 }
+
+
+const age = [
+  {
+    value: '0',
+    label: '0 ~ 19'
+  },
+  {
+    value: '1',
+    label: '20 ~ 29'
+  },
+  {
+    value: '2',
+    label: '30 ~ 39'
+  },
+  {
+    value: '3',
+    label: '40 ~ 49'
+  },
+  {
+    value: '4',
+    label: '50 ~ 59'
+  },
+  {
+    value: '5',
+    label: '60 ~ 69'
+  },
+  {
+    value: '6',
+    label: '70 ~'
+  }
+]
+
+
+const gender = [
+  {
+    value: '0',
+    label: 'male'
+  },
+  {
+    value: '1',
+    label: 'female'
+  },
+  {
+    value: '2',
+    label: 'other'
+  }
+]
+

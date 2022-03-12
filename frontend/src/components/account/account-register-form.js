@@ -5,7 +5,7 @@
 import * as React from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { Alert, Box, Button, TextField, Snackbar, MuiAlert } from '@mui/material';
+import { Alert, Box, Button, TextField, Snackbar } from '@mui/material';
 import { Register } from '../../utils/isLogin'; 
 import { useNavigate } from 'react-router-dom';
 
