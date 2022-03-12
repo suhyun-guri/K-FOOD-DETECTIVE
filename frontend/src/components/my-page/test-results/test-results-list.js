@@ -1,9 +1,27 @@
 import { Card, CardContent, CardMedia, Stack, Box, Typography, Divider } from '@mui/material';
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FoodInfoDialog } from '../food-info-dialog';
+import { getCardInfo } from '../../../utils/mypage';
 
 export function TestResultsList(props) {
     console.log('TestResultsList props : ', props.data)
+
+    const [open, setOpen] = useState(false);
+    const [data, setData] = useState([]);
+
+
+    const handleCardClick = (name) => {
+        getCardInfo(name).then(res => {
+            console.log(res.data);
+            setData(res.data);
+            setOpen(true);
+            //alert('성공');
+        }).catch(err=>{
+            console.log(err);
+            //alert('fail');
+        })
+    }
 
     function MatchColor(result) {
         if (result === 'perfect') {
@@ -45,16 +63,15 @@ export function TestResultsList(props) {
                 {props.data
                     ? props.data.map((d, i) => (
                         <Fragment key={i}>
-                            <Link
-                                to={`/food-detail/${d.food.romanized_name}`}
-                                style={{ textDecoration: 'none' }}
-                            >
+                            <Stack>
                                 <Card
                                     elevation={10}
+                                    onClick={() => handleCardClick(d.romanized_name)}
                                     sx={{
                                         display: 'flex',
                                         width: '100%',
                                         height: '15vh',
+                                        '&:hover': { backgroundColor: '#EDF2FB'},
                                         mb: 3
                                     }} >
                                     <CardMedia
@@ -120,7 +137,8 @@ export function TestResultsList(props) {
                                         </Typography>
                                     </CardContent>
                                 </Card>
-                            </Link>
+                            </Stack>
+                            <FoodInfoDialog open={open} onClose={() => setOpen(false)} data={data} />
                         </Fragment>
                     ))
                     : 'loading'}

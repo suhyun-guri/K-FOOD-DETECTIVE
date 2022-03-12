@@ -5,7 +5,7 @@ import { FavoritesCard } from './favorites/favorites-card';
 import { CommentsList } from './comments/comments-list';
 import { TestResultsList } from './test-results/test-results-list';
 import { AccountMain } from './account/account-main';
-import { getFavorites, getTestResult } from '../../utils/mypage';
+import { getFavorites, getTestResult} from '../../utils/mypage';
 
 
 export function MyPageMain(props) {

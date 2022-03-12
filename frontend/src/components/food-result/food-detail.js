@@ -235,7 +235,7 @@ export function FoodDetail(props) {
                             Comments
                         </Typography>
                     </FoodTitleLayout>
-                    <Box sx={{ mt: 3 }}>
+                    <Box sx={{ mt: 5 }}>
                         <CommentsContents data={props.data.FComments} />
                         <CommentsInput />
                     </Box>

@@ -42,7 +42,7 @@ export function FoodTasteSurveyResult({ open, onClose, onRetry, onSave, tasteRes
         if (result === 'perfect') {
             console.log('perfect')
             return (
-                <Box sx={{ mb: 3, alignContent: 'center' }}>
+                <Box sx={{ mb: 3, alignContent: 'center', textAlign: 'center' }}>
                     <DialogContentText
                             variant='subtitle1'
                             textAlign='center'
@@ -57,7 +57,7 @@ export function FoodTasteSurveyResult({ open, onClose, onRetry, onSave, tasteRes
         } else if (result === 'great') {
             console.log('great')
             return (
-                <Box sx={{ mb: 3, alignContent: 'center' }}>
+                <Box sx={{ mb: 3, alignContent: 'center', textAlign: 'center' }}>
                     <DialogContentText
                             variant='subtitle1'
                             textAlign='center'
@@ -71,7 +71,7 @@ export function FoodTasteSurveyResult({ open, onClose, onRetry, onSave, tasteRes
         } else if (result === 'good') {
             console.log('good')
             return (
-                <Box sx={{ mb: 3, alignContent: 'center' }}>
+                <Box sx={{ mb: 3, alignContent: 'center', textAlign: 'center' }}>
                     <DialogContentText
                             variant='subtitle1'
                             textAlign='center'
@@ -85,7 +85,7 @@ export function FoodTasteSurveyResult({ open, onClose, onRetry, onSave, tasteRes
         } else if (result === 'bad') {
             console.log('bad')
             return (
-                <Box sx={{ mb: 3, alignContent: 'center' }}>
+                <Box sx={{ mb: 3, alignContent: 'center', textAlign: 'center' }}>
                     <DialogContentText
                             variant='subtitle1'
                             textAlign='center'
@@ -99,7 +99,7 @@ export function FoodTasteSurveyResult({ open, onClose, onRetry, onSave, tasteRes
         } else {
             console.log('not recommend')
             return (
-                <Box sx={{ mb: 3, alignContent: 'center' }}>
+                <Box sx={{ mb: 3, alignContent: 'center', textAlign: 'center' }}>
                     <DialogContentText
                             variant='subtitle1'
                             textAlign='center'
