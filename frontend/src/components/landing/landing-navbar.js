@@ -23,7 +23,10 @@ function ShowUserProfile(props) {
         return <UserProfile fontColor={fontColor} />
     }
     return (
-        <Link to='/signin'>
+        <Link
+            to='/signin'
+            style={{ textDecoration: 'none' }}
+        >
             <Button variant='contained' sx={{ width: '10vw' }} >Sign In</Button>
         </Link>
     );
@@ -50,7 +53,10 @@ export function LandingNavbar() {
                         <Box
                             sx={{ flexGrow: 20, ml: 1, mr: 2, display: { xs: 'flex', md: 'flex' } }}
                         >
-                            <Link to='/'>
+                            <Link
+                                to='/'
+                                style={{ textDecoration: 'none' }}
+                            >
                                 <Button
                                     sx={{
                                         color: 'white'
@@ -65,9 +71,12 @@ export function LandingNavbar() {
                         {/* 1200px 이상 일 때 */}
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             {pages.map((page) => (
-                                <Link to={{
-                                    pathname: `/${page.toLowerCase()}`
-                                }}>
+                                <Link 
+                                    to={{
+                                        pathname: `/${page.toLowerCase()}`
+                                    }}
+                                    style={{ textDecoration: 'none' }}
+                                >
                                     <Button
                                         key={page}
                                         onClick={handleCloseNavMenu}
@@ -80,9 +89,6 @@ export function LandingNavbar() {
 
                         </Box>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                                {/* <Link to='/signin'>
-                                    <Button variant='contained' sx={{width: '10vw'}} >Sign In</Button>
-                                </Link> */}
                                 <ShowUserProfile isLoggedIn={userInfo.isLogin} />
                         </Box>
 

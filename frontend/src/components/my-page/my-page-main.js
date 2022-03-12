@@ -8,7 +8,6 @@ import { AccountMain } from './account/account-main';
 import { getFavorites, getTestResult } from '../../utils/mypage';
 
 
-
 export function MyPageMain(props) {
     const params = useParams('myfavorites');
     
@@ -19,8 +18,6 @@ export function MyPageMain(props) {
     const [account, setAccount] = useState(props.data.Account);
 
     console.log('My Page params : ', params.feature);
-
-
 
     useEffect(() => {
         if (params.feature === undefined || params.feature === 'myfavorites') {
@@ -50,7 +47,7 @@ export function MyPageMain(props) {
 
     return (
         <MyPageBgBox>
-            {(params.feature === undefined || params.feature === 'myfavorites') ? <FavoritesCard data={myfavorites} /> : '' }
+            {(params.feature === undefined || params.feature === 'myfavorites') ? <FavoritesCard data={myfavorites} /> : 'loading' }
             {(params.feature === 'comments') ? <CommentsList data={comments} /> : '' }
             {(params.feature === 'testresults') ? <TestResultsList data={testresults} /> : '' }
             {(params.feature === 'account') ? <AccountMain data={account} /> : '' }

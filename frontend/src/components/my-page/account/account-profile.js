@@ -89,32 +89,15 @@ export function AccountProfile(props) {
                             dragProps,
                         }) => (
                             // write your building UI
-                            <Box sx={{ display: 'flex', justify:'space-between' }}>
+                            <Box sx={{ display: 'flex', width: '100%' }}>
                                 <Button
                                     style={isDragging ? { color: 'red' } : undefined}
                                     onClick={onImageUpload}
+                                    sx={{ width: '100%'}}
                                     {...dragProps}
                                 >
                                     Select picture
                                 </Button>
-                                <Button
-                                    style={isDragging ? { color: 'red' } : undefined}
-                                    onClick={handleDetect}
-                                    {...dragProps}
-                                >
-                                    Upload picture
-                                </Button>
-                                &nbsp;
-                                {/* <button onClick={onImageRemoveAll}>Remove all images</button> */}
-                                {/* {imageList.map((image, index) => (
-                                    <Box key={index} className="image-item">
-                                        <img src={image['data_url']} alt="" width="100" />
-                                        <Box className="image-item__btn-wrapper">
-                                            <Button onClick={() => onImageUpdate(index)}>수정</Button>
-                                            <Button onClick={() => onImageRemove(index)}>삭제</Button>
-                                        </Box>
-                                    </Box>
-                                ))} */}
                             </Box>
                         )}
                     </ImageUploading>

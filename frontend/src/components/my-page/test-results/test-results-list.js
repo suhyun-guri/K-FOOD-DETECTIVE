@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export function TestResultsList(props) {
     console.log('TestResultsList props : ', props.data)
 
-    function matchColor(result) {
+    function MatchColor(result) {
         if (result === 'perfect') {
             console.log('perfect')
             return 'blue'
@@ -47,6 +47,7 @@ export function TestResultsList(props) {
                         <Fragment key={i}>
                             <Link
                                 to={`/food-detail/${d.food.romanized_name}`}
+                                style={{ textDecoration: 'none' }}
                             >
                                 <Card
                                     elevation={10}
@@ -102,7 +103,7 @@ export function TestResultsList(props) {
                                             variant='h5'
                                             sx={{
                                                 mb: 1,
-                                                color: `${matchColor(d.result)}`
+                                                color: `${MatchColor(d.result)}`
                                             }}
                                         >
                                             {/* {d.result.charAt(0).toUpperCase() + d.result.slice(1)} */}

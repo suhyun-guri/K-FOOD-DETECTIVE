@@ -4,10 +4,8 @@ import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Stack, Toolbar, Typography, InputAdornment, TextField } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { UploadImageBtn } from './img-upload-btn';
 import { UserProfile } from './user-profile';
 import { UserContext } from '../reducers/userReducer';
-import { borderRadius } from '@mui/system';
 import { ImageUpload } from './image-upload';
 
 const LandigNavbarRoot = styled(AppBar)(({ theme }) => ({
@@ -16,7 +14,7 @@ const LandigNavbarRoot = styled(AppBar)(({ theme }) => ({
 }));
 
 const pagesMobile = ['Search', 'Sign In']
-const btnColor = 'gray';
+
 
 function ShowUserProfile(props) {
     const isLoggedIn = props.isLoggedIn;
@@ -26,7 +24,10 @@ function ShowUserProfile(props) {
         return <UserProfile fontColor={fontColor} />
     }
     return (
-        <Link to='/signin'>
+        <Link 
+            to='/signin'
+            style={{ textDecoration: 'none' }}    
+        >
             <Button variant='contained' sx={{ width: '10vw' }} >Sign In</Button>
         </Link>
     );
@@ -34,6 +35,7 @@ function ShowUserProfile(props) {
 
 export function Header() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
+    const [open, setOpen] = React.useState(false);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -53,7 +55,10 @@ export function Header() {
                         <Box
                             sx={{ flexGrow: 30, ml: 1, mr: 2, display: { xs: 'flex', md: 'flex' } }}
                         >
-                            <Link to='/'>
+                            <Link
+                                to='/'
+                                style={{ textDecoration: 'none' }}
+                            >
                                 <Button
                                     color='primary'
                                     variant='text'
@@ -70,33 +75,20 @@ export function Header() {
                                 width: '30vw',
                                 flexGrow: 20
                             }}
-                        >
-                            
-                            <ImageUpload />
-
-                            {/* <Button
-                                id="input-with-icon-textfield"
-                                label="Image URL"
+                        > 
+                            <Button
+                                variant='outlined'
                                 size='small'
-                                variant="outlined"
-                                sx={{
-                                    my: 1,
-                                    width: '20rem',
-                                    alignItems: 'center',
-                                    display: { xs: 'none', md: 'block' },
-                                    borderStyle: 'dashed'
-                                }}
+                                sx={{ width: '20rem', '&:hover': { color: 'green' } }}
+                                onClick={() => setOpen(true)}
                             >
                                 Search K-Food
-                            </Button> */}
+                            </Button>
+                            {/* <ImageUpload /> */}
+                            <ImageUpload open={open} onClose={()=>setOpen(false)} />
                         </Box>
 
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                            {/* <Link to='/signin'>
-                                <Stack spacing={1} direction='row'>
-                                    <Button variant='contained' sx={{ width: '10vw' }}>Sign In</Button>
-                                </Stack>
-                            </Link> */}
                             <ShowUserProfile isLoggedIn={userInfo.isLogin} />
                         </Box>
 

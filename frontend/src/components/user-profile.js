@@ -34,7 +34,7 @@ export function UserProfile({ fontColor }) {
   return (
     <Box display={'flex'} direction="row">
       <Button sx={{ textAlign: 'left' }} onClick={handleOpenUserProfile}>
-        <Avatar alt="Remy Sharp" src="/images/avatar/default01.jpg" />
+        <Avatar alt="User Image" src="/images/avatar/default01.jpg" />
         <Box direction="column" sx={{ ml: 1 }}>
           <Typography variant='subtitle2' sx={{ color: `${fontColor}` }}>{userInfo.username}</Typography>
           <Typography variant='body2' sx={{ color: `${fontColor}` }}>Default Nationality</Typography>
@@ -56,17 +56,6 @@ export function UserProfile({ fontColor }) {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserProfile}
       >
-        {/* {pages.map((page) => (
-          <Link
-            to={{ pathname: `/${page.replace(/ /g, "").toLowerCase()}` }}
-            style={{ textDecoration: 'none', color: 'black' }}
-          >
-            <MenuItem key={page} onClick={handleCloseUserProfile}>
-              <Typography textAlign="center">{page}</Typography>
-            </MenuItem>
-          </Link>
-        ))} */}
-
         <Link
           to={{ pathname: '/mypage' }}
           style={{ textDecoration: 'none', color: 'black' }}

@@ -14,6 +14,7 @@ import { FoodDescriptionLayout } from './food-description-layout';
 import { FoodButtonStackLayout } from './food-button-stack-layout';
 import { FoodFavoriteBtn } from './food-favorite-btn';
 
+import { CommentsContents } from './comments/comments-content';
 import { CommentsInput } from './comments/comments-input';
 
 import { FoodTasteSurvey } from './taste-survey/food-taste-survey';
@@ -21,11 +22,12 @@ import { FoodTasteSurveyResult } from './taste-survey/food-taste-survey-result';
 
 import { UserContext } from '../../reducers/userReducer';
 import { taste, tasteSave } from '../../utils/img-detect';
+import { getComments } from '../../utils/comments';
 
 
 export function FoodDetail(props) {
     const params = useParams();
-    const data = props.data;
+    const data = props.data.Foods;
     const [food, setFood] = useState(undefined);
     const [id, setId] = useState(0);
     const [open, setOpen] = React.useState(false);
@@ -33,6 +35,8 @@ export function FoodDetail(props) {
     // const capitalizeName = (name) => name.charAt(0).toUpperCase() + name.slice(1)
     // const englishKoreanName = (name) => name.english_name + ', ' + name.korean_name
     const [tasteResult, setTasteResult] = useState();
+    const [comments, setComments] = useState([]);
+    const [forRender, setForRender] = useState(true);
 
     console.log(params)
     console.log('food-detail에서 id : ', id)
@@ -52,7 +56,15 @@ export function FoodDetail(props) {
             }
             return food;
         })
-    }, [params])
+        getComments(params.romanized_name).then(res=>{
+            setComments(res.data);
+            console.log('comments');
+            console.log(res.data);
+        }).catch(err=>{
+            console.log(err);
+            alert('fail to get comments');
+        })
+    }, [params, forRender])
 
     const handleResultClick = (userTaste)=>{
         taste(userTaste)
@@ -220,24 +232,25 @@ export function FoodDetail(props) {
 
                 </FoodDescriptionLayout>
 
-                <FoodTitleLayout>
-                    <Typography
-                        variant='h5'
-                        sx={{
-                            mt: 2.7,
-                            ml: 2,
-                            color: 'white'
-                        }}
-                    >
-                        Comments
-                    </Typography>
-                </FoodTitleLayout>
-
-                <Box sx={{ my: 3}}>
-                    <CommentsInput />
+                <Box>
+                    <FoodTitleLayout>
+                        <Typography
+                            variant='h5'
+                            sx={{
+                                mt: 2.7,
+                                ml: 2,
+                                mt: 3,
+                                color: 'white'
+                            }}
+                        >
+                            Comments
+                        </Typography>
+                    </FoodTitleLayout>
+                    <Box sx={{ mt: 3 }}>
+                        <CommentsContents data={comments} setForRender={setForRender}/>
+                        <CommentsInput foodName={params.romanized_name} setForRender={setForRender}/>
+                    </Box>
                 </Box>
-
-
             </FoodContentLayout>
 
 

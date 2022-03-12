@@ -1,6 +1,20 @@
-import { Box, Button, Stack, TextField } from '@mui/material';
+import { useState } from 'react';
 
-export function CommentsInput() {
+import { Button, Stack, TextField } from '@mui/material';
+import { postComments } from '../../../utils/comments';
+
+export function CommentsInput({foodName, setForRender}) {
+    const [text, setText] = useState();
+    const handleClick = ()=>{
+        postComments(foodName, text).then(res=>{
+            console.log(res.data)
+            setText("");
+            setForRender(cur=>!cur)
+        }).catch(err=>{
+            alert('fail to send commet')
+            console.log(err);
+        })
+    }
     return (
         <Stack 
             spacing={3}
@@ -16,13 +30,14 @@ export function CommentsInput() {
             <TextField
                 variant="outlined"
                 sx={{
-                    mt: 3,
                     mr: 2,
                     width: '70%',
                     borderColor: 'blue'
                 }}
+                onChange={(e)=>{setText(e.target.value)}}
+                value={text}
             />
-            <Button variant='contained' sx={{ mt: 3, height: '3.5rem' }} >
+            <Button variant='contained' sx={{ height: '3.5rem' }} onClick={handleClick}>
                 REGISTER
             </Button>
         </Stack>
