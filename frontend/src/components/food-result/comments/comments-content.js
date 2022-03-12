@@ -1,10 +1,18 @@
 import { Avatar, Box, Button, Stack, Typography } from '@mui/material';
 import { Fragment, useEffect, useState, useContext } from 'react';
 import { UserContext } from '../../../reducers/userReducer';
+import { delComments } from '../../../utils/comments';
+
 
 export function CommentsContents(props) {
     const [{userInfo}, dispatch] = useContext(UserContext);
-
+    const handleClick = (e)=>{
+        delComments(e.target.id).then(res=>{
+            props.setForRender(cur=>!cur);
+        }).catch(err=>{
+            alert('fail to delete')
+        })
+    }
     return (
         <Stack 
             spacing={3}
@@ -26,7 +34,7 @@ export function CommentsContents(props) {
                             <Box display={'flex'} direction='row' sx={{alignItems:'center'}}>
                                 <Typography variant='h6'>{d.user.username.charAt(0).toUpperCase()}{d.user.username.slice(1)}</Typography>
                                 <Typography variant='body2' sx={{ ml: 1 }}>{d.created_at}</Typography>
-                                {userInfo.username===d.user.username && <Button>Delete</Button>}
+                                {userInfo.username===d.user.username && <Button id={d.id} onClick={handleClick}>Delete</Button>}
                             </Box>
                             <Typography variant='subtitle1'>{d.content}</Typography>
                         </Box>
