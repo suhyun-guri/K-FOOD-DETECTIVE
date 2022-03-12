@@ -32,7 +32,7 @@ export default function FoodDetailDBPage() {
        
         <Box sx={{ flexGrow: 1 }}>
           <PageMain>
-          {FoodPageData && <FoodDetail data={FoodPageData.Foods} />}
+          {FoodPageData && <FoodDetail data={FoodPageData} />}
           </PageMain>
           
           <Footer />

@@ -14,6 +14,7 @@ import { FoodDescriptionLayout } from './food-description-layout';
 import { FoodButtonStackLayout } from './food-button-stack-layout';
 import { FoodFavoriteBtn } from './food-favorite-btn';
 
+import { CommentsContents } from './comments/comments-content';
 import { CommentsInput } from './comments/comments-input';
 
 import { FoodTasteSurvey } from './taste-survey/food-taste-survey';
@@ -25,7 +26,7 @@ import { taste, tasteSave } from '../../utils/img-detect';
 
 export function FoodDetail(props) {
     const params = useParams();
-    const data = props.data;
+    const data = props.data.Foods;
     const [food, setFood] = useState(undefined);
     const [id, setId] = useState(0);
     const [open, setOpen] = React.useState(false);
@@ -220,24 +221,25 @@ export function FoodDetail(props) {
 
                 </FoodDescriptionLayout>
 
-                <FoodTitleLayout>
-                    <Typography
-                        variant='h5'
-                        sx={{
-                            mt: 2.7,
-                            ml: 2,
-                            color: 'white'
-                        }}
-                    >
-                        Comments
-                    </Typography>
-                </FoodTitleLayout>
-
-                <Box sx={{ my: 3}}>
-                    <CommentsInput />
+                <Box>
+                    <FoodTitleLayout>
+                        <Typography
+                            variant='h5'
+                            sx={{
+                                mt: 2.7,
+                                ml: 2,
+                                mt: 3,
+                                color: 'white'
+                            }}
+                        >
+                            Comments
+                        </Typography>
+                    </FoodTitleLayout>
+                    <Box sx={{ mt: 3 }}>
+                        <CommentsContents data={props.data.FComments} />
+                        <CommentsInput />
+                    </Box>
                 </Box>
-
-
             </FoodContentLayout>
 
 

@@ -16,13 +16,12 @@ export function CommentsInput() {
             <TextField
                 variant="outlined"
                 sx={{
-                    mt: 3,
                     mr: 2,
                     width: '70%',
                     borderColor: 'blue'
                 }}
             />
-            <Button variant='contained' sx={{ mt: 3, height: '3.5rem' }} >
+            <Button variant='contained' sx={{ height: '3.5rem' }} >
                 REGISTER
             </Button>
         </Stack>

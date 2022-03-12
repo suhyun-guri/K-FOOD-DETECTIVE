@@ -42,7 +42,7 @@ export function FoodTasteSurveyResult({ open, onClose, onRetry, onSave, tasteRes
         if (result === 'perfect') {
             console.log('perfect')
             return (
-                <>
+                <Box sx={{ mb: 3, alignContent: 'center' }}>
                     <DialogContentText
                             variant='subtitle1'
                             textAlign='center'
@@ -52,12 +52,12 @@ export function FoodTasteSurveyResult({ open, onClose, onRetry, onSave, tasteRes
                     </DialogContentText>
                     
                     <img src='/images/survey-results/perfect-avatar.png' alt='Perfect Avatar' />
-                </>
+                </Box>
             )
         } else if (result === 'great') {
             console.log('great')
             return (
-                <>
+                <Box sx={{ mb: 3, alignContent: 'center' }}>
                     <DialogContentText
                             variant='subtitle1'
                             textAlign='center'
@@ -66,12 +66,12 @@ export function FoodTasteSurveyResult({ open, onClose, onRetry, onSave, tasteRes
                     Maybe you really like this food!
                     </DialogContentText>
                     <img src='/images/survey-results/great-avatar.png' alt='Great Avatar' />
-                </>
+                </Box>
             )
         } else if (result === 'good') {
             console.log('good')
             return (
-                <>
+                <Box sx={{ mb: 3, alignContent: 'center' }}>
                     <DialogContentText
                             variant='subtitle1'
                             textAlign='center'
@@ -80,12 +80,12 @@ export function FoodTasteSurveyResult({ open, onClose, onRetry, onSave, tasteRes
                     Maybe you like this food!
                     </DialogContentText>
                     <img src='/images/survey-results/good-avatar.png' alt='Good Avatar' />
-                </>
+                </Box>
             )
         } else if (result === 'bad') {
             console.log('bad')
             return (
-                <>
+                <Box sx={{ mb: 3, alignContent: 'center' }}>
                     <DialogContentText
                             variant='subtitle1'
                             textAlign='center'
@@ -94,12 +94,12 @@ export function FoodTasteSurveyResult({ open, onClose, onRetry, onSave, tasteRes
                     You can try this, but not recommend.
                     </DialogContentText>
                     <img src='/images/survey-results/bad-avatar.png' alt='Bad Avatar' />
-                </>
+                </Box>
             )
         } else {
             console.log('not recommend')
             return (
-                <>
+                <Box sx={{ mb: 3, alignContent: 'center' }}>
                     <DialogContentText
                             variant='subtitle1'
                             textAlign='center'
@@ -108,7 +108,7 @@ export function FoodTasteSurveyResult({ open, onClose, onRetry, onSave, tasteRes
                     Maybe you don't like this food.
                     </DialogContentText>
                     <img src='/images/survey-results/not-recommend-avatar.png' alt='Not Recommend Avatar' />
-                </>
+                </Box>
             )
         }
     }
@@ -133,8 +133,6 @@ export function FoodTasteSurveyResult({ open, onClose, onRetry, onSave, tasteRes
                     </DialogActions>
                 </Box>
 
-
-
                 <DialogContent>
                     <DialogContentText
                         variant='h4'
@@ -151,11 +149,11 @@ export function FoodTasteSurveyResult({ open, onClose, onRetry, onSave, tasteRes
                     {tasteResult && SwitchContents(tasteResult.result)}
 
 
-                    <DialogContentText variant='subtitle2' sx={{ mb: 1 }}>
+                    <DialogContentText variant='subtitle2' textAlign='left' sx={{ mb: 1 }}>
                         ◼ Prefered K-foods based on result
                     </DialogContentText>
 
-                <DialogContentText variant='body2' sx={{ ml: 1.5 }}>
+                <DialogContentText variant='body2' textAlign='left' sx={{ ml: 1.5 }}>
                     : 
                     {tasteResult
                         ? tasteResult.recommend.map((d) => {

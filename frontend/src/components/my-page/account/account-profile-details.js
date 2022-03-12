@@ -3,7 +3,6 @@ import { useFormik } from 'formik';
 import { useState } from 'react';
 import { Box, Button, Card, CardContent, CardHeader, Divider, Grid, TextField } from '@mui/material';
 
-
 export function AccountProfileDetails(props) {
     console.log('Account Profile Details의 props : ', props.data)
     console.log('Account Profile Details의 nationlity : ', props.data.nationality)
@@ -160,6 +159,8 @@ export function AccountProfileDetails(props) {
         </Box>
       </Card>
     </form>
+
+
         </>
     )
 }
