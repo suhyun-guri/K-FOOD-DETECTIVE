@@ -89,21 +89,22 @@ export function AccountProfile(props) {
                             dragProps,
                         }) => (
                             // write your building UI
-                            <Box sx={{ display: 'flex', justify:'space-between' }}>
+                            <Box sx={{ display: 'flex', width: '100%' }}>
                                 <Button
                                     style={isDragging ? { color: 'red' } : undefined}
                                     onClick={onImageUpload}
+                                    sx={{ width: '100%'}}
                                     {...dragProps}
                                 >
                                     Select picture
                                 </Button>
-                                <Button
+                                {/* <Button
                                     style={isDragging ? { color: 'red' } : undefined}
                                     onClick={handleDetect}
                                     {...dragProps}
                                 >
                                     Upload picture
-                                </Button>
+                                </Button> */}
                                 &nbsp;
                                 {/* <button onClick={onImageRemoveAll}>Remove all images</button> */}
                                 {/* {imageList.map((image, index) => (

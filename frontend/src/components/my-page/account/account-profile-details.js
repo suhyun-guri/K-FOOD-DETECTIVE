@@ -147,7 +147,7 @@ export function AccountProfileDetails(props) {
         <Box
           sx={{
             display: 'flex',
-            justify: 'flex-end',
+            justifyContent: 'flex-end',
             p: 2
           }}
         >
