@@ -2,7 +2,17 @@ import { Box, Button, Stack, TextField } from '@mui/material';
 
 export function CommentsInput() {
     return (
-        <Stack spacing={3} sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%' }}>
+        <Stack 
+            spacing={3}
+            sx={{ 
+                display: 'flex', 
+                mx: 15,
+                mb: 10, 
+                flexDirection: 'row', 
+                alignItems: 'center', 
+                width: '100%' 
+            }}
+        >
             <TextField
                 variant="outlined"
                 sx={{

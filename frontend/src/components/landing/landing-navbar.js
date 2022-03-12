@@ -122,7 +122,7 @@ export function LandingNavbar() {
                                     display: { xs: 'block', md: 'none' },
                                 }}
                             >
-                                {/* 나중에 되면 drawer로 해도 좋겠다 */}
+                               
                                 {pagesMobile.map((page) => (
                                     <Link 
                                         to={{pathname: `/${page.replace(/ /g,"").toLowerCase()}`}}

@@ -195,8 +195,6 @@ export function FoodDetail(props) {
 
                     <FoodButtonStackLayout>
                         {/* 음식 취향 분석 설문지 버튼 */}
-                        
-
                         <Button
                             variant='contained'
                             size='large'

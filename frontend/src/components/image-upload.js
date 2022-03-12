@@ -61,15 +61,16 @@ export function ImageUpload() {
                     isDragging,
                     dragProps,
                 }) => (
+                    <>
                     // write your building UI
-                    <Box className="upload__image-wrapper"
-                        sx={{
-                            display: 'flex',
-                            margin: 'auto',
-                            alignItems: 'center'
-                        }}
-                    >
-                        {/* <Button
+                        <Box className="upload__image-wrapper"
+                            sx={{
+                                display: 'flex',
+                                margin: 'auto',
+                                alignItems: 'center'
+                            }}
+                        >
+                            {/* <Button
                             style={isDragging ? { color: 'green' } : undefined}
                             onClick={onImageUpload}
                             {...dragProps}
@@ -82,28 +83,48 @@ export function ImageUpload() {
                             Image Upload
                         </Button> */}
 
-                        <Button
-                            id="input-with-icon-textfield"
-                            label="Image URL"
-                            size='small'
-                            variant="outlined"
-                            style={isDragging ? { color: 'green' } : undefined}
-                            onClick={onImageUpload}
-                            {...dragProps}
-                            sx={{
-                                my: 1,
-                                width: '20rem',
-                                alignItems: 'center',
-                                display: { xs: 'none', md: 'block' },
-                                borderStyle: 'dashed',
-                                '&:hover': { color: 'green' }
-                            }}
-                        >
-                            Search K-Food
-                        </Button>
 
+                            <Button
+                                id="input-with-icon-textfield"
+                                label="Image URL"
+                                size='small'
+                                variant="outlined"
+                                style={isDragging ? { color: 'green' } : undefined}
+                                onClick={onImageUpload}
+                                {...dragProps}
+                                sx={{
+                                    my: 1,
+                                    width: '20rem',
+                                    alignItems: 'center',
+                                    display: { xs: 'none', md: 'block' },
+                                    borderStyle: 'dashed',
+                                    '&:hover': { color: 'green' }
+                                }}
+                            >
+                                Upload searching image
+                            </Button>
+{/* 
+                            <Button
+                                id="input-with-icon-textfield"
+                                label="Image URL"
+                                size='small'
+                                variant="contained"
+                                onClick={handleDetect}
+                                {...dragProps}
+                                sx={{
+                                    my: 1,
+                                    width: '20rem',
+                                    alignItems: 'center',
+                                    display: { xs: 'none', md: 'block' },
+                                    borderStyle: 'dashed',
+                                    '&:hover': { color: 'green' }
+                                }}
+                            >
+                                Search Now
+                            </Button> */}
 
-                        {/* <IconButton
+                            {/* <Button variant='contained' onClick={handleDetect}>Searching this food</Button> */}
+                            {/* <IconButton
               style={isDragging ? { color: 'red' } : undefined}
               onClick={handleDetect}
               {...dragProps}
@@ -114,7 +135,10 @@ export function ImageUpload() {
               <ImageSearchIcon sx={{color: 'red'}} />
             </IconButton> */}
 
-                        {/* &nbsp; */}
+                            {/* &nbsp; */}
+                        </Box>
+
+
                         {imageList.map((image, index) => (
                             <Box
                                 key={index}
@@ -124,7 +148,8 @@ export function ImageUpload() {
                                     margin: 'auto',
                                     alginItems: 'center',
                                     height: '10rem',
-                                    position: 'bottom'
+                                    position: 'bottom',
+                                    backgroundColor: 'orange'
                                 }}
                             >
                                 <img src={image['data_url']} alt="" />
@@ -136,7 +161,7 @@ export function ImageUpload() {
                                 </Stack>
                             </Box>
                         ))}
-                    </Box>
+                    </>
                 )}
             </ImageUploading>
         </>

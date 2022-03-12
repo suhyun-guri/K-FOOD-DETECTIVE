@@ -70,7 +70,9 @@ export function LandingImgUpload() {
                         sx={{
                             display: 'flex',
                             margin: 'auto',
-                            alignItems: 'center'
+                            alignItems: 'center',
+                            width: '100%',
+                            height: '100%'
                         }}
                     >
                         <Button
@@ -79,7 +81,9 @@ export function LandingImgUpload() {
                             {...dragProps}
                             sx={{
                                 display: (imageList.length !== 0) ? 'none' : 'flex',
-                                '&:hover': { color: 'green' }
+                                '&:hover': { color: 'green' },
+                                width: '100%',
+                                height: '100%'
                             }}
                             size='large'
                         >

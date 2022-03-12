@@ -106,7 +106,7 @@ export function AccountProfile(props) {
                                 </Button>
                                 &nbsp;
                                 {/* <button onClick={onImageRemoveAll}>Remove all images</button> */}
-                                {imageList.map((image, index) => (
+                                {/* {imageList.map((image, index) => (
                                     <Box key={index} className="image-item">
                                         <img src={image['data_url']} alt="" width="100" />
                                         <Box className="image-item__btn-wrapper">
@@ -114,24 +114,10 @@ export function AccountProfile(props) {
                                             <Button onClick={() => onImageRemove(index)}>삭제</Button>
                                         </Box>
                                     </Box>
-                                ))}
+                                ))} */}
                             </Box>
                         )}
                     </ImageUploading>
-                    {/* <Button
-                        color="primary"
-                        fullWidth
-                        variant="text"
-                    >
-                        Upload picture
-                    </Button> */}
-                    {/* <Button
-                        color="primary"
-                        fullWidth
-                        variant="text"
-                    >
-                        Upload picture
-                    </Button> */}
                 </CardActions>
             </Card>
         </>

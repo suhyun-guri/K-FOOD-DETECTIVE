@@ -1,5 +1,4 @@
-import { Box, Paper, Typography, InputAdornment, TextField } from '@mui/material';
-import { UploadImageBtn } from '../img-upload-btn'
+import { Box, Paper, Typography } from '@mui/material';
 import { LandingImgUpload } from './landing-img-upload';
 
 export function LandingSearch() {
@@ -32,23 +31,6 @@ export function LandingSearch() {
                 >
                     <Typography variant='h5'>K-Food Image Searching</Typography>
                     <Typography variant='subtitle2'>Paste or drop image here; find the foods from an image</Typography>
-
-                    {/* <TextField
-                        id="input-with-icon-textfield"
-                        label="Image URL"
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="end">
-                                    <UploadImageBtn btnColor={btnColor} />
-                                </InputAdornment>
-                            )
-                        }}
-                        variant="outlined"
-                        sx={{
-                            mt: 3,
-                            width: '70%'
-                        }}
-                    /> */}
 
                     <Box
                         sx={{
