@@ -19,7 +19,10 @@ export function AccountBackBtn() {
                 <Box
                     sx={{ flexGrow: 20, ml: 1, mr: 2, display: { xs: 'flex', md: 'flex' } }}
                 >
-                    <Link to='/'>
+                    <Link
+                        to='/'
+                        style={{ textDecoration: 'none' }}
+                    >
                     <Button
                         sx={{
                             color: 'white'

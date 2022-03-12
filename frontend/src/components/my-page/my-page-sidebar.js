@@ -31,6 +31,7 @@ export function MyPageSideBar() {
                         <Fragment key={i}>
                             <Link
                                 to={`/mypage/${feature.replace(/ /g, "").toLowerCase()}`}
+                                style={{ textDecoration: 'none' }}
                             >
                                 <Button
                                     variant='outlined'

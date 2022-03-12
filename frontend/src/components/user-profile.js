@@ -56,17 +56,6 @@ export function UserProfile({ fontColor }) {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserProfile}
       >
-        {/* {pages.map((page) => (
-          <Link
-            to={{ pathname: `/${page.replace(/ /g, "").toLowerCase()}` }}
-            style={{ textDecoration: 'none', color: 'black' }}
-          >
-            <MenuItem key={page} onClick={handleCloseUserProfile}>
-              <Typography textAlign="center">{page}</Typography>
-            </MenuItem>
-          </Link>
-        ))} */}
-
         <Link
           to={{ pathname: '/mypage' }}
           style={{ textDecoration: 'none', color: 'black' }}

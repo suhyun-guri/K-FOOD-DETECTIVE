@@ -29,7 +29,7 @@ export function FavoritesCard(props) {
                         <Fragment key={i}>
                             <Link
                                 to={`/food-detail/${d.romanized_name}`}
-
+                                style={{ textDecoration: 'none' }}
                             >
                                 <Card
                                     elevation={10}

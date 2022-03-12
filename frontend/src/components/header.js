@@ -24,7 +24,10 @@ function ShowUserProfile(props) {
         return <UserProfile fontColor={fontColor} />
     }
     return (
-        <Link to='/signin'>
+        <Link 
+            to='/signin'
+            style={{ textDecoration: 'none' }}    
+        >
             <Button variant='contained' sx={{ width: '10vw' }} >Sign In</Button>
         </Link>
     );
@@ -52,7 +55,10 @@ export function Header() {
                         <Box
                             sx={{ flexGrow: 30, ml: 1, mr: 2, display: { xs: 'flex', md: 'flex' } }}
                         >
-                            <Link to='/'>
+                            <Link
+                                to='/'
+                                style={{ textDecoration: 'none' }}
+                            >
                                 <Button
                                     color='primary'
                                     variant='text'
