@@ -4,15 +4,10 @@
 
 import React, { useContext, useState } from 'react';
 import ImageUploading from 'react-images-uploading';
-import { Box, Button, Dialog, IconButton, Popover, Typography, Stack } from '@mui/material';
-import ImageSearchIcon from '@mui/icons-material/ImageSearch';
+import { Box, Button, Stack } from '@mui/material';
 import { detect } from '../../utils/img-detect';
 import { useNavigate } from 'react-router-dom';
-
 import { UserContext } from '../../reducers/userReducer';
-import { spacing } from '@mui/system';
-
-
 
 export function LandingImgUpload() {
     const [images, setImages] = useState([]);
@@ -89,22 +84,7 @@ export function LandingImgUpload() {
                         >
                             Image Upload
                         </Button>
-
-
-                        {/* <IconButton
-              style={isDragging ? { color: 'red' } : undefined}
-              onClick={handleDetect}
-              {...dragProps}
-              sx={{
-                display: (imageList.length !== 0)? 'flex': 'none'
-              }}
-            >
-              <ImageSearchIcon sx={{color: 'red'}} />
-            </IconButton> */}
-
-
-
-                        {/* &nbsp; */}
+                        
                         {imageList.map((image, index) => (
                             <Box
                                 key={index}

@@ -29,19 +29,20 @@ export function LandingSearch() {
                         alignItems: 'center'
                     }}
                 >
-                    <Typography variant='h5'>K-Food Image Searching</Typography>
-                    <Typography variant='subtitle2'>Paste or drop image here; find the foods from an image</Typography>
+                    <Typography variant='h4' color='#343D6A'>Hello, K-Food!</Typography>
+                    <Typography variant='subtitle2' color='#343D6A'>You can find Korean foods based on image. Paste or drop image here!</Typography>
 
                     <Box
                         sx={{
                             display: 'flex',
                             width: '30rem',
-                            height: '12rem',
+                            height: '13rem',
                             alignItems: 'center',
                             borderColor: '#000046',
                             borderStyle: 'dashed',
                             mx: 4,
-                            my: 5,
+                            mt: 3,
+                            mb: 6,
                             backgroundColor: 'rgba(255,255,255,0.5)'
                         }}
                     >

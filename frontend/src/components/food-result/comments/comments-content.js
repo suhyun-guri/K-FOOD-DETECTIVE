@@ -32,7 +32,7 @@ export function CommentsContents(props) {
                         <Avatar alt='User Image' src={d.user.profile_image} />  
                         <Box direction='column' sx={{ ml: 3 }}>
                             <Box display={'flex'} direction='row' sx={{alignItems:'center'}}>
-                                <Typography variant='h6'>{d.user.username.charAt(0).toUpperCase()}{d.user.username.slice(1)}</Typography>
+                                <Typography variant='h6'>{d.user.username}</Typography>
                                 <Typography variant='body2' sx={{ ml: 1 }}>{d.created_at}</Typography>
                                 {userInfo.username===d.user.username && <Button id={d.id} onClick={handleClick}>Delete</Button>}
                             </Box>

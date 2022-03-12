@@ -54,7 +54,7 @@ export function MyPageMain(props) {
 
     return (
         <MyPageBgBox>
-            {(params.feature === undefined || params.feature === 'myfavorites') ? <FavoritesCard data={myfavorites} /> : 'loading' }
+            {(params.feature === undefined || params.feature === 'myfavorites') ? <FavoritesCard data={myfavorites} /> : '' }
             {(params.feature === 'comments') ? <CommentsList data={comments} /> : '' }
             {(params.feature === 'testresults') ? <TestResultsList data={testresults} /> : '' }
             {(params.feature === 'account') ? <AccountMain data={account} /> : '' }

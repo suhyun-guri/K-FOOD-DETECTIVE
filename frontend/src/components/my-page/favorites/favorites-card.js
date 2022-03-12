@@ -1,9 +1,27 @@
 import { Card, CardContent, CardMedia, Stack, Box, Typography } from '@mui/material';
-import { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Fragment, useState } from 'react';
+import { FoodInfoDialog } from '../food-info-dialog';
+import { getCardInfo } from '../../../utils/mypage';
 
 export function FavoritesCard(props) {
     console.log('Favorites Card의 props : ', props.data)
+
+    const [open, setOpen] = useState(false);
+    const [data, setData] = useState([]);
+
+
+    const handleCardClick = (name) => {
+        getCardInfo(name).then(res => {
+            console.log(res.data);
+            setData(res.data);
+            setOpen(true);
+            //alert('성공');
+        }).catch(err=>{
+            console.log(err);
+            //alert('fail');
+        })
+    }
+
 
     return (
         <>
@@ -27,17 +45,16 @@ export function FavoritesCard(props) {
                 {props.data
                     ? props.data.map((d, i) => (
                         <Fragment key={i}>
-                            <Link
-                                to={`/food-detail/${d.romanized_name}`}
-                                style={{ textDecoration: 'none' }}
-                            >
+                            <Stack>
                                 <Card
                                     elevation={10}
+                                    onClick={() => handleCardClick(d.romanized_name)}
                                     sx={{
                                         display: 'flex',
                                         width: '25rem',
                                         height: '15vh',
-                                        mb: 3
+                                        '&:hover': { backgroundColor: '#EDF2FB'},
+                                        mb: 2.5
                                     }} >
                                     <CardMedia
                                         component='img'
@@ -77,12 +94,15 @@ export function FavoritesCard(props) {
                                         </CardContent>
                                     </Box>
                                 </Card>
-                            </Link>
+                                </Stack>
                         </Fragment>
                     ))
                     : 'loading'}
 
             </Stack>
+
+            <FoodInfoDialog open={open} onClose={() => setOpen(false)} data={data} />
+
         </>
     )
 }

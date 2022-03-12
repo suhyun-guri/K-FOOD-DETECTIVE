@@ -1,44 +1,90 @@
 import { Card, CardContent, CardMedia, Stack, Box, Typography, Divider } from '@mui/material';
-import { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Fragment, useState } from 'react';
+import { FoodInfoDialog } from '../food-info-dialog';
+import { getCardInfo } from '../../../utils/mypage';
 
 export function TestResultsList(props) {
     console.log('TestResultsList props : ', props.data)
 
-    function MatchColor(result) {
-        if (result === 'perfect') {
-            console.log('perfect')
-            return 'blue'
-        } else if (result === 'great') {
-            console.log('great')
-            return 'green'
-        } else if (result === 'good') {
-            console.log('good')
-            return 'black'
-        } else if (result === 'bad') {
-            console.log('bad')
-            return 'orange'
-        } else {
-            console.log('not recommend')
-            return 'red'
-        }
+    const [open, setOpen] = useState(false);
+    const [data, setData] = useState([]);
+
+
+    const handleCardClick = (name) => {
+        getCardInfo(name).then(res => {
+            console.log(res.data);
+            setData(res.data);
+            setOpen(true);
+            //alert('성공');
+        }).catch(err => {
+            console.log(err);
+            //alert('fail');
+        })
     }
 
-    const switchResult = (intResult)=>{
-        switch (intResult) {
-            case 0:
-                return "Perfect"
-            case 1:
-                return "Great"
-            case 2:
-                return "Good"
-            case 4:
-                return "Bad"
-            case 5:
-                return "Not recommend"
+    function MatchResult(num) {
+        if (num === 0) {
+            return (
+                <Typography
+                    variant='h5'
+                    sx={{
+                        mb: 1,
+                        color: `blue`
+                    }}
+                >
+                    Perfect
+                </Typography>
+            )
+        } else if (num === 1) {
+            return (
+                <Typography
+                    variant='h5'
+                    sx={{
+                        mb: 1,
+                        color: `green`
+                    }}
+                >
+                    Great
+                </Typography>
+            )
+        } else if (num === 2) {
+            return (
+                <Typography
+                    variant='h5'
+                    sx={{
+                        mb: 1,
+                        color: `black`
+                    }}
+                >
+                    Good
+                </Typography>
+            )
+        } else if (num === 3) {
+            return (
+                <Typography
+                    variant='h5'
+                    sx={{
+                        mb: 1,
+                        color: `orange`
+                    }}
+                >
+                    Bad
+                </Typography>
+            )
+        } else if (num === 4) {
+            return (
+                <Typography
+                    variant='h5'
+                    sx={{
+                        mb: 1,
+                        color: `red`
+                    }}
+                >
+                    Not Recommend
+                </Typography>
+            )
         }
     }
-
 
     return (
         <>
@@ -60,16 +106,15 @@ export function TestResultsList(props) {
                 {props.data
                     ? props.data.map((d, i) => (
                         <Fragment key={i}>
-                            <Link
-                                to={`/food-detail/${d.food.romanized_name}`}
-                                style={{ textDecoration: 'none' }}
-                            >
+                            <Stack>
                                 <Card
                                     elevation={10}
+                                    onClick={() => handleCardClick(d.romanized_name)}
                                     sx={{
                                         display: 'flex',
                                         width: '100%',
                                         height: '15vh',
+                                        '&:hover': { backgroundColor: '#EDF2FB' },
                                         mb: 3
                                     }} >
                                     <CardMedia
@@ -86,7 +131,7 @@ export function TestResultsList(props) {
                                                     fontSize: '1.0rem'
                                                 }}
                                             >
-                                                {d.food.romanized_name}
+                                                {d.food.romanized_name.charAt(0).toUpperCase() + d.food.romanized_name.slice(1)}
                                             </Typography>
                                             <Typography
                                                 color="text.secondary"
@@ -114,16 +159,8 @@ export function TestResultsList(props) {
                                     <Divider orientation="vertical" sx={{ mx: 2 }} />
 
                                     <CardContent sx={{ flex: '1 0 auto', mx: 0.5, mt: 1.5 }}>
-                                        <Typography
-                                            variant='h5'
-                                            sx={{
-                                                mb: 1,
-                                                color: `${MatchColor(d.result)}`
-                                            }}
-                                        >
-                                            {/* {d.result.charAt(0).toUpperCase() + d.result.slice(1)} */}
-                                            {`${switchResult(d.result)}`.toUpperCase()}
-                                        </Typography>
+                                        {MatchResult(d.result)}
+
                                         <Typography variant='body1'>
                                             Other recommended foods :
                                             {d.recommend_foods
@@ -135,7 +172,8 @@ export function TestResultsList(props) {
                                         </Typography>
                                     </CardContent>
                                 </Card>
-                            </Link>
+                            </Stack>
+                            <FoodInfoDialog open={open} onClose={() => setOpen(false)} data={data} />
                         </Fragment>
                     ))
                     : 'loading'}

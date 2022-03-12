@@ -17,7 +17,7 @@ export function CommentsInput({foodName, setForRender}) {
     }
     return (
         <Stack 
-            spacing={3}
+            
             sx={{ 
                 display: 'flex', 
                 mx: 15,
