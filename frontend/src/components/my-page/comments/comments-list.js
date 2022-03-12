@@ -40,7 +40,7 @@ export function CommentsList(props) {
                                     <CardMedia
                                         component='img'
                                         sx={{ width: '10rem' }}
-                                        image={d.image_url}
+                                        image={d.food.image_url}
                                         alt="Food Picture"
                                     />
                                     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -51,7 +51,7 @@ export function CommentsList(props) {
                                                     fontSize: '1.0rem'
                                                 }}
                                             >
-                                                {d.romanized_name.charAt(0).toUpperCase() + d.romanized_name.slice(1)}
+                                                {d.food.romanized_name.charAt(0).toUpperCase() + d.food.romanized_name.slice(1)}
                                             </Typography>
                                             <Typography
                                                 color="text.secondary"
@@ -60,7 +60,7 @@ export function CommentsList(props) {
                                                     fontSize: '0.7rem'
                                                 }}
                                             >
-                                                {d.english_name}, {d.korean_name}
+                                                {d.food.english_name}, {d.food.korean_name}
                                             </Typography>
                                             <Typography
                                                 color="text.secondary"
@@ -70,7 +70,7 @@ export function CommentsList(props) {
                                                     fontSize: '0.3rem'
                                                 }}
                                             >
-                                                {d.categories}
+                                                {d.food.categories}
                                             </Typography>
 
                                         </CardContent>

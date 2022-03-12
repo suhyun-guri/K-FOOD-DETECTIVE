@@ -5,7 +5,7 @@ import { FavoritesCard } from './favorites/favorites-card';
 import { CommentsList } from './comments/comments-list';
 import { TestResultsList } from './test-results/test-results-list';
 import { AccountMain } from './account/account-main';
-import { getFavorites, getTestResult } from '../../utils/mypage';
+import { getFavorites, getTestResult, getUserComments } from '../../utils/mypage';
 
 
 export function MyPageMain(props) {
@@ -13,7 +13,7 @@ export function MyPageMain(props) {
     
     // const [myfavorites, setMyFavorites] = useState(props.data.MyFavorites);
     const [myfavorites, setMyFavorites] = useState([]);
-    const [comments, setComments] = useState(props.data.Comments);
+    const [comments, setComments] = useState([]);
     const [testresults, setTestResults] = useState([]);
     const [account, setAccount] = useState(props.data.Account);
 
@@ -29,7 +29,14 @@ export function MyPageMain(props) {
                 alert('fail');
             })
         } else if (params.feature === 'comments') {
-            setComments(props.data.Comments);
+            
+            getUserComments().then(res=>{
+                console.log(res.data);
+                setComments(res.data);
+            }).catch(err=>{
+                console.log(err);
+                alert('fail to get comments');
+            })
         } else if (params.feature === 'testresults') {
             getTestResult().then(res=>{
                 console.log('라면인건가: ');

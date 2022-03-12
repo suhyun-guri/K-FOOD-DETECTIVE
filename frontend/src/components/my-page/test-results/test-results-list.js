@@ -24,6 +24,21 @@ export function TestResultsList(props) {
         }
     }
 
+    const switchResult = (intResult)=>{
+        switch (intResult) {
+            case 0:
+                return "Perfect"
+            case 1:
+                return "Great"
+            case 2:
+                return "Good"
+            case 4:
+                return "Bad"
+            case 5:
+                return "Not recommend"
+        }
+    }
+
 
     return (
         <>
@@ -107,7 +122,7 @@ export function TestResultsList(props) {
                                             }}
                                         >
                                             {/* {d.result.charAt(0).toUpperCase() + d.result.slice(1)} */}
-                                            {`${d.result}`.toUpperCase()}
+                                            {`${switchResult(d.result)}`.toUpperCase()}
                                         </Typography>
                                         <Typography variant='body1'>
                                             Other recommended foods :
