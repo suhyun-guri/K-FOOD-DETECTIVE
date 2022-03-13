@@ -5,7 +5,6 @@ import { FoodTitleLayout } from '../food-result/food-title-layout';
 import { FoodContentLayout } from '../food-result/food-content-layout';
 import { FoodDescriptionLayout } from '../food-result/food-description-layout';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import { FoodFavoriteBtn } from '../food-result/food-favorite-btn';
 
 
 export function FoodInfoDialog({ open, onClose, data }) {
@@ -26,7 +25,7 @@ export function FoodInfoDialog({ open, onClose, data }) {
             </Box>
             <DialogContent>
                 <FoodContentLayout>
-                    <FoodImage data={`data:image/jpeg;base64,${data.length!==0 ? data.image_url : ''}`} />
+                    <FoodImage data={data.image_url} />
                     <FoodTitleLayout>
                         <Box
                             sx={{

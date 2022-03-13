@@ -27,7 +27,7 @@ export default function AboutPage() {
     for (let i = 0; i < contentsNum; i++) {
       contents.push(
         <>
-          <Typography variant='h5'>About Our Service</Typography>
+          <Typography variant='h5'>What is 'Hello, K-Food'?</Typography>
           <Typography variant='subtitle2'>Overview about our service. Vision, Target etc...</Typography>
           {/* 1200px 이하일 때 */}
           <LandingContentsMobile data={landingPageData.About} />

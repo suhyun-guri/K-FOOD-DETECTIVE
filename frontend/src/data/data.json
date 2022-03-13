@@ -1,51 +1,51 @@
 {
   "About": [
     {
-      "image": "/images/bgimg/landing-bgimg.jpg",
-      "title": "1Globalization of Korean culture", 
-      "content": "Korean content has begun to be popular around the world. As many foreigners began to be interested in dramas, movies, and kpop, they began to be interested in Korean culture."
+      "image": "/images/about/about01.jpg",
+      "title": "Korean food AI searching service based on image", 
+      "content": "Our service provides informs(ex. categories, made by, recipe, taste survey etc..) about Korean food what you want to know based on image. You can start it just drag or upload image!"
     },
     {
-      "image": "/images/bgimg/account-bgimg.jpg",
-      "title": "2Globalization of Korean culture", 
-      "content": "Korean content has begun to be popular around the world. As many foreigners began to be interested in dramas, movies, and kpop, they began to be interested in Korean culture."
+      "image": "/images/about/about02.jpg",
+      "title": "Why we make this service?", 
+      "content": "K-contents have begun to be popular around the world. And many foreigners interest on Korean food. But it's quite hard to find just show media. So we want they find K-Food easily!"
     },
     {
-      "image": "/images/bgimg/landing-bgimg.jpg",
-      "title": "3Globalization of Korean culture", 
-      "content": "Korean content has begun to be popular around the world. As many foreigners began to be interested in dramas, movies, and kpop, they began to be interested in Korean culture."
+      "image": "/images/about/about03.png",
+      "title": "What is 'AI Searching'?", 
+      "content": "'Hello, K-Food' has AI searching model based on YOLOv3 object detection model. When users upload image which they want to know, our AI model detect what foods on that image!"
     },
     {
-      "image": "/images/bgimg/account-bgimg.jpg",
-      "title": "4Globalization of Korean culture", 
-      "content": "Korean content has begun to be popular around the world. As many foreigners began to be interested in dramas, movies, and kpop, they began to be interested in Korean culture."
+      "image": "/images/about/about04.jpg",
+      "title": "Scrap your favorite K-Food!", 
+      "content": "You can scrap foods in 'My Page' when you logined what you searched. Our service can use without login. But if you want to use more service, we recommend to register our sevice! "
     }
   ],
   "Team": [
     {
       "image": "/images/team/fe1.jpg",
       "title": "Seorin Park (FE Developer)",
-      "content": "Hi, I'm junior frontend developer! I designed UI/UX and developed overall frontend of this service."
+      "content": "Hi, I'm frontend developer! I designed UI/UX and developed overall frontend of this service."
     },
     {
       "image": "/images/team/be1.jpg",
       "title": "Muwon Lee (BE Developer)",
-      "content": "Hi, I'm junior frontend developer! I designed UI/UX and developed overall frontend of this service."
+      "content": "Hi, I'm backend developer. I made up overall architecture of service and linked network of each part."
     },
     {
       "image": "/images/team/be2.jfif",
       "title": "Sungmin Choi (BE Developer, Team Leader)",
-      "content": "Hi, I'm junior frontend developer! I designed UI/UX and developed overall frontend of this service."
+      "content": "Hello, I'm Seongmin and in charge of developing Application Server APIs for this service."
     },
     {
       "image": "/images/team/ai1.jpg",
       "title": "Suhyun Kim (AI Engineer)",
-      "content": "Hi, I'm junior frontend developer! I designed UI/UX and developed overall frontend of this service."
+      "content": "Hi, I'm AI engineer! I selected and collected dataset. And designed and trained AI model, recommend algorithm!"
     },
     {
       "image": "/images/team/ai2.jpg",
       "title": "Seoyoon Lee (AI Engineer)",
-      "content": "Hi, I'm junior frontend developer! I designed UI/UX and developed overall frontend of this service."
+      "content": "Hi, I'm AI engineer! I selected and collected dataset. And designed and trained AI model, recommend algorithm!"
     }
   ],
   "Foods": [

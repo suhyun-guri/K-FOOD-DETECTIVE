@@ -109,7 +109,7 @@ export function TestResultsList(props) {
                             <Stack>
                                 <Card
                                     elevation={10}
-                                    onClick={() => handleCardClick(d.romanized_name)}
+                                    onClick={() => handleCardClick(d.food.romanized_name)}
                                     sx={{
                                         display: 'flex',
                                         width: '100%',
@@ -173,11 +173,10 @@ export function TestResultsList(props) {
                                     </CardContent>
                                 </Card>
                             </Stack>
-                            <FoodInfoDialog open={open} onClose={() => setOpen(false)} data={data} />
                         </Fragment>
                     ))
                     : 'loading'}
-
+                <FoodInfoDialog open={open} onClose={() => setOpen(false)} data={data} />
             </Stack>
         </>
     )

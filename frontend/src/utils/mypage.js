@@ -25,6 +25,6 @@ export const getUserComments = ()=>{
 }
 
 export const getCardInfo = (name) => {
-  const URL = `https://ec5fbd63-aaa3-42c5-b672-efdd5707128d.mock.pstmn.io/food/detail/${name}`
+  const URL = `/api/food/detail/${name}`
   return axios.get(URL)
 }

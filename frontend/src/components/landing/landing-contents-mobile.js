@@ -10,6 +10,7 @@ export function LandingContentsMobile(props) {
                 sx={{
                     display: { xs: 'flex', md: 'none' },
                     mt: 3,
+                    mb: 8,
                     alignContent: 'center'
                 }}
             >
