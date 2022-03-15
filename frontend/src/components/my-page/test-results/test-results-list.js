@@ -1,7 +1,8 @@
-import { Card, CardContent, CardMedia, Stack, Box, Typography, Divider } from '@mui/material';
+import { Card, CardContent, CardMedia, Stack, Box, Typography, Divider, IconButton } from '@mui/material';
 import { Fragment, useState } from 'react';
 import { FoodInfoDialog } from '../food-info-dialog';
 import { getCardInfo } from '../../../utils/mypage';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 export function TestResultsList(props) {
     console.log('TestResultsList props : ', props.data)
@@ -22,66 +23,57 @@ export function TestResultsList(props) {
         })
     }
 
+
+    function ResultLayout({ children, color }) {
+        return (
+            <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
+                <Typography
+                    variant='h5'
+                    sx={{
+                        mb: 1,
+                        color: {color}
+                    }}
+                >
+                    {children}
+                </Typography>
+                <IconButton>
+                    <CloseRoundedIcon fontSize='small' />
+                </IconButton>
+            </Box>
+        )
+    }
+
+
     function MatchResult(num) {
         if (num === 0) {
             return (
-                <Typography
-                    variant='h5'
-                    sx={{
-                        mb: 1,
-                        color: `blue`
-                    }}
-                >
-                    Perfect
-                </Typography>
+                <ResultLayout color={'blue'}>
+                    {'Perfect'}
+                </ResultLayout>
             )
         } else if (num === 1) {
             return (
-                <Typography
-                    variant='h5'
-                    sx={{
-                        mb: 1,
-                        color: `green`
-                    }}
-                >
-                    Great
-                </Typography>
+                <ResultLayout color={'green'}>
+                    {'Great'}
+                </ResultLayout>
             )
         } else if (num === 2) {
             return (
-                <Typography
-                    variant='h5'
-                    sx={{
-                        mb: 1,
-                        color: `black`
-                    }}
-                >
-                    Good
-                </Typography>
+                <ResultLayout color={'black'}>
+                    {'Good'}
+                </ResultLayout>
             )
         } else if (num === 3) {
             return (
-                <Typography
-                    variant='h5'
-                    sx={{
-                        mb: 1,
-                        color: `orange`
-                    }}
-                >
-                    Bad
-                </Typography>
+                <ResultLayout color={'orange'}>
+                    {'Bad'}
+                </ResultLayout>
             )
         } else if (num === 4) {
             return (
-                <Typography
-                    variant='h5'
-                    sx={{
-                        mb: 1,
-                        color: `red`
-                    }}
-                >
-                    Not Recommend
-                </Typography>
+                <ResultLayout color={'red'}>
+                    {'Not Recommend'}
+                </ResultLayout>
             )
         }
     }

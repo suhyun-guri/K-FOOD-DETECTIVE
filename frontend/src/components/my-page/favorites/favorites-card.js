@@ -1,7 +1,8 @@
-import { Card, CardContent, CardMedia, Stack, Box, Typography } from '@mui/material';
+import { Card, CardContent, CardMedia, Stack, Box, Typography, IconButton } from '@mui/material';
 import { Fragment, useState } from 'react';
 import { FoodInfoDialog } from '../food-info-dialog';
 import { getCardInfo } from '../../../utils/mypage';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 export function FavoritesCard(props) {
     console.log('Favorites Card의 props : ', props.data)
@@ -16,7 +17,7 @@ export function FavoritesCard(props) {
             setData(res.data);
             setOpen(true);
             //alert('성공');
-        }).catch(err=>{
+        }).catch(err => {
             console.log(err);
             //alert('fail');
         })
@@ -53,7 +54,7 @@ export function FavoritesCard(props) {
                                         display: 'flex',
                                         width: '25rem',
                                         height: '15vh',
-                                        '&:hover': { backgroundColor: '#EDF2FB'},
+                                        '&:hover': { backgroundColor: '#EDF2FB' },
                                         mb: 2.5
                                     }} >
                                     <CardMedia
@@ -62,16 +63,21 @@ export function FavoritesCard(props) {
                                         image={d.image_url}
                                         alt="Food Picture"
                                     />
-                                    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                                    <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
                                         <CardContent sx={{ flex: '1 0 auto', mx: 0.5, mt: 1 }}>
-                                            <Typography
-                                                component="div"
-                                                sx={{
-                                                    fontSize: '1.0rem'
-                                                }}
-                                            >
-                                                {d.romanized_name.charAt(0).toUpperCase() + d.romanized_name.slice(1)}
-                                            </Typography>
+                                            <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
+                                                <Typography
+                                                    component="div"
+                                                    sx={{
+                                                        fontSize: '1.0rem'
+                                                    }}
+                                                >
+                                                    {d.romanized_name.charAt(0).toUpperCase() + d.romanized_name.slice(1)}
+                                                </Typography>
+                                                <IconButton>
+                                                    <CloseRoundedIcon fontSize='small' />
+                                                </IconButton>
+                                            </Box>
                                             <Typography
                                                 color="text.secondary"
                                                 component="div"
@@ -94,7 +100,7 @@ export function FavoritesCard(props) {
                                         </CardContent>
                                     </Box>
                                 </Card>
-                                </Stack>
+                            </Stack>
                         </Fragment>
                     ))
                     : 'loading'}

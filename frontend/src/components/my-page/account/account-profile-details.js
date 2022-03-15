@@ -1,13 +1,19 @@
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { useState } from 'react';
-import { Box, Button, Card, CardContent, CardHeader, Divider, Grid, TextField } from '@mui/material';
+import { useMemo, useState } from 'react';
+import countryList from 'react-select-country-list';
+import { Box, Button, Card, CardContent, CardHeader, Divider, Grid, Select, TextField } from '@mui/material';
 
 export function AccountProfileDetails(props) {
     console.log('Account Profile Details의 props : ', props.data)
     console.log('Account Profile Details의 nationlity : ', props.data.nationality)
 
     const [isError, setIsError] = useState(false);
+    // const [country, setCountry] = useState('');
+    const options = useMemo(() => countryList().getData(), [])
+    
+    console.log('options: ', options)
+
 
     const [values, setValues] = useState({
         username: `${props.data.username}`,
@@ -94,9 +100,21 @@ export function AccountProfileDetails(props) {
                 label="Nationality"
                 name="nationality"
                 onChange={handleChange}
+                select
+                SelectProps={{ native: true }}
                 value={values.nationality}
+                options={options}
                 variant="outlined"
-              />
+              >
+                {options.map((option) => (
+                  <option
+                    key={option.value}
+                    value={option.value}
+                  >
+                    {option.label}
+                  </option>
+                ))}
+              </TextField>
             </Grid>
 
             <Grid
