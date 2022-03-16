@@ -14,7 +14,7 @@ from food.models import Food, Taste, Test
 from account.models import CustomUser
 from rest_framework_simplejwt.tokens import AccessToken
 
-MODEL_SERVER_URL = "http://elice-kdt-ai-3rd-team07.koreacentral.cloudapp.azure.com:5000/detect"
+MODEL_SERVER_URL = "http://elice-kdt-ai-3rd-team07.elicecoding.com:5000/detect"
 NORMALIZER = 3.21
 
 
