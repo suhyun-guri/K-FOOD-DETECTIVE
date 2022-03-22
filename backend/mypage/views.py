@@ -1,10 +1,9 @@
-from urllib import request
 from rest_framework.generics import RetrieveUpdateAPIView,ListAPIView, get_object_or_404
-from rest_framework.mixins import DestroyModelMixin, RetrieveModelMixin
+from rest_framework.mixins import DestroyModelMixin
 from rest_framework_simplejwt.tokens import AccessToken
 from mypage.serializers import CommentSerializer, FoodSerializer, TestSerializer, CustomUserSerializer
 from rest_framework.response import Response
-from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTTokenUserAuthentication
 from rest_framework import status
