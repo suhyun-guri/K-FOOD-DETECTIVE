@@ -16,7 +16,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ['food', 'user', 'content', 'created_at']
+        fields = ['id', 'food', 'user', 'content', 'created_at']
 
 class TestSerializer(serializers.ModelSerializer):
     food = FoodSerializer(read_only=True)
@@ -24,7 +24,7 @@ class TestSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Test
-        fields = ['food', 'result', 'recommend_foods']
+        fields = ['id', 'food', 'result', 'recommend_foods']
 
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
