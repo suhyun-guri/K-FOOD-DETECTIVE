@@ -19,7 +19,7 @@ export function Footer() {
           maxWidth="false"
         >
             <Typography variant="body1" color="text.secondary" variant="caption" fontSize='0.3rem'>
-                {'Copyright © K-Food Image Searching Service '}
+                {'Copyright © Hello, K-Food No Chilsu '}
                 {new Date().getFullYear()}
                 {'.'}
             </Typography>

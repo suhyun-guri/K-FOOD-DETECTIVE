@@ -1,8 +1,9 @@
 import { Card, CardContent, CardMedia, Stack, Box, Typography, IconButton } from '@mui/material';
 import { Fragment, useState } from 'react';
 import { FoodInfoDialog } from '../food-info-dialog';
-import { getCardInfo } from '../../../utils/mypage';
+import { getCardInfo, delFavoritesFood } from '../../../utils/mypage';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+
 
 export function FavoritesCard(props) {
     console.log('Favorites Card의 props : ', props.data)
@@ -22,6 +23,15 @@ export function FavoritesCard(props) {
             //alert('fail');
         })
     }
+
+    const handleClose = (e) => {
+        delFavoritesFood(e.target.id).then(res=>{
+            props.setForRender(cur=>!cur);
+        }).catch(err => {
+            alert('fail to delete')
+        })
+    }
+    
 
 
     return (
@@ -74,7 +84,7 @@ export function FavoritesCard(props) {
                                                 >
                                                     {d.romanized_name.charAt(0).toUpperCase() + d.romanized_name.slice(1)}
                                                 </Typography>
-                                                <IconButton>
+                                                <IconButton onClick={handleClose}>
                                                     <CloseRoundedIcon fontSize='small' />
                                                 </IconButton>
                                             </Box>

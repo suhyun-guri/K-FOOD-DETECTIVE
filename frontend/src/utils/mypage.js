@@ -28,3 +28,24 @@ export const getCardInfo = (name) => {
   const URL = `/api/food/detail/${name}`
   return axios.get(URL)
 }
+
+export const delFavoritesFood = (romanized_name)=>{
+  const URL = `/api/mypage/favorites/${romanized_name}`
+  const accessToken = localStorage.getItem(ACCESS_KEY)
+  const headers = {"Authorization": `Bearer ${accessToken}`}
+  return axios.delete(URL, {headers})
+}
+
+export const delTestResult = (pk)=>{
+  const URL = `/api/mypage/tests/${pk}`
+  const accessToken = localStorage.getItem(ACCESS_KEY)
+  const headers = {"Authorization": `Bearer ${accessToken}`}
+  return axios.delete(URL, {headers})
+}
+
+export const delMyComments = (pk)=>{
+  const URL = `/api/mypage/comments/${pk}`
+  const accessToken = localStorage.getItem(ACCESS_KEY)
+  const headers = {"Authorization": `Bearer ${accessToken}`}
+  return axios.delete(URL, {headers})
+}
