@@ -1,7 +1,7 @@
 import { Card, CardContent, CardMedia, Stack, Box, Typography, Divider, IconButton } from '@mui/material';
 import { Fragment, useState } from 'react';
 import { FoodInfoDialog } from '../food-info-dialog';
-import { getCardInfo } from '../../../utils/mypage';
+import { getCardInfo, delTestResult } from '../../../utils/mypage';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 export function TestResultsList(props) {
@@ -24,7 +24,19 @@ export function TestResultsList(props) {
     }
 
 
-    function ResultLayout({ children, color }) {
+    const handleClose = (pk) => {
+        delTestResult(pk).then(res=>{
+            console.log(res.data);
+            setOpen(false);
+            window.location.reload();
+        }).catch(err => {
+            console.log('err 내용 : ', err);
+            setOpen(false);
+            alert('fail to delete')
+        })
+    }
+
+    function ResultLayout({ children, color, pk }) {
         return (
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
                 <Typography
@@ -36,7 +48,7 @@ export function TestResultsList(props) {
                 >
                     {children}
                 </Typography>
-                <IconButton>
+                <IconButton onClick={() => handleClose(pk)}>
                     <CloseRoundedIcon fontSize='small' />
                 </IconButton>
             </Box>
@@ -44,34 +56,34 @@ export function TestResultsList(props) {
     }
 
 
-    function MatchResult(num) {
+    function MatchResult(num, id) {
         if (num === 0) {
             return (
-                <ResultLayout color={'blue'}>
+                <ResultLayout color={'blue'} pk={id}>
                     {'Perfect'}
                 </ResultLayout>
             )
         } else if (num === 1) {
             return (
-                <ResultLayout color={'green'}>
+                <ResultLayout color={'green'} pk={id}>
                     {'Great'}
                 </ResultLayout>
             )
         } else if (num === 2) {
             return (
-                <ResultLayout color={'black'}>
+                <ResultLayout color={'black'} pk={id}>
                     {'Good'}
                 </ResultLayout>
             )
         } else if (num === 3) {
             return (
-                <ResultLayout color={'orange'}>
+                <ResultLayout color={'orange'} pk={id}>
                     {'Bad'}
                 </ResultLayout>
             )
         } else if (num === 4) {
             return (
-                <ResultLayout color={'red'}>
+                <ResultLayout color={'red'} pk={id}>
                     {'Not Recommend'}
                 </ResultLayout>
             )
@@ -151,7 +163,7 @@ export function TestResultsList(props) {
                                     <Divider orientation="vertical" sx={{ mx: 2 }} />
 
                                     <CardContent sx={{ flex: '1 0 auto', mx: 0.5, mt: 1.5 }}>
-                                        {MatchResult(d.result)}
+                                        {MatchResult(d.result, d.id)}
 
                                         <Typography variant='body1'>
                                             Other recommended foods :

@@ -24,10 +24,13 @@ export function FavoritesCard(props) {
         })
     }
 
-    const handleClose = (e) => {
-        delFavoritesFood(e.target.id).then(res=>{
-            props.setForRender(cur=>!cur);
+    const handleClose = (name) => {
+        delFavoritesFood(name).then(res=>{
+            console.log(res.data);
+            setOpen(false);
+            window.location.reload();
         }).catch(err => {
+            setOpen(false);
             alert('fail to delete')
         })
     }
@@ -84,7 +87,7 @@ export function FavoritesCard(props) {
                                                 >
                                                     {d.romanized_name.charAt(0).toUpperCase() + d.romanized_name.slice(1)}
                                                 </Typography>
-                                                <IconButton onClick={handleClose}>
+                                                <IconButton onClick={() => handleClose(d.romanized_name)}>
                                                     <CloseRoundedIcon fontSize='small' />
                                                 </IconButton>
                                             </Box>

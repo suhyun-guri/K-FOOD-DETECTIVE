@@ -1,7 +1,7 @@
 import { Card, CardContent, CardMedia, Stack, Box, Typography, Divider, IconButton } from '@mui/material';
 import { Fragment, useState } from 'react';
 import { FoodInfoDialog } from '../food-info-dialog';
-import { getCardInfo } from '../../../utils/mypage';
+import { getCardInfo, delMyComments } from '../../../utils/mypage';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 export function CommentsList(props) {
@@ -18,6 +18,17 @@ export function CommentsList(props) {
         }).catch(err => {
             console.log(err);
             //alert('fail');
+        })
+    }
+
+    const handleClose = (pk) => {
+        delMyComments(pk).then(res=>{
+            console.log(res.data);
+            setOpen(false);
+            window.location.reload();
+        }).catch(err => {
+            setOpen(false);
+            alert('fail to delete')
         })
     }
 
@@ -99,7 +110,7 @@ export function CommentsList(props) {
                                         <Typography variant='subtitle2'>
                                             {d.user}
                                         </Typography>
-                                        <IconButton>
+                                        <IconButton onClick={() => handleClose(d.id)}>
                                             <CloseRoundedIcon fontSize='small' />
                                         </IconButton>
                                     </Box>
