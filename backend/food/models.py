@@ -5,6 +5,9 @@ class Food(models.Model):
     class Meta:
         db_table = 'food'
     
+    def __str__(self):
+        return self.romanized_name
+    
     korean_name = models.CharField(unique=True, max_length=255)
     english_name = models.CharField(unique=True, max_length=255)
     romanized_name = models.CharField(unique=True, max_length=255)
@@ -21,12 +24,18 @@ class Recipe(models.Model):
     class Meta:
         db_table = 'recipe'
     
+    def __str__(self):
+        return f"recipe instance of {self.food.romanized_name}"
+    
     food = models.ForeignKey(Food, on_delete=models.CASCADE, related_name='recipes')
     url = models.URLField(max_length=500)
 
 class Category(models.Model):
     class Meta:
         db_table = 'category'
+
+    def __str__(self):
+        return self.name
     
     foods = models.ManyToManyField(Food, related_name='categories')
     name = models.CharField(unique=True, max_length=255)
@@ -35,12 +44,18 @@ class Ingredient(models.Model):
     class Meta:
         db_table = 'ingredient'
     
+    def __str__(self):
+        return self.name
+
     foods = models.ManyToManyField(Food, related_name='ingredients')
     name = models.CharField(unique=True, max_length=255)
 
 class Taste(models.Model):
     class Meta:
         db_table = 'taste'
+    
+    def __str__(self):
+        return f"taste instance of {self.food.romanized_name}"
     
     food = models.ForeignKey(Food, on_delete=models.CASCADE, related_name='tastes')
     oily = models.SmallIntegerField()
@@ -51,6 +66,10 @@ class Taste(models.Model):
 class Test(models.Model):
     class Meta:
         db_table = 'test'
+    
+    def __str__(self):
+        return f"{self.id}-{self.user.username}-{self.food.romanized_name}-{self.result}"
+    
 
     class ResultChoice(models.IntegerChoices):
         perfect = 0, 'perfect'
