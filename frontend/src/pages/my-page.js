@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Box, Button, CssBaseline } from '@mui/material';
+import { Box, CssBaseline } from '@mui/material';
 import { Header } from '../components/header';
 import { Footer } from "../components/footer";
 import { PageSideBar } from "../components/page-sidebar";
@@ -7,7 +7,6 @@ import { PageMain } from "../components/page-main";
 import { MyPageSideBar } from '../components/my-page/my-page-sidebar';
 import { MyPageMain } from '../components/my-page/my-page-main';
 import JsonData from '../data/data.json';
-import { getFavorites } from "../utils/mypage"; 
 
 
 

@@ -37,71 +37,93 @@ export function AccountProfile(props) {
     return (
         <>
             <Card {...props}>
-                <CardContent>
-                    <Box
-                        sx={{
-                            alignItems: 'center',
-                            display: 'flex',
-                            flexDirection: 'column'
-                        }}
-                    >
-                        <Avatar
-                            src={props.data.image}
-                            sx={{
-                                height: 64,
-                                my: 2,
-                                width: 64
-                            }}
-                        />
-                        <Typography
-                            color="textPrimary"
-                            gutterBottom
-                            variant="h5"
-                        >
-                            {props.data.username}
-                        </Typography>
-                        <Typography
-                            color="textSecondary"
-                            variant="body2"
-                        >
-                            {`${props.data.nationality}`}
-                        </Typography>
-                    </Box>
-                </CardContent>
-                <Divider />
-
-                <CardActions>
-                    <ImageUploading
-                        multiple
-                        value={images}
-                        onChange={onChange}
-                        maxNumber={maxNumber}
-                        dataURLKey="data_url"
-                        onError={onError}
-                    >
-                        {({
-                            imageList,
-                            onImageUpload,
-                            onImageRemoveAll,
-                            onImageUpdate,
-                            onImageRemove,
-                            isDragging,
-                            dragProps,
-                        }) => (
-                            // write your building UI
-                            <Box sx={{ display: 'flex', width: '100%' }}>
-                                <Button
-                                    style={isDragging ? { color: 'red' } : undefined}
-                                    onClick={onImageUpload}
-                                    sx={{ width: '100%'}}
-                                    {...dragProps}
+                <ImageUploading
+                    multiple
+                    value={images}
+                    onChange={onChange}
+                    maxNumber={maxNumber}
+                    dataURLKey="data_url"
+                    onError={onError}
+                >
+                    {({
+                        imageList,
+                        onImageUpload,
+                        onImageRemoveAll,
+                        onImageUpdate,
+                        onImageRemove,
+                        isDragging,
+                        dragProps,
+                    }) => (
+                        <Box>
+                            <CardContent>
+                                <Box
+                                    sx={{
+                                        alignItems: 'center',
+                                        display: 'flex',
+                                        flexDirection: 'column'
+                                    }}
                                 >
-                                    Select picture
-                                </Button>
-                            </Box>
-                        )}
-                    </ImageUploading>
-                </CardActions>
+                                    {imageList.map((image, index) => (
+                                        <Avatar
+                                            key={index}
+                                            src={image['data_url']}
+                                            sx={{
+                                                height: 64,
+                                                my: 2,
+                                                width: 64
+                                            }}
+                                        />
+                                    ))}
+
+                                    <Typography
+                                        color="textPrimary"
+                                        gutterBottom
+                                        variant="h5"
+                                    >
+                                        {props.data.username}
+                                    </Typography>
+                                    <Typography
+                                        color="textSecondary"
+                                        variant="body2"
+                                    >
+                                        {`${props.data.nationality}`}
+                                    </Typography>
+                                </Box>
+                            </CardContent>
+                            <Divider />
+                          
+                            <CardActions>
+                                {imageList.length===0 && 
+                                    <Box sx={{ display: 'flex', width: '100%' }}>
+                                    <Button
+                                        style={isDragging ? { color: 'red' } : undefined}
+                                        onClick={onImageUpload}
+                                        sx={{ width: '100%' }}
+                                        {...dragProps}
+                                    >
+                                        Select picture
+                                    </Button>
+                                </Box>
+                                }
+                                
+                                
+                                {imageList.map((image, index) => (
+                                    <Box sx={{ display: 'flex', width: '100%' }}>
+                                        <Button
+                                            style={isDragging ? { color: 'red' } : undefined}
+                                            onClick={() => onImageUpdate(index)}
+                                            sx={{ width: '100%' }}
+                                            {...dragProps}
+                                        >
+                                            Select picture
+                                        </Button>
+                                    </Box>
+                                ))}
+
+                            </CardActions>
+                        </Box>
+                    )}
+                </ImageUploading>
             </Card>
         </>
     )

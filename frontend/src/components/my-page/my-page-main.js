@@ -5,7 +5,7 @@ import { FavoritesCard } from './favorites/favorites-card';
 import { CommentsList } from './comments/comments-list';
 import { TestResultsList } from './test-results/test-results-list';
 import { AccountMain } from './account/account-main';
-import { getFavorites, getTestResult, getUserComments } from '../../utils/mypage';
+import { getFavorites, getTestResult, getUserComments, getUserInfo } from '../../utils/mypage';
 
 
 export function MyPageMain(props) {
@@ -15,7 +15,8 @@ export function MyPageMain(props) {
     const [myfavorites, setMyFavorites] = useState([]);
     const [comments, setComments] = useState([]);
     const [testresults, setTestResults] = useState([]);
-    const [account, setAccount] = useState(props.data.Account);
+    // const [account, setAccount] = useState(props.data.Account);
+    const [account, setAccount] = useState([]);
 
     console.log('My Page params : ', params.feature);
 
@@ -47,7 +48,14 @@ export function MyPageMain(props) {
                 alert('fail');
             })
         } else if (params.feature === 'account') {
-            setAccount(props.data.Account);
+            // setAccount(props.data.Account);
+            getUserInfo().then(res=>{
+                console.log('유저 정보 셋팅 로그 : ', res.data)
+                setAccount(res.data);
+            }).catch(err=>{
+                console.log(err);
+                alert('fail');
+            })
         }
     }, [params])
 

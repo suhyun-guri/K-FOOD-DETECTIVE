@@ -24,6 +24,13 @@ export const getUserComments = ()=>{
   return axios.get(URL, {headers})
 }
 
+export const getUserInfo = ()=>{
+  const URL = "/api/mypage/account"
+  const accessToken = localStorage.getItem(ACCESS_KEY)
+  const headers = {"Authorization": `Bearer ${accessToken}`}
+  return axios.get(URL, {headers})
+}
+
 export const getCardInfo = (name) => {
   const URL = `/api/food/detail/${name}`
   return axios.get(URL)
