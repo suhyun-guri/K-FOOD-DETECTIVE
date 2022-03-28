@@ -34,6 +34,19 @@
   `docker rmi no_chilsu_db no_chilsu_frontend no_chilsu_backend`
   * 서버를 종료해야 삭제가 가능합니다.
 
+  #### local development 환경에서 django admin page로 모델 인스턴스 추가하기
+  1. 장고 superuser 계정 만들기  
+  `docker exec -it no_chilsu_backend_1 /bin/bash`  
+  `python manage.py createsuperuser`  
+  이후 [username, email, password, password 확인] 을 순서대로 입력
+  2. 장고 admin page 접속하기
+  `localhost:8000/api/admin` 에 접속  
+  이전에 생성한 superuser 계정으로 로그인
+  모델 instance를 수정하고 싶은 table명을 클릭  
+  * 생성 : 우측 상단에 `{table명} 추가버튼` 클릭  
+  * 수정 및 삭제 : 각 instance마다 존재하는 파란색 항목 클릭 (id나 username) 후 수정 및 삭제 진행
+  
+
 
 
 ## 프로젝트 구성 안내
